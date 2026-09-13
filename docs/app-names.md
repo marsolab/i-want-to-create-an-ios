@@ -1,6 +1,6 @@
 # App names: shortlist and zero-cost selection plan
 
-Prepared 13 September 2026. Brand decision pending; use **[AppName]** in the PRD and launch materials until selection and clearance are complete.
+Prepared 13 September 2026. Brand has been set to **Deenstead** for this validation cycle.
 
 ## Recommendation
 
@@ -143,4 +143,4 @@ Ask, in rotating order:
 
 **Day 2:** Record exact explanations with permission, not just favourite-name votes. As practical decision rules, aim for at least 12 of 15 participants to spell the leading name correctly after hearing it, and no repeated serious religious concern. These are founder-set usability targets, not statistical validation. Prefer the name people remember and understand over the name that receives the most polite compliments.
 
-Before committing, check relevant trademark registers, similar spellings and sounds, App Store and Google Play storefronts, domains, and major social handles for the actual launch markets. Obtain appropriate professional clearance when feasible. If a serious conflict remains, keep **[AppName]** while testing the product; a paid domain or finished logo is unnecessary for the first learning cycle.
+Before committing, check relevant trademark registers, similar spellings and sounds, App Store and Google Play storefronts, domains, and major social handles for the actual launch markets. Obtain appropriate professional clearance when feasible. If a serious conflict remains, keep **Deenstead** while testing the product; a paid domain or finished logo is unnecessary for the first learning cycle.

@@ -1,4 +1,4 @@
-# Product Requirements Document — [AppName]
+# Product Requirements Document — Deenstead
 
 Version 0.1 · September 13, 2026 · Proposed scope for founder approval
 

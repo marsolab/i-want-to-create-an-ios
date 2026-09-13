@@ -1,6 +1,6 @@
 # Zero-budget marketing and launch strategy
 
-Working brand: **[AppName]** · Prepared 13 September 2026 · Draft for founder decisions, not an instruction to publish or spend.
+Working brand: **Deenstead** · Prepared 13 September 2026 · Draft for founder decisions, not an instruction to publish or spend.
 
 ## 1. The decision
 
@@ -29,7 +29,7 @@ Selected public reviews offer useful language, with clear limits:
 | A January 24, 2025 Quranly reviewer wrote, “not maintain a streak.” [Review on the product listing](https://apps.apple.com/us/app/quran-by-quranly/id1559233786) | Some users want practice without streak pressure; one complaint does not establish a broad segment. |
 | A March 10, 2024 Pillars reviewer wrote, “A prayer app should be simple”. An August 24 review on the same listing positively describes streaks. [Pillars reviews](https://apps.apple.com/us/app/pillars-prayer-times-qibla/id1559086853) | Simplicity is a useful hypothesis, while motivation preferences differ. Do not claim all Muslims dislike gamification. |
 
-These are reviews of competitors, not testimonials for [AppName], and not proof that current versions still have the described issues. In interviews, capture voluntary participants' actual words about returning after interruptions. Until then, “Return to your salah routine” remains our draft hypothesis. The copy workflow informed this separation of evidence, proposed positioning, and claims that still need proof.
+These are reviews of competitors, not testimonials for Deenstead, and not proof that current versions still have the described issues. In interviews, capture voluntary participants' actual words about returning after interruptions. Until then, “Return to your salah routine” remains our draft hypothesis. The copy workflow informed this separation of evidence, proposed positioning, and claims that still need proof.
 
 ## 2. Audience, channels, and resources
 
@@ -79,13 +79,13 @@ Do not scrape members, infer religious vulnerability, buy accounts, coordinate v
 
 Use only where a request is appropriate and rules do not already prohibit it; this is **not** a request to bypass the bans above.
 
-> Hello mods — I’m the founder of [AppName], a proposed iPhone companion for Muslims. I’d like to share [prototype/test build] and ask for feedback on [specific interaction]. The first 14-day journey will be free; optional paid journeys are planned later. I would disclose that relationship and pricing, include [screenshots], and collect only [exact fields] from people who explicitly opt in. Here is the complete proposed post: [text]. Does this fit your current rules, and is there a preferred thread or flair? If it does not fit, I will not post it.
+> Hello mods — I’m the founder of Deenstead, a proposed iPhone companion for Muslims. I’d like to share [prototype/test build] and ask for feedback on [specific interaction]. The first 14-day journey will be free; optional paid journeys are planned later. I would disclose that relationship and pricing, include [screenshots], and collect only [exact fields] from people who explicitly opt in. Here is the complete proposed post: [text]. Does this fit your current rules, and is there a preferred thread or flair? If it does not fit, I will not post it.
 
 ### Draft: permitted prototype-feedback post
 
 Title: **Does this daily flow make sense for a Muslim prayer companion?**
 
-> I’m building [AppName] and would value feedback on this early prototype. It pairs prayer utilities with a 14-day “Reconnect With Salah” journey: read a sourced teaching, choose an action, and optionally reflect. [Screenshots.]
+> I’m building Deenstead and would value feedback on this early prototype. It pairs prayer utilities with a 14-day “Reconnect With Salah” journey: read a sourced teaching, choose an action, and optionally reflect. [Screenshots.]
 >
 > The unresolved question is whether this adds something useful alongside the prayer app people already have. In the prototype, is the next step clear? What would make this feel like another task rather than support?
 >
@@ -132,7 +132,7 @@ Choose a day you can support. The platform’s daily cycle begins at 12:01 a.m. 
 
 ### Draft listing, to use only after the described features exist
 
-**Name:** [AppName]
+**Name:** Deenstead
 
 **Tagline:** A gentler daily prayer companion for Muslims
 
@@ -142,7 +142,7 @@ Choose a day you can support. The platform’s daily cycle begins at 12:01 a.m. 
 
 **Maker comment:**
 
-> Hi Product Hunt — I’m [name], the maker of [AppName]. It’s an iPhone app for Muslims who want support returning to a steady salah routine.
+> Hi Product Hunt — I’m [name], the maker of Deenstead. It’s an iPhone app for Muslims who want support returning to a steady salah routine.
 >
 > The first release includes prayer times, Qibla, and a free 14-day “Reconnect With Salah” journey. Each day connects a sourced teaching to one practical action and an optional private reflection. It does not score worship or compare people publicly.
 >
@@ -150,7 +150,7 @@ Choose a day you can support. The platform’s daily cycle begins at 12:01 a.m. 
 >
 > I’d appreciate feedback on whether the daily interaction is clear and useful alongside your current prayer app. If you try it, what would you change first? [Official link and support route.]
 
-**Opted-in launch update:** “The first version of [AppName] is available. We’ve shared it on Product Hunt: [link]. If you have time to try it, I’d value honest feedback on the first-day experience.”
+**Opted-in launch update:** “The first version of Deenstead is available. We’ve shared it on Product Hunt: [link]. If you have time to try it, I’d value honest feedback on the first-day experience.”
 
 At +24 hours record visits, relevant conversations, access starts, and issues. At +7/+14 days inspect cohort use. Votes and badges are secondary; a quiet launch with useful participants can justify the effort.
 
@@ -221,7 +221,7 @@ Preconditions: a usable iPhone release, reliable content, measured pilot return,
 
 Conditional sponsorship draft, for use only after the stated product exists:
 
-> **Sponsored by [AppName].** A new iPhone companion with prayer times, Qibla, and a free 14-day Reconnect With Salah journey. Explore a short teaching, choose a practical action, and reflect privately. Preview a day here: [direct link]. [Accurate paid-feature disclosure, if applicable.]
+> **Sponsored by Deenstead.** A new iPhone companion with prayer times, Qibla, and a free 14-day Reconnect With Salah journey. Explore a short teaching, choose a practical action, and reflect privately. Preview a day here: [direct link]. [Accurate paid-feature disclosure, if applicable.]
 
 Evaluate economics using the product actually on sale. At a $7.99 one-time journey price and an assumed qualifying 15% Apple commission, proceeds are about **$6.79 per buyer before taxes, refunds and every operating cost**. A $50 placement would need **at least eight attributed purchases** merely to cover the placement on that simplified basis. If 100 activated users convert at an assumed 5%, five purchases yield only about $33.96: the campaign loses money before other costs. Neither the conversion rate nor the available reach is established. [Apple commission eligibility](https://developer.apple.com/app-store/small-business-program/).
 
