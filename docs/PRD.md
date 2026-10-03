@@ -1,252 +1,141 @@
-# Product Requirements Document — Deenstead
+# Product Requirements Document — Prayer Focus beta
 
-Version 0.1 · September 13, 2026 · Proposed scope for founder approval
+Version 0.3 · October 3, 2026 · Product and paid membership direction approved for design and feasibility work
 
-Brand is deliberately unresolved. See [naming options](app-names.md), [marketing strategy](marketing-strategy.md), and the [earlier market research](muslim-ios-app-market-opportunity.md). This PRD narrows the earlier proposal to fit a zero-cash validation phase. It is a specification, not a claim that the product, reviewers, or partnerships already exist.
+This revision replaces the earlier 14-day journey as the first product. The initial beta tests whether an opt-in iPhone focus mode can help English-speaking Muslims make room for salah. App name and final brand remain open.
 
-## 1. Product decision
+## 1. Product direction
 
-Build a private iPhone companion that helps English-speaking Muslims return to a consistent salah routine after interruptions. Its first experience is a free, self-paced **14-day Reconnect With Salah journey**, supported by prayer times, Qibla, and optional reminders.
+**Promise:** Make space for salah by pausing the apps that distract you when prayer time begins.
 
-Working promise: **“Return to your salah routine, one day at a time.”**
+The user selects distracting apps and permits Screen Time controls. By default, focus is enabled for all five daily prayers. At each enabled prayer's scheduled time, the selected apps are shielded. The user can mark that they are starting prayer, put the phone away, then mark that they have finished. They can also mark a prayer as already completed without the phone. Either confirmation clears the app's restriction for that prayer. An explicit “Unlock for this prayer” action clears the restriction without marking the prayer complete.
 
-The interaction is small: read a short, sourced teaching; choose a practical action; optionally reflect later. Aim for 2–5 minutes in the app. Worship and actions happen outside it; prayer itself is not included in that time estimate.
+The app records the user's own actions; it does not verify worship. A missing confirmation is displayed as “No check-in,” not as a known missed prayer. Restrictions never accumulate across prayers. At the next prayer event, the prior restriction is cleared and the next enabled prayer starts its own focus period. If the next prayer has focus disabled, the prior restriction is cleared without starting another.
 
-The app supports the user's practice. It never defines how good a Muslim someone is, calculates spiritual worth, or treats engagement as evidence of faith. Focusing on one practical change is a learning technique, not a recommendation to omit other religious obligations.
+This is a voluntary focus tool, not a device-wide lock. The user can deselect apps, pause focus, or revoke Screen Time authorization in iOS Settings. Explain those controls before enabling the feature. Never claim to control the whole phone or guarantee that restrictions cannot be bypassed.
 
-### What is and is not established
+## 2. Audience and release scope
 
-Prayer tools and Islamic habit apps are crowded. Further research also identified **Niyyah**, whose current listing explicitly describes short, scholar-developed journeys ending in concrete actions, alongside an AI companion and streaks. The learning-to-action loop is therefore already served; it is not a defensible novelty claim. [Niyyah's developer listing](https://play.google.com/store/apps/details?id=com.guider.guidermobile)
+- **First market:** English-speaking Muslims worldwide. Start with English UI and local prayer times; do not assume a launch country until access to beta participants is confirmed.
+- **Later languages:** Arabic, then Persian, then other languages. Design layouts and content for right-to-left direction and text expansion from the beginning; translations are not part of this beta.
+- **Beta platform:** native iPhone app. No Android, web substitute, account, cloud sync, advertising, or social features. The paid membership design is included; live billing remains gated on product configuration and core feature validation.
+- **Included:** five-prayer schedule, configurable prayer-time settings, optional Screen Time focus for selected apps, one prayer-start notification where authorized, local check-ins, and a user-controlled pause/unlock path.
+- **Excluded:** Qibla, Qur'an reader, 14-day lessons, reflections/journal, widgets, and analytics tracking. Revisit these only after the core use case is validated.
+- **Default:** focus enabled for all five prayers. Users can switch each prayer's focus off independently; prayer times remain visible and check-ins remain available.
 
-Our hypothesis is that a specific cohort prefers a smaller, restart-friendly experience with local private notes, no mandatory account, no streak penalties, transparent source review, and no AI religious adviser. Validate that preference against existing products. No evidence yet establishes an underserved market or willingness to pay for this exact combination.
+## 3. Main experience
 
-## 2. Audience and jobs
+### First run
 
-**Primary participant:** an English-speaking adult iPhone user who already knows the basics of salah, has struggled to maintain a routine through work, travel, or other interruptions, and wants a manageable way to return.
+1. Explain the benefit, what will be restricted, and the always-available pause, per-prayer settings, and iOS authorization controls. Show a sample focus screen.
+2. Let the user choose a city manually or grant foreground location access. Do not request background location.
+3. Show the resulting prayer schedule, time zone, calculation method, and adjustable settings so the user can compare against a trusted local timetable.
+4. Let the user select distracting apps and sites with Apple's system picker; do not preselect any apps.
+5. Explain that authorization is required for focus, then request it. If declined, keep the schedule and allow reminders/check-ins without restrictions.
+6. Confirm all five prayer switches are on by default and show the selected apps and next focus time.
+7. Present membership in a large sheet that slides up from the bottom before granting product access and activating focus. The paywall has no close button or swipe-to-dismiss path. It dismisses only after a verified purchase or restoration of an active subscription.
 
-Recruit initially through one or two accessible English-speaking communities. UK and UAE English-speaking communities are candidate starting points; choose based on actual access to participants and reviewers, not an assumed distribution advantage. Do not attempt a global multilingual launch.
+### Membership
 
-Core jobs:
-
-- “When my routine breaks, help me return without feeling that all my previous effort was erased.”
-- “Show me the next prayer using settings I understand and can compare with my mosque.”
-- “Help me act on one useful teaching instead of saving another quote.”
-- “Let me keep my reflections private.”
-
-These are proposed interview hypotheses, not verbatim customer quotations.
-
-**Not the first audience:** children, users seeking a complete learn-to-pray curriculum, advanced Islamic study, clinical mental-health support, or family monitoring. New Muslims can use suitable content, but v1 must not imply that it teaches all prayer requirements.
-
-### Problems to test before engineering
-
-Interview 15–20 adults about their last actual interruption, current tools, what they abandoned, and what helped them return. Let at least five compare this prototype with their existing app and Niyyah or another relevant alternative. Ask what, if anything, is sufficiently useful to keep both or switch. If the answer is only “prettier prayer times,” revise the proposition before building.
-
-## 3. Budget and delivery stages
-
-Zero budget means zero new cash spending, assuming the founder already has suitable equipment, internet access, and time. It does not make development, support, or editorial work costless.
-
-| Stage | Deliverable | Cash boundary | Exit condition |
-|---|---|---|---|
-| A: problem validation | Interviews, three simple screens, name test | $0 using existing tools | Repeated problem, reachable cohort, plausible reason to use this over alternatives |
-| B: concierge pilot | Reviewed 14-step journey on a simple mobile page/document; opt-in reminders through an existing channel | $0 only if content rights and competent review are available without payment | At least 20 activated participants with completed observation windows; retention and trust gates below |
-| C: native beta | Free local-first iPhone app with P0 features | Existing developer membership or separately approved membership cost | Content, prayer calculation, reminders, privacy and usability pass |
-| D: first revenue | One finished, reviewed additional journey | No paid acquisition required | Real purchases and continuing use justify further content investment |
-| E: subscription | Sufficient complete content and sustainable ongoing service | Funded by revenue; budget approved separately | Recurring value demonstrated, not merely promised |
-
-Apple lists developer membership at **US$99 per year**, with regional pricing and limited fee-waiver eligibility. Budget for it unless an existing membership covers this project; do not assume a commercial app qualifies for a waiver. Public TestFlight/App Store delivery is a different step from free prototype testing. [Apple enrollment](https://developer.apple.com/programs/enroll/), [developer account overview](https://developer.apple.com/help/account/basics/about-your-developer-account)
-
-If no qualified reviewer volunteers, use the free phase for interviews and interface testing with clearly marked placeholders. Do not release unreviewed religious guidance to meet a calendar deadline. Reduce content scope or fund review first.
-
-## 4. Scope and priorities
-
-P0 is required for the first public native release. The concierge pilot only needs the journey and consented feedback, not native prayer infrastructure.
-
-| Capability | P0 free release | Later, evidence-dependent |
-|---|---|---|
-| Prayer times | Five daily prayers, sunrise separately labeled, next-prayer display, visible location/method settings, manual adjustments | Verified mosque timetable import and broader regional support |
-| Qibla | Direction, bearing, accuracy/permission states; manual-city fallback clearly approximate | Map alignment and additional guidance |
-| Reminders | Optional prayer reminders and user-selected journey reminders, independently controlled | Additional reminder styles only after demand |
-| Daily guidance | One reviewed 14-step starter journey; source and context visible | More reviewed journeys, optional audio with rights |
-| Reflection | Optional local text note, edit/delete/export | Optional private sync with a separately reviewed data design |
-| Return experience | Resume, repeat a step, pause, or restart without lost progress | User-controlled routine personalization |
-| Prayer widget | One basic next-prayer widget, free | Additional widget layouts; do not remove existing free utility |
-| Sharing | User-initiated generic journey invitation | Reviewed source-card sharing after attribution QA |
-| Payments | None in beta; free core stays accessible | One-time journey purchase, then subscription if justified |
-
-**Explicitly excluded:** full Qur'an reader or recitation catalog, open-ended AI scholar/chatbot, fatwas, social feed, public prayer logs, streak repair purchases, piety/reward points, family surveillance, donations/zakat handling, mosque discovery directory, halal marketplace, Android, standalone Watch app, and a custom content-management backend.
-
-“Daily affirmation” becomes **daily intention/reflection**. Original encouragement must be labeled as editorial writing, visually separate from Qur'an, hadith, translation, and scholarly commentary. No generated or paraphrased text presented as scripture.
-
-## 5. Experience and navigation
-
-Three primary destinations: **Today**, **Journey**, **Reflection**. Settings is a secondary destination. Qibla opens from the prayer panel on Today. Avoid a dashboard of dozens of tools.
-
-### First session
-
-1. Explain the promise and show a representative teaching/action card. No forced account or payment screen.
-2. Let the user choose a city manually or grant location access after seeing why it helps. Do not request background location.
-3. Show the selected prayer calculation configuration and let the user change it or compare with their mosque. Never claim a preset is universal.
-4. Start the first journey step. The user can read it before enabling notifications.
-5. Offer reminder choices at the point of value. Declining must not block anything else.
-
-Target: at least 4 of 5 observed usability participants can reach and choose the first action within two minutes without founder help. This is a test target, not existing performance evidence.
+- Fully paid product, with no free tier or free trial.
+- Paywall uses a large native sheet with rounded top corners. Remove the close control and drag indicator; disable interactive dismissal while there is no active subscription. Pending, cancelled and failed purchases leave the paywall open. Restoring an existing active subscription also unlocks access.
+- Selected mosque-and-arch paywall with the headline “Make space for salah.” Annual is selected by default.
+- Blur the presenting image behind the sheet, including the status-bar safe area. Keep the paywall sharp and fade the lower photo edge into the ivory canvas. The presenting surface must not accept touch or accessibility interaction while the paywall is open.
+- Annual offer displays **$2.99/month** in the plan row; the full **$35.88 yearly** charge and automatic renewal disclosure appear below Subscribe. Monthly is **$3.99/month**.
+- These are the approved design amounts. Select supported actual App Store prices before release; use localized StoreKit prices and compute the annual monthly equivalent from the actual billed price divided by twelve.
+- Subscribe and Restore use Apple StoreKit. Grant access only from a verified, active subscription. Cancellation, pending/unverified transactions, unavailable products, and expired or revoked subscriptions do not grant access.
+- Never require payment to clear existing app-owned restrictions. Clear those restrictions when access expires before returning to the membership gate; this remains part of real-device shielding validation.
+- Keep Restore purchases, Terms and Privacy visible. No fake ratings, urgency, religious guarantees or guilt language.
 
 ### Daily use
 
-`Today → next prayer and settings → short teaching → choose action → leave app → optional reflection`
+- **Today screen:** next prayer and time, focus status, primary action, and a compact list of the five prayer times with independent focus switches accessible in settings.
+- When an enabled prayer starts, selected apps show a calm, branded shield that names the prayer and offers a route to Prayer Focus. The Prayer Focus app itself remains accessible.
+- The app shows “Start prayer.” After the user taps it, it shows a quiet “Your phone is ready to be put away” state and a “Finish prayer” action on return. The screen may be locked during prayer; there is no required timer or minimum duration.
+- “Already prayed” ends the restriction and stores a self-reported completion without requiring a start/finish sequence.
+- “Unlock for this prayer” ends the restriction without recording completion and asks for one brief confirmation to prevent accidental taps. Do not require a reason.
+- There is no snooze-by-default and no repeated nagging. One notification at the start of an enabled prayer is scheduled only if notifications are allowed. Its permission is optional and independent of Screen Time authorization.
 
-The day card has a source reference, a short explanation, one suggested action, “Choose this action,” “Choose a simpler version” where editorially appropriate, and “Read source.” The action is not automatically recorded as performed.
+### Visual direction
 
-Evening reflection offers a short question, optional note, and “Skip.” Choosing or completing an app step does not assert a prayer was performed. A skipped reflection must not prevent continuing.
+Use a calm, warm-light foundation: warm white or milk surface, muted sand, a restrained sage accent, readable typography, and generous spacing. The selected visual direction may use a mosque and architectural arch as the main scene; keep that imagery spacious and let the prayer action remain clear. Remove the app-name masthead and secondary slogans from the main focus screen. Keep the shield respectful and reassuring, with a single clear route back to the prayer action. Avoid ornamental overload, gamified scores, guilt language, and visual claims of religious authority. Refine type size, rhythm and spacing before interface implementation.
 
-### Returning after a gap
+## 4. Prayer schedule and settings
 
-Show: “Welcome back. Continue where you left off?” with Resume and Choose another step. Preserve prior work. No red missed-day calendar, debt count, guilt notification, or automatic reset. Allow the user to pause without stating a reason; never require disclosure of menstruation, illness, travel, or other sensitive circumstances.
+- Show Fajr, Dhuhr, Asr, Maghrib, and Isha every day. Sunrise may be shown as a clearly labeled reference, not as a prayer.
+- Support manual city selection without location permission. If using current location, request foreground access only and show the selected city/time zone.
+- Make calculation method, Asr convention, high-latitude handling where relevant, and per-prayer minute adjustments visible and editable. Do not present a hidden universal default.
+- Initial default method and supported jurisprudential conventions require qualified subject-matter review before public beta. The user can choose a locally trusted method and compare displayed results with their mosque.
+- Recalculate after a settings, date, location, or time-zone update. If the device travels while the app is closed, refresh on next open and make schedule freshness visible. Do not promise background travel tracking.
+- If a valid schedule cannot be calculated, explain why, offer manual location/settings, and do not fabricate prayer times or start a focus period based on stale data.
 
-After the 14 steps, the free experience offers revisiting steps and saved reflections. Reused material is visibly identified as a revisit. Do not promise a fresh free lesson every day forever with a 14-lesson library.
+## 5. Focus behavior and failure states
 
-## 6. Functional requirements and acceptance criteria
+- Restrict only user-selected applications/categories/web domains using Apple's Screen Time APIs. The app itself and essential system functions remain available.
+- A focus interval begins at the configured time for an enabled prayer. It ends on “Finish prayer,” “Already prayed,” “Unlock for this prayer,” or when the next prayer event is processed. A next prayer with focus disabled still clears the previous interval.
+- Repeated or delayed schedule events must be idempotent: processing the same prayer event twice must not create a second state or reapply a cleared restriction.
+- A pause suspends focus until the selected end time or manual resume; selecting pause clears current app-owned restrictions. No explanation is requested.
+- If Screen Time permission is denied or revoked, do not claim focus is active. Keep prayer schedule and local actions working, show the status, and offer a direct settings explanation.
+- If scheduling is stale or an extension cannot determine the current prayer safely, clear app-owned restrictions rather than leave selected apps blocked indefinitely. Show a recoverable notice when the app next opens.
+- Prayer logs stay private on device. The UI describes check-ins as self-reported and offers clear/delete-all controls.
 
-### F1 — Prayer calculations
+## 6. Data, privacy, accessibility
 
-- Store location choice, coordinates needed for calculation, time zone, calculation-method identifier, Asr convention, high-latitude handling, and per-prayer offsets on device.
-- Let users inspect/change relevant settings. Initial supported methods and jurisprudential scope require reviewer sign-off; list limitations openly rather than selecting an invisible universal default.
-- A manual city works without location permission or network after setup. Approximate city-center coordinates are labeled accordingly.
-- Recalculate displayed times and pending reminders after relevant settings, location, date, or time-zone changes. Travel while the app is closed must not be advertised as automatically handled; ask users to reopen and confirm location on arrival.
-- Never show a fabricated time when a calculation cannot be produced; explain the limitation and ask the user to use a trusted local timetable.
+- No account or application server is required. Store prayer settings, selected app tokens, pause state, and check-ins locally and share only the minimum necessary state with the Screen Time extensions through an app group.
+- Use opaque system app-selection tokens. Do not collect app usage reports or upload selected app identities, prayer times, precise coordinates, check-ins, or pause reasons.
+- Assess and accurately disclose device backup behavior before claiming data never leaves the phone. No third-party behavioral analytics SDK in beta.
+- Make check-ins editable or deletable and provide a single explicit erase-local-data action. Deleting app data cannot reverse a user-created export or device backup; no export is required in beta.
+- Support Dynamic Type, VoiceOver labels, high contrast, reduced motion, and non-color-only focus states. Keep copy and layout ready for English expansion and Arabic/Persian right-to-left localization.
 
-**Acceptance:** automated fixtures for at least ten representative cities and four seasonal dates, including a high-latitude case, DST transitions, no-DST locations, midnight rollover, and travel across date/time zones. With identical coordinates, method and rounding, expected arithmetic results agree within one minute. Local mosque differences require documented reconciliation of method/offsets; do not apply the one-minute rule to unlike religious conventions. All unexplained discrepancies block release in that supported location.
+## 7. Native implementation and platform gate
 
-### F2 — Qibla
+- Build a native SwiftUI iOS application with a small local domain layer for prayer schedules, focus state transitions, settings, and check-ins.
+- Use FamilyControls for individual authorization and app selection, ManagedSettings to shield the selected targets, and DeviceActivity extensions to handle scheduled state changes while the main app is closed. Use UserNotifications for the optional start notification.
+- Before full UI build, make a technical spike that proves a selected app is shielded at a scheduled event and unshielded after each completion/escape path, including while the app is backgrounded. Confirm target OS support and extension behavior against current Apple documentation.
+- Apple requires the Family Controls capability and approval for distribution. Request the entitlement early; TestFlight/App Store distribution is gated on approval. If approval is unavailable, keep the project in design/research and do not present a non-functional imitation as the promised hard mode.
+- Keep all state transitions deterministic and locally testable; extensions and the app must read/write a shared, versioned focus state safely.
 
-- Show numerical bearing and compass direction with an uncertainty state.
-- Explain magnetic interference and permission/sensor limitations. Never show a confidently locked arrow when heading accuracy is poor.
-- Manual-city mode uses approximate city location; let users inspect this assumption.
+## 8. Acceptance and validation
 
-**Acceptance:** independently checked bearings across the supported test locations; real-device checks away from interference and with intentionally poor heading data. Missing location or heading must produce a useful explanation, not a crash or false precision.
+### Functional acceptance
 
-### F3 — Reminders and widget
+- With authorization granted, the user can choose apps and see them shield at a scheduled enabled prayer, including after the app is backgrounded or the phone is restarted.
+- Finish, already prayed, per-prayer unlock, pause, disabled next prayer, and permission revocation each restore the expected access without creating false completion records.
+- No prior unchecked prayers accumulate. The next enabled prayer is the only active focus interval.
+- All five prayer times remain visible when focus is disabled for any subset of prayers. Time settings are reviewable and adjustments affect the next schedule.
+- Offline use works after initial city/method setup. A stale or invalid schedule never applies an indefinite restriction.
 
-- User controls each prayer reminder independently. Default journey reminders to off until selected; maximum two journey prompts per day. Prayer reminders are separate and also opt-in.
-- Use scheduled local notifications so a server is not needed for normal delivery. Reconcile pending requests rather than accumulating duplicates. Account for dates that change prayer time; do not repeat yesterday's time indefinitely.
-- Engineering must demonstrate at least seven days of correctly scheduled reminders without reopening, within the supported device's pending-notification limits. Show “Scheduled through [date]” and refresh on app open. If safe automatic replenishment is not proven, clearly instruct weekly reopening; do not promise indefinite unattended delivery.
-- A disabled permission, disabled sound, or user suppression state is not “reminders are working.” Display status, permit silent reminders, and provide settings guidance. Never promise to override Focus, silent settings, or device shutdown.
-- Use a normal licensed sound or system tone in v1. No promise of full-length background adhan playback.
-- Widget shows location and schedule freshness and remains readable when data needs updating. It is informational, not a guaranteed second-by-second countdown.
+### Test matrix
 
-**Acceptance:** real-device tests of allowed/denied/revoked notification permission, changed preferences, duplicate prevention, seven-day closed-app operation, offline use, restart, time-zone change after reopening, and widget freshness. Distinguish scheduled-request success from observed notification delivery. Document any OS-dependent behavior in help text.
+- Unit tests: local prayer event ordering and date rollover; focus state machine; idempotent event delivery; lock → start → finish; already prayed; manual unlock; pause expiry; focus-disabled next prayer; permission loss; stale schedule fail-safe.
+- Real-device checks: Screen Time authorization approved/declined/revoked; picker selection changes; shield action and app return; screen lock during prayer; app killed/backgrounded; device restart; daylight-saving and time-zone update; notification permission denied; offline schedule; accessibility with VoiceOver and larger text.
+- Schedule fixtures: representative cities and dates across supported calculation conventions, including high latitude and DST transitions. Compare only against references using matching conventions; record unresolved material differences as release blockers.
+- Usability beta: 15–20 consenting English-speaking adults where recruitment is accessible. At least 4 of 5 observed participants should independently configure focus and understand how to finish or unlock. Collect voluntary feedback; do not upload individual prayer check-ins.
 
-These requirements follow Apple's permission-dependent notification model and support for inspecting/canceling scheduled requests. [Notification authorization](https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications), [local notification scheduling](https://developer.apple.com/documentation/usernotifications/scheduling-a-notification-locally-from-your-app)
+### Release gates
 
-### F4 — Journey and reflection
+- Zero known cases of restrictions remaining indefinitely after an error, pause, disabled next prayer, or permission revocation.
+- Users can explain what will be blocked, how they can clear it, and that check-ins are self-reported.
+- Qualified reviewer signs off the initial supported prayer-time conventions and terminology.
+- Apple distribution entitlement is approved before any claim of App Store or TestFlight readiness.
+- Privacy disclosures, support contact, and current limitations match observed behavior.
 
-- Bundle all approved starter content for offline access. No login required.
-- A journey has an ordered sequence but is self-paced; missed calendar days do not skip content.
-- A step can be revisited; choices and notes survive app restarts and app updates.
-- Reflection is optional. Export is initiated by the user with a warning that the exported file may contain private material.
-- Delete one note or erase all app-owned personal data with explicit confirmation. Explain that deletion cannot erase files the user previously exported.
+## 9. Success measures
 
-**Acceptance:** complete all 14 steps offline; pause for several simulated days; resume on the correct step; edit/delete a note; export; erase; restart; verify no personal content remains in app storage or pending personal reminders. Test interrupted writes and version migration without data loss.
+Success is whether the voluntary tool is understandable, technically dependable, and useful to its users. It is not a measure of faith or religious worth.
 
-### F5 — Sources and correction
+- **Setup completion:** users who finish schedule and Screen Time setup divided by those who begin setup; report counts and permission declines separately.
+- **Core reliability:** successful scheduled shield/clear transitions divided by observed device test transitions; target 100% in release test cases, with zero indefinite-shield failures.
+- **Usability:** at least 4/5 observed participants independently configure, start and finish or unlock focus.
+- **Perceived usefulness:** voluntary participant feedback on whether focus helped create room for salah; present sample size and unknowns, not as proof of religious adherence.
+- Do not track prayer completion for product analytics or send individual worship data to a server.
 
-- Each published religious teaching has a durable source reference, translator/edition where relevant, content version, contextual explanation, rights record and reviewer approval.
-- “Report a content issue” opens a user-controlled draft including the content ID/version only by default. It never attaches private notes or prayer settings automatically.
-- A serious source or meaning error stops further distribution/promotion of that content, receives reviewer triage, and leads to a corrected build. With an offline bundled library, already-installed offline copies cannot be remotely recalled; communicate that limitation and issue an update prominently.
+## 10. Delivery sequence
 
-**Acceptance:** every shipped card passes the checklist; an unsourced or unapproved card fails the release gate. App Store rules explicitly identify inaccurate/misleading religious quotations as unacceptable. [Apple review guidelines, 1.1.5](https://developer.apple.com/app-store/review/guidelines/#objectionable-content)
+1. Finalize three visual directions and select one before building app screens.
+2. Complete the Screen Time technical spike and request Apple distribution entitlement.
+3. Validate time settings and content terminology with a qualified reviewer.
+4. Implement local prayer schedule, focus state flow, permission onboarding, and selected-screen designs.
+5. Test on real iPhones and run a small consented English-language usability beta after platform and privacy gates pass.
 
-## 7. Editorial requirements
-
-One accountable reviewer with relevant qualifications must approve the narrow starter curriculum, with a documented second opinion for disputed material. A name on the website is used only with consent and an accurate description of the review performed. A general religious affiliation is not proof of subject expertise.
-
-Content pipeline:
-
-`Proposed topic → source and rights check → original explanation/action → religious review → language/accessibility check → versioned approval → release`
-
-Content record fields: `content_id`, `journey_id`, `step_number`, `source_type`, `source_reference`, `exact_text`, `translation_credit`, `context`, `editorial_action`, `reflection_prompt`, `rights_evidence`, `reviewer`, `approval_date`, `content_version`.
-
-- Keep original Arabic, translation, paraphrase and commentary distinguishable. Do not excerpt in a way that changes meaning.
-- For hadith, include collection/reference and the attribution of any authenticity grading. Avoid disputed rulings in the initial general routine content.
-- Qur'an translations, recordings, fonts and artwork need their own rights checks. A public page or accessible API does not establish redistribution rights.
-- Tanzil is a candidate Arabic-text source; its published terms require unchanged text, attribution and a link. This is not blanket permission for every translation or audio file. Select the exact licensed editions before implementation. [Tanzil terms](https://tanzil.net/docs/text_license)
-- No fear-based purchase messaging, promises of guaranteed reward, or health-treatment claims.
-
-Proposed 14-step outline, subject to review: understand your present routine; inspect time settings; prepare a practical prayer space; reduce one predictable distraction; plan for a busy workday; revisit the meaning of a familiar phrase; reflect on week one; respond to an interruption; prepare for travel; connect a daily cue to preparation; make room for a brief Qur'an reflection; identify one source of support; choose what to keep; write a continuation plan. These are editorial topics, not religious rulings or finished lessons.
-
-## 8. Data, accessibility, and implementation boundaries
-
-Prefer a native iPhone app with local storage, bundled content and on-device calculations. The PRD does not lock an implementation library or deployment target; select those after an engineering spike and checking participant device versions. A web/document pilot is a validation asset, not a replacement promise for the eventual iOS product.
-
-No custom backend, account, advertising SDK, behavioral ad targeting, public profile, or remote journal processing in v1. Store no religious-practice history on a marketing service. Existing device/OS backup behavior must be assessed and disclosed accurately; “we do not receive your notes” is a safer claim than “your data can never leave your phone.”
-
-Minimum accessibility: scalable text, legible contrast, full VoiceOver labels, Arabic right-to-left rendering inside an English interface, reduced-motion support, and no information conveyed by color alone. Verify largest supported text sizes and long translated content without truncating scripture.
-
-Analytics boundary:
-
-- App works with measurement disabled. For early beta, use explicitly consented feedback and optionally user-shared local summary counts; do not install a tracking stack merely to produce a funnel.
-- If later opt-in events are added, restrict them to coarse journey-use counts and anonymous build diagnostics. Never include exact prayer times, coordinates, diary text, prayer completion, reasons for a pause, or identifiers from external religious groups.
-- Joining a religious community or seeing an ad is not consent to profile someone. Keep recruitment contact details separate from product-use data and delete research contact data after its agreed retention period.
-- Attribution may be incomplete without invasive cross-app tracking. Preserve “unknown” instead of inventing exact source-to-purchase linkage.
-
-## 9. Monetization sequence
-
-**Beta and core utility: free and ad-free.** The 14-step starter, prayer times, Qibla, basic reminders/widget and local notes stay free. No paywall appears when the user is trying to view a prayer time or return after a gap.
-
-**First paid experiment:** one complete additional reviewed journey, initially testing **$7.99 one-time**. Charge only when it exists and is ready to use. Clearly state exactly which journey is purchased and supported; do not sell a vague lifetime promise for all future content.
-
-**Subscription hypothesis:** **$5.99/month or $39.99/year**, available only after at least three complete paid journeys and a credible funded plan for ongoing additions/support. Candidate topics: daily Qur'an engagement, patience in everyday situations, and sustaining a routine through change. Show available content before purchase. No countdown or founder discount is needed at launch.
-
-If both a subscription and one-time purchases are eventually offered, explain overlapping access and restore purchases. An owned journey remains owned after a subscription expires. Do not ship both billing models at once just to run an early pricing test.
-
-Purchase acceptance criteria: correct localized price and term; explicit recurring status where applicable; purchase success/failure/cancellation; restored entitlement on reinstall; offline access consistent with ownership; refund/revocation handling; manage-subscription route; free features remain usable. Use Apple's in-app purchase route for the initial ordinary App Store digital-content model and verify storefront-specific rules before submission. [Apple in-app purchase guidelines](https://developer.apple.com/app-store/review/guidelines/#in-app-purchase)
-
-Illustration, not forecast: 100 annual subscribers at $39.99 produce $3,999 gross annual billings, or approximately $3,399 after a 15% commission alone. That excludes taxes, refunds, content, support and every operating cost. The 15% rate requires qualifying for and enrolling in Apple's Small Business Program, including associated-account rules. [Apple Small Business Program](https://developer.apple.com/app-store/small-business-program/)
-
-Do not begin with ads, selling sensitive data, paid streak repairs, or commissions on charitable contributions. Family subscriptions and organization sponsorship can wait until individual retention is demonstrated.
-
-## 10. Measurement and decision gates
-
-All thresholds below are proposed internal decision rules. They are not market benchmarks, forecasts, clinical measures, or measures of religious observance. Report raw counts with percentages and separate founder-assisted pilots from unassisted app use.
-
-| Metric | Exact definition | Initial decision rule |
-|---|---|---|
-| Starter | Consented adult participant given access | Report how many start from each approved recruitment source |
-| Activated | Opens first teaching and chooses first action within 48 hours of access | Reach at least 20 activated users before interpreting retention; report starters-to-activation separately |
-| D7 journey return | Activated users with journey engagement on at least one of local days 6–8, divided by activated users whose full window elapsed | At least 40%, e.g. 8/20 |
-| D14 journey return | Same rule for local days 13–15 | At least 25%, e.g. 5/20 |
-| Journey completion | Activated users who finish 14 lesson steps by day 21, divided by eligible activated users | Report separately; never equate D14 return with completion |
-| Perceived practical value | Voluntary concrete account of something useful outside the app | Seek at least five specific examples without soliciting private worship records |
-| Paid validation | Actual purchasers divided by eligible activated users who saw a real, available offer | Seek at least five purchases from at least 30 exposed eligible users; directional evidence only |
-| Trust and correctness | Unresolved serious source, prayer-time, privacy or data-loss defects | Zero known unresolved serious defects before public launch |
-
-Day 0 is the activation date in the participant's chosen local zone. “Journey engagement” means opening a teaching and choosing an action or taking an explicit reflection step; an app launch, prayer-clock check or notification impression alone does not qualify. Count people once per measurement window. For manual feedback, show responders and unknowns; do not silently classify missing responses as observed engagement. The conservative pilot gate uses confirmed returns over the full eligible cohort.
-
-If users return only for free utility, investigate whether the paid journey has a real job. If they consistently prefer a current competitor, change the cohort/problem or stop. If people like the content but resist recurring payment, retain the one-time model. Do not scale acquisition merely because downloads increased.
-
-## 11. Roadmap, owners, and release gates
-
-Planning assumption: one experienced founder builds and supports the app, with a consenting reviewer. These are effort ranges after scope validation, not promised release dates.
-
-1. **Weeks 1–2:** founder interviews, name test, competitor comparison, reviewer/rights check, prototype.
-2. **Weeks 3–5:** concierge journey plus full day-15 observation window; revise from failures. Marketing stays within permitted communities.
-3. **After the pilot gate:** approximately 4–6 focused founder development weeks for the narrow native beta, plus review and testing. Part-time work, unavailable reviewers or unfamiliar iOS work extends this.
-4. **After a stable beta:** free public launch and Product Hunt preparation. Public launch is gated by readiness, not a fixed week in the marketing calendar.
-5. **After repeat use:** finish one paid journey and test actual purchases. Subscription and paid acquisition remain later decisions.
-
-Founder owns product, code, support, consent and budget decisions. Reviewer owns the accuracy/appropriateness of the agreed content scope. Testers provide evidence, not blanket certification. No role is assumed to be recruited yet.
-
-Release checklist:
-
-- [ ] Name screened and chosen; no assertion that brainstorm results confer trademark rights.
-- [ ] All shipped content and third-party assets have documented rights and review.
-- [ ] Prayer/Qibla test matrix and real-device reminder tests pass.
-- [ ] Seven-day reminder horizon and travel limitations are visible and understandable.
-- [ ] Offline flow, data migration, export/delete and accessibility pass.
-- [ ] Privacy claims match observed network/data behavior and store disclosures.
-- [ ] Support contact, privacy notice, terms and correction process exist.
-- [ ] Membership and any purchases are separately authorized; billing is tested if enabled.
-- [ ] Listing/screenshots describe available features; beta status is honest.
-- [ ] Relevant platform/community rules are rechecked before marketing publication.
-
-Open decisions: final name; first reachable community and storefronts; supported calculation conventions; reviewer and translation rights; existing Apple membership; available founder hours. Resolve them during validation. They do not require expanding the product before learning whether the first routine is useful.
+Name, supported initial calculation defaults, first recruitment community, and final typography/icon remain open. Do not make these unresolved choices invisible in the interface.

@@ -1,0 +1,71 @@
+name: PrayerFocus
+
+options:
+  bundleIdPrefix: com.marsolab
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "18.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+
+targets:
+  PrayerFocus:
+    type: application
+    platform: iOS
+    sources:
+      - path: PrayerFocusApp
+    dependencies:
+      - sdk: FamilyControls.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Prayer Focus
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        SUPPORTS_MACCATALYST: NO
+        TARGETED_DEVICE_FAMILY: 1
+
+  PrayerFocusTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - PrayerFocusTests
+    dependencies:
+      - target: PrayerFocus
+    hostApplication: PrayerFocus
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocusTests
+        GENERATE_INFOPLIST_FILE: YES
+
+  PrayerFocusUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - PrayerFocusUITests
+    dependencies:
+      - target: PrayerFocus
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocusUITests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: PrayerFocus
+        TARGETED_DEVICE_FAMILY: 1
+
+schemes:
+  PrayerFocus:
+    build:
+      targets:
+        PrayerFocus: all
+        PrayerFocusTests: [test]
+        PrayerFocusUITests: [test]
+    test:
+      targets:
+        - PrayerFocusTests
+        - PrayerFocusUITests
