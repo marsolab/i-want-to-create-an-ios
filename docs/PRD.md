@@ -1,6 +1,6 @@
 # Product Requirements Document — Prayer Focus beta
 
-Version 0.4 · October 4, 2026 · Setup before membership, with a three-day introductory trial
+Version 0.5 · October 4, 2026 · Setup before a three-day membership trial, with daily affirmation widgets
 
 This revision replaces the earlier 14-day journey as the first product. The initial beta tests whether an opt-in iPhone focus mode can help English-speaking Muslims make room for salah. App name and final brand remain open.
 
@@ -19,8 +19,8 @@ This is a voluntary focus tool, not a device-wide lock. The user can deselect ap
 - **First market:** English-speaking Muslims worldwide. Start with English UI and local prayer times; do not assume a launch country until access to beta participants is confirmed.
 - **Later languages:** Arabic, then Persian, then other languages. Design layouts and content for right-to-left direction and text expansion from the beginning; translations are not part of this beta.
 - **Beta platform:** native iPhone app. No Android, web substitute, account, cloud sync, advertising, or social features. The paid membership design is included; live billing remains gated on product configuration and core feature validation.
-- **Included:** five-prayer schedule, configurable prayer-time settings, optional Screen Time focus for selected apps, one prayer-start notification where authorized, local check-ins, and a user-controlled pause/unlock path.
-- **Excluded:** Qibla, Qur'an reader, 14-day lessons, reflections/journal, widgets, and analytics tracking. Revisit these only after the core use case is validated.
+- **Included:** five-prayer schedule, configurable prayer-time settings, optional Screen Time focus for selected apps, one prayer-start notification where authorized, local check-ins, a user-controlled pause/unlock path, and daily affirmation widgets.
+- **Excluded:** Qibla, Qur'an reader, 14-day lessons, journal, and analytics tracking. Revisit these only after the core use case is validated.
 - **Default:** focus enabled for all five prayers. Users can switch each prayer's focus off independently; prayer times remain visible and check-ins remain available.
 
 ## 3. Main experience
@@ -60,6 +60,18 @@ This is a voluntary focus tool, not a device-wide lock. The user can deselect ap
 ### Visual direction
 
 Use a calm, warm-light foundation: warm white or milk surface, muted sand, a restrained sage accent, readable typography, and generous spacing. The selected visual direction may use a mosque and architectural arch as the main scene; keep that imagery spacious and let the prayer action remain clear. Remove the app-name masthead and secondary slogans from the main focus screen. Keep the shield respectful and reassuring, with a single clear route back to the prayer action. Avoid ornamental overload, gamified scores, guilt language, and visual claims of religious authority. Refine type size, rhythm and spacing before interface implementation.
+
+### Daily affirmations
+
+- Include 30 original English reflections on trust in Allah, intention, gratitude, patience, compassion, and hope. Identify the content as original reflections; do not present it as Quran or hadith quotations.
+- Offer small and medium Home Screen widgets and a rectangular Lock Screen widget. Keep complete text readable in full-color, tinted, and monochrome contexts.
+- All instances and the app select the same reflection for the current local Gregorian calendar day. The catalog repeats after 30 days and works offline.
+- Widget taps open the daily affirmation view after membership verification; a request made while checking access or presenting the paywall resumes once access is confirmed. Settings also links to the view and installation guide.
+- Share only recognized verified StoreKit product IDs and their expiration dates through an App Group. Missing, malformed, revoked, or expired access uses a locked widget. Timeline entries include the subscription expiration boundary.
+- WidgetKit schedules actual updates; do not promise exact midnight rendering. Offline revocation awareness is limited to the latest verified snapshot and its recorded expiration.
+- The prayer journey remains the primary app screen. The widget feature adds no notifications, accounts, remote generation, favorites, or analytics.
+
+Detailed design: [Daily affirmation widgets](superpowers/specs/2026-10-04-daily-affirmation-widgets-design.md).
 
 ## 4. Prayer schedule and settings
 
@@ -111,6 +123,7 @@ Use a calm, warm-light foundation: warm white or milk surface, muted sand, a res
 - Unit tests: local prayer event ordering and date rollover; focus state machine; idempotent event delivery; lock → start → finish; already prayed; manual unlock; pause expiry; focus-disabled next prayer; permission loss; stale schedule fail-safe.
 - Real-device checks: Screen Time authorization approved/declined/revoked; picker selection changes; shield action and app return; screen lock during prayer; app killed/backgrounded; device restart; daylight-saving and time-zone update; notification permission denied; offline schedule; accessibility with VoiceOver and larger text.
 - Schedule fixtures: representative cities and dates across supported calculation conventions, including high latitude and DST transitions. Compare only against references using matching conventions; record unresolved material differences as release blockers.
+- Affirmation widget checks: calendar-day stability, cycle wrap, leap day, DST and time-zone transitions; missing/malformed/revoked/expired membership; expiration timeline entries; membership-gated widget links; all three families, longest text, system tinting, and VoiceOver. Verify App Group sharing and purchase/restore reloads on a signed physical iPhone before release.
 - Usability beta: 15–20 consenting English-speaking adults where recruitment is accessible. At least 4 of 5 observed participants should independently configure focus and understand how to finish or unlock. Collect voluntary feedback; do not upload individual prayer check-ins.
 
 ### Release gates

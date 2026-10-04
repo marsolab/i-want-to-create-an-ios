@@ -1,23 +1,20 @@
 {
   "configurations": [
     {
-      "id": "8F902B8A-35EB-4E85-9A17-AAD238CEED41",
-      "name": "Local StoreKit",
+      "id": "A8E97464-777F-4C7B-B9E5-2308B533883F",
+      "name": "Local StoreKit integration",
       "options": {}
     }
   ],
   "defaultOptions": {
     "storeKitConfiguration": {
-      "identifier": "Configuration/PrayerFocus.storekit"
+      "identifier": "Configuration/PrayerFocusWidgetsTesting.storekit"
     },
     "targetForVariableExpansion": {
       "containerPath": "container:PrayerFocus.xcodeproj",
       "identifier": "C6D440D902C078F100046FCB",
       "name": "PrayerFocus"
-    },
-    "testTimeoutsEnabled": true,
-    "defaultTestExecutionTimeAllowance": 30,
-    "maximumTestExecutionTimeAllowance": 90
+    }
   },
   "testTargets": [
     {
@@ -28,9 +25,7 @@
         "name": "PrayerFocusTests"
       },
       "selectedTests": [
-        "FocusConfigurationTests",
-        "MembershipStoreTests",
-        "PrayerFocusSessionTests"
+        "AffirmationMembershipTests"
       ]
     },
     {
@@ -41,7 +36,7 @@
         "name": "PrayerFocusUITests"
       },
       "selectedTests": [
-        "MembershipPaywallUITests"
+        "AffirmationMembershipUITests"
       ]
     }
   ],

@@ -1,0 +1,74 @@
+{
+  "identifier": "87C454CF-B77F-4188-B749-56868853A203",
+  "nonRenewingSubscriptions": [],
+  "products": [],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "200001",
+      "localizations": [
+        {
+          "description": "Prayer Focus membership",
+          "displayName": "Prayer Focus",
+          "locale": "en_US"
+        }
+      ],
+      "name": "Prayer Focus widget tests",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "35.88",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "100001",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Prayer Focus membership",
+              "displayName": "Prayer Focus yearly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.marsolab.PrayerFocus.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Yearly",
+          "subscriptionGroupID": "200001",
+          "type": "RecurringSubscription",
+          "winBackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "3.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "100002",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Prayer Focus membership",
+              "displayName": "Prayer Focus monthly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.marsolab.PrayerFocus.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Monthly",
+          "subscriptionGroupID": "200001",
+          "type": "RecurringSubscription",
+          "winBackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

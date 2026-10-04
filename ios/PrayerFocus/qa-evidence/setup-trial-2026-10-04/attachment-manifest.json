@@ -7,9 +7,9 @@
         "deviceName": "iPhone 18 Pro",
         "exportedFileName": "paywall-yearly.png",
         "isAssociatedWithFailure": false,
-        "suggestedHumanReadableName": "Three-day trial \u2014 yearly_0_3A2E4DAA-DF9B-4DD8-BBDA-C99F315179E2.png",
-        "timestamp": 1791143513.734,
-        "sourceExportedFileName": "1C84C9E0-1B3E-44E6-83C1-FD7CA6B862A7.png"
+        "suggestedHumanReadableName": "Three-day trial \u2014 yearly_0_5AAF7D94-7025-414A-926E-97536696B5D2.png",
+        "timestamp": 1791144340.868,
+        "sourceExportedFileName": "9081D0D0-E437-4F27-87EF-5EB737CB6F13.png"
       },
       {
         "configurationName": "Local StoreKit",
@@ -17,9 +17,9 @@
         "deviceName": "iPhone 18 Pro",
         "exportedFileName": "paywall-monthly.png",
         "isAssociatedWithFailure": false,
-        "suggestedHumanReadableName": "Three-day trial \u2014 monthly_0_609ECA06-DD49-4895-ACF5-C51268374D63.png",
-        "timestamp": 1791143512.234,
-        "sourceExportedFileName": "9428B530-B47D-4529-A1B0-C083217C7648.png"
+        "suggestedHumanReadableName": "Three-day trial \u2014 monthly_0_4BEDB5AB-D0CA-42E7-99FB-F0115D98C75C.png",
+        "timestamp": 1791144339.348,
+        "sourceExportedFileName": "D3530440-8B72-49D7-AD41-3F7680966D84.png"
       }
     ],
     "testIdentifier": "MembershipPaywallUITests/testTrialDisclosureFollowsPlanSelection()",

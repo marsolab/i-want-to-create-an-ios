@@ -12,25 +12,25 @@
       },
       "expectedFailures" : 0,
       "failedTests" : 0,
-      "passedTests" : 21,
+      "passedTests" : 30,
       "skippedTests" : 0,
       "testPlanConfiguration" : {
         "configurationId" : "1",
-        "configurationName" : "Local StoreKit"
+        "configurationName" : "Widget tests"
       }
     }
   ],
-  "environmentDescription" : "PrayerFocus · Built with macOS 27.0",
+  "environmentDescription" : "PrayerFocusWidgets · Built with macOS 27.0",
   "expectedFailures" : 0,
   "failedTests" : 0,
-  "finishTime" : 1791144341.444,
-  "passedTests" : 21,
+  "finishTime" : 1791144771.427,
+  "passedTests" : 30,
   "result" : "Passed",
   "runtimeWarnings" : [
 
   ],
   "skippedTests" : 0,
-  "startTime" : 1791144229.35,
+  "startTime" : 1791144689.902,
   "statistics" : [
 
   ],
@@ -41,9 +41,9 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "42% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 0.15s (three standard deviations)"
+      "impact" : "90% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 0.16s (three standard deviations)"
     }
   ],
-  "totalTestCount" : 21
+  "totalTestCount" : 30
 }

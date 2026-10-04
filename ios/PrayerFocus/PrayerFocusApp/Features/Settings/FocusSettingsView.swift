@@ -53,6 +53,17 @@ struct FocusSettingsView: View {
                     )
                 }
 
+                if !isSetup && allowsPrayerActions {
+                    Section {
+                        NavigationLink {
+                            DailyAffirmationView()
+                        } label: {
+                            Label("Daily affirmations", systemImage: "moon")
+                        }
+                        .accessibilityIdentifier("settings.dailyAffirmations")
+                    }
+                }
+
                 Section {
                     LabeledContent("Permission", value: screenTime.authorizationLabel)
 

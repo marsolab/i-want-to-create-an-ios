@@ -4,12 +4,15 @@ struct MembershipGateView: View {
     let session: PrayerFocusSession
     @Environment(MembershipStore.self) private var membership
     @Environment(FocusConfiguration.self) private var configuration
+    @Environment(AffirmationDestination.self) private var affirmationDestination
     @State private var isShowingOffer = false
+    @State private var memberSheet: AffirmationPresentation?
+    @State private var isDismissingMemberSheet = false
 
     var body: some View {
         Group {
             if membership.hasAccess {
-                TodayView(session: session)
+                TodayView(session: session, showSettings: { memberSheet = .settings })
             } else if !configuration.hasCompletedSetup {
                 FocusSettingsView(session: session, isSetup: true, allowsPrayerActions: false)
             } else {
@@ -20,7 +23,7 @@ struct MembershipGateView: View {
                     .accessibilityHidden(isShowingOffer)
             }
         }
-        .sheet(isPresented: $isShowingOffer) {
+        .sheet(isPresented: $isShowingOffer, onDismiss: showPendingAffirmation) {
             MembershipPaywallView(session: session)
                 .presentationDetents([.large])
                 .presentationDragIndicator(.hidden)
@@ -31,14 +34,66 @@ struct MembershipGateView: View {
                 .presentationBackgroundInteraction(.enabled(upThrough: .large))
                 .interactiveDismissDisabled(!membership.hasAccess)
         }
+        .sheet(item: $memberSheet, onDismiss: memberSheetDidDismiss) { sheet in
+            switch sheet {
+            case .daily:
+                DailyAffirmationSheet()
+            case .settings:
+                FocusSettingsView(session: session)
+            }
+        }
         .task {
             isShowingOffer = configuration.hasCompletedSetup && !membership.hasAccess
+            showPendingAffirmation()
         }
         .onChange(of: configuration.hasCompletedSetup) { _, isComplete in
             isShowingOffer = isComplete && !membership.hasAccess
         }
         .onChange(of: membership.hasAccess) { _, hasAccess in
-            isShowingOffer = configuration.hasCompletedSetup && !hasAccess
+            if !hasAccess {
+                if memberSheet != nil {
+                    isDismissingMemberSheet = true
+                    memberSheet = nil
+                } else if !isDismissingMemberSheet {
+                    isShowingOffer = configuration.hasCompletedSetup
+                }
+            } else {
+                isShowingOffer = false
+                showPendingAffirmation()
+            }
+        }
+        .onChange(of: affirmationDestination.hasPendingRequest) { _, _ in
+            showPendingAffirmation()
+        }
+        .onChange(of: membership.isRefreshingAccess) { _, isRefreshing in
+            if !isRefreshing { showPendingAffirmation() }
+        }
+    }
+
+    private func showPendingAffirmation() {
+        guard !isShowingOffer, !isDismissingMemberSheet,
+            !membership.isRefreshingAccess, membership.hasAccess,
+            affirmationDestination.hasPendingRequest
+        else { return }
+        if memberSheet == .settings {
+            isDismissingMemberSheet = true
+            memberSheet = nil
+            return
+        }
+        if affirmationDestination.consumeIfAllowed(
+            hasAccess: membership.hasAccess,
+            hasCheckedEntitlements: membership.hasCheckedEntitlements
+        ) {
+            memberSheet = .daily
+        }
+    }
+
+    private func memberSheetDidDismiss() {
+        isDismissingMemberSheet = false
+        if membership.hasAccess {
+            showPendingAffirmation()
+        } else {
+            isShowingOffer = configuration.hasCompletedSetup
         }
     }
 

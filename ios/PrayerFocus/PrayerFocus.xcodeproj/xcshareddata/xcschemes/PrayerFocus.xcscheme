@@ -49,6 +49,20 @@
                ReferencedContainer = "container:PrayerFocus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0CB0162DD65284BFB4DA02C5"
+               BuildableName = "PrayerFocusWidgets.appex"
+               BlueprintName = "PrayerFocusWidgets"
+               ReferencedContainer = "container:PrayerFocus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -60,6 +74,12 @@
       <TestPlans>
          <TestPlanReference
             default = "YES"
+            reference = "container:PrayerFocusWidgets.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:PrayerFocusStoreKit.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
             reference = "container:PrayerFocus.xctestplan">
          </TestPlanReference>
       </TestPlans>

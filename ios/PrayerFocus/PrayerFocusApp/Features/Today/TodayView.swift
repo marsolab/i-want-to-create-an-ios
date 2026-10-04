@@ -3,6 +3,7 @@ import SwiftUI
 struct TodayView: View {
     @Bindable var session: PrayerFocusSession
     @Environment(ScreenTimeService.self) private var screenTime
+    var showSettings: (() -> Void)?
 
     @State private var isShowingSettings = false
     @State private var isConfirmingUnlock = false
@@ -17,7 +18,13 @@ struct TodayView: View {
                         selectedItemCount: screenTime.selectedItemCount,
                         isAuthorized: screenTime.isAuthorized,
                         topSafeAreaInset: geometry.safeAreaInsets.top,
-                        settingsAction: { isShowingSettings = true }
+                        settingsAction: {
+                            if let showSettings {
+                                showSettings()
+                            } else {
+                                isShowingSettings = true
+                            }
+                        }
                     )
 
                     VStack(spacing: 12) {

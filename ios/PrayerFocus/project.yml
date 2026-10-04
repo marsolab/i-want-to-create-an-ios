@@ -15,6 +15,8 @@ settings:
 fileGroups:
   - Configuration
   - PrayerFocus.xctestplan
+  - PrayerFocusWidgets.xctestplan
+  - PrayerFocusStoreKit.xctestplan
 
 targets:
   PrayerFocus:
@@ -22,8 +24,25 @@ targets:
     platform: iOS
     sources:
       - path: PrayerFocusApp
+      - path: Shared
     dependencies:
       - sdk: FamilyControls.framework
+      - target: PrayerFocusWidgets
+        embed: true
+    entitlements:
+      path: PrayerFocusApp/PrayerFocus.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.marsolab.PrayerFocus
+    info:
+      path: PrayerFocusApp/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleURLTypes:
+          - CFBundleURLName: com.marsolab.PrayerFocus.affirmations
+            CFBundleURLSchemes:
+              - prayerfocus
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus
@@ -35,12 +54,41 @@ targets:
         SUPPORTS_MACCATALYST: NO
         TARGETED_DEVICE_FAMILY: 1
 
+  PrayerFocusWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: PrayerFocusWidgets
+      - path: Shared
+      - path: PrayerFocusApp/Design/PrayerTheme.swift
+    entitlements:
+      path: PrayerFocusWidgets/PrayerFocusWidgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.marsolab.PrayerFocus
+    info:
+      path: PrayerFocusWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Daily affirmations
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus.Widgets
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+
   PrayerFocusTests:
     type: bundle.unit-test
     platform: iOS
     sources:
       - PrayerFocusTests
       - path: Configuration/PrayerFocus.storekit
+        buildPhase: resources
+      - path: Configuration/PrayerFocusWidgetsTesting.storekit
         buildPhase: resources
     dependencies:
       - target: PrayerFocus
@@ -56,6 +104,8 @@ targets:
     sources:
       - PrayerFocusUITests
       - path: Configuration/PrayerFocus.storekit
+        buildPhase: resources
+      - path: Configuration/PrayerFocusWidgetsTesting.storekit
         buildPhase: resources
     dependencies:
       - target: PrayerFocus
@@ -73,12 +123,15 @@ schemes:
     build:
       targets:
         PrayerFocus: all
+        PrayerFocusWidgets: all
         PrayerFocusTests: [test]
         PrayerFocusUITests: [test]
     test:
       testPlans:
-        - path: PrayerFocus.xctestplan
+        - path: PrayerFocusWidgets.xctestplan
           defaultPlan: true
+        - path: PrayerFocusStoreKit.xctestplan
+        - path: PrayerFocus.xctestplan
       targets:
         - PrayerFocusTests
         - PrayerFocusUITests
