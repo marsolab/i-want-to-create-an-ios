@@ -44,12 +44,12 @@ struct DailyAffirmation: Identifiable, Equatable, Sendable {
 // AffirmationEntry(date:affirmation:), with nil affirmation when locked.
 ```
 
-- [ ] Write tests that assert same-day selection, a 30-day wrap, negative-day modulo, leap day, New York DST calendar spacing, and different local dates in Dubai/Los Angeles.
-- [ ] Run the new unit tests before shared types exist; confirm compilation fails for the missing symbols.
-- [ ] Implement the immutable approved corpus, day selection, strict snapshot validation, and timeline policy. Membership is valid only for a recognized product, finite timestamps, `verifiedAt <= now < expirationDate`, and a nonzero validity interval.
-- [ ] Persist encoded snapshots with injected `UserDefaults` for tests and an entitled App Group suite in production. A nil snapshot removes the saved data.
-- [ ] Test corrupted JSON and explicit removal. Test an expiration in the middle of a day and at midnight: every entry at or after expiration is locked and duplicate boundary dates are removed.
-- [ ] Run all app unit tests. Expected: existing prayer tests and the new policy tests pass.
+- [x] Write tests that assert same-day selection, a 30-day wrap, negative-day modulo, leap day, New York DST calendar spacing, and different local dates in Dubai/Los Angeles.
+- [x] Run the new unit tests before shared types exist; confirm compilation fails for the missing symbols.
+- [x] Implement the immutable approved corpus, day selection, strict snapshot validation, and timeline policy. Membership is valid only for a recognized product, finite timestamps, `verifiedAt <= now < expirationDate`, and a nonzero validity interval.
+- [x] Persist encoded snapshots with injected `UserDefaults` for tests and an entitled App Group suite in production. A nil snapshot removes the saved data.
+- [x] Test corrupted JSON and explicit removal. Test an expiration in the middle of a day and at midnight: every entry at or after expiration is locked and duplicate boundary dates are removed.
+- [x] Run all app unit tests. Expected: existing prayer tests and the new policy tests pass.
 
 Commands, from `ios/PrayerFocus`:
 ```sh
@@ -77,11 +77,11 @@ xcodebuild -project PrayerFocus.xcodeproj -scheme PrayerFocus \
 // MembershipStore.refreshAccess publishes the longest verified active expiration.
 ```
 
-- [ ] Add the extension target with the `com.apple.widgetkit-extension` extension point, matching version/deployment values, App Group entitlement, extension-safe shared sources, and embedded app dependency.
-- [ ] Publish a snapshot after verified active StoreKit entitlement enumeration; clear it when none remain. Only reload when shared data changes; reload on app activation for local date/time-zone changes.
-- [ ] Implement complete-text small and medium cards, with a crescent, title, theme, and restrained medium arch. Lock Screen omits secondary labels to preserve space.
-- [ ] Use `containerBackground(for: .widget)` in the real widget, `.widgetURL` for its destination, and `.widgetRenderingMode`/`.widgetAccentable` for system appearances.
-- [ ] Build app plus extension. Expected: no compiler errors or unsafe extension API warnings; the app contains `PrayerFocusWidgets.appex`.
+- [x] Add the extension target with the `com.apple.widgetkit-extension` extension point, matching version/deployment values, App Group entitlement, extension-safe shared sources, and embedded app dependency.
+- [x] Publish a snapshot after verified active StoreKit entitlement enumeration; clear it when none remain. Only reload when shared data changes; reload on app activation for local date/time-zone changes.
+- [x] Implement complete-text small and medium cards, with a crescent, title, theme, and restrained medium arch. Lock Screen omits secondary labels to preserve space.
+- [x] Use `containerBackground(for: .widget)` in the real widget, `.widgetURL` for its destination, and `.widgetRenderingMode`/`.widgetAccentable` for system appearances.
+- [x] Build app plus extension. Expected: no compiler errors or unsafe extension API warnings; the app contains `PrayerFocusWidgets.appex`.
 
 ## Task 3: App destination and widget guide
 
@@ -101,24 +101,25 @@ xcodebuild -project PrayerFocus.xcodeproj -scheme PrayerFocus \
 // Settings uses NavigationLink to DailyAffirmationView.
 ```
 
-- [ ] Register `prayerfocus` URL scheme, and accept only `prayerfocus://daily-affirmation` with no unexpected path or query.
-- [ ] Preserve the request across access checking/paywall. Show the daily view only after the paywall dismisses; dismiss it if access expires.
-- [ ] Add Settings navigation and a standalone dismissal toolbar for the root destination. Use `TimelineView` plus calendar boundaries so a foreground view advances with the day.
-- [ ] Add a Debug-only `-preview-affirmation` visual route. It never writes membership data and is absent from Release code.
-- [ ] UI-test the Settings route with the existing Today debug preview, capture all three preview families, and verify URL access stays behind the paywall without a subscription.
-- [ ] Run existing membership UI tests and new UI tests. Expected: prayer UI and locked paywall behavior remain valid.
+- [x] Register `prayerfocus` URL scheme, and accept only `prayerfocus://daily-affirmation` with no unexpected path or query.
+- [x] Preserve the request across access checking/paywall. Show the daily view only after the paywall dismisses; dismiss it if access expires.
+- [x] Add Settings navigation and a standalone dismissal toolbar for the root destination. Use `TimelineView` plus calendar boundaries so a foreground view advances with the day.
+- [x] Add a Debug-only `-preview-affirmation` visual route. It never writes membership data and is absent from Release code.
+- [x] UI-test the Settings route with the existing Today debug preview, capture all three preview families, and verify URL access stays behind the paywall without a subscription.
+- [x] Run existing membership UI tests and new UI tests. Expected: prayer UI and locked paywall behavior remain valid.
 
 ## Task 4: Delivery checks and documentation
 
 **Modify:** `docs/README.md`, `docs/PRD.md`, `ios/PrayerFocus/README.md`, this plan.
 **Create:** `ios/PrayerFocus/affirmation-widgets-qa.md` and visual evidence under `qa-evidence/`.
 
-- [ ] Replace stale deferred-widget scope statements with the approved three-family feature.
-- [ ] Document shared App Group signing setup, offline revocation limitation, widget installation, and outstanding device/sandbox checks.
-- [ ] Format and lint all Swift sources; generate the final Xcode project.
-- [ ] Run all unit and UI tests once the final code is stable, and build Release to ensure Debug preview access is excluded.
-- [ ] Inspect saved preview screenshots for full longest-text rendering, all three families, locked state, and tinted/monochrome presentation.
-- [ ] Review final diff for unintended changes, run `git diff --check`, and commit this feature on `codex/daily-affirmation-widgets`. Do not push or merge without a separate request.
+- [x] Replace stale deferred-widget scope statements with the approved three-family feature.
+- [x] Document shared App Group signing setup, offline revocation limitation, widget installation, and outstanding device/sandbox checks.
+- [x] Format and lint all Swift sources; generate the final Xcode project.
+- [x] Run the final main test plan: 23 unit and 7 UI tests passed. Release build and absence of Debug launch arguments were verified. Real StoreKit cases remain a separately documented integration gate.
+- [x] Inspect saved in-app previews for complete longest-text rendering in all three families, including the monochrome Lock Screen preview.
+- [ ] Verify installed widget appearance, system tinting, VoiceOver, and larger text on a signed physical iPhone. See the QA record for remaining device gates.
+- [x] Review final diff for unintended changes and run `git diff --check`. Package the feature on `codex/daily-affirmation-widgets`; the user requested a PR after local verification. Merging remains a separate action.
 
 Final formatting:
 ```sh
@@ -127,3 +128,10 @@ xcrun swift-format format --in-place --recursive --configuration .swift-format \
 xcrun swift-format lint --strict --recursive --configuration .swift-format \
   PrayerFocusApp Shared PrayerFocusWidgets PrayerFocusTests PrayerFocusUITests
 ```
+
+## Execution notes
+
+- Used a separate iPhone 17 Pro / iOS 26.5 simulator after the original iOS 27 UI runner failed to bootstrap. Existing simulators and other chats' work were preserved.
+- Review added a subscription-expiration entry beyond the seven-day content horizon, an independent seven-day timeline reload, immediate app expiration, coalesced entitlement refreshes, and Settings-to-widget sheet coordination.
+- Added controlled refresh/expiration tests plus retained local StoreKit integration cases. The latter are selected in a separate test plan because the installed local StoreKit service rejects its configuration. This is an unverified integration gate, not a passing purchase/restore claim.
+- The user requested a PR after the 30-test main plan, lint, and Release build passed. Publish `codex/daily-affirmation-widgets` for review; device/StoreKit release gates remain open.

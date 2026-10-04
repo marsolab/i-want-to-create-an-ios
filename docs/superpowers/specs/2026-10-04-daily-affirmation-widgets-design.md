@@ -13,7 +13,7 @@ Add daily Muslim affirmations to the existing Prayer Focus iPhone app. Keep the 
 2. **Quran and hadith excerpts:** sourced religious quotations with references and reviewed translations. This requires a separate sourced corpus and more room for attribution.
 3. **Mixed collection:** both original reflections and sourced quotations, with explicit labels. It offers more variety but introduces two content formats and a larger review scope.
 
-This draft specifies option 1. No text below is presented as a Quran verse, hadith, religious ruling, or promise of a particular outcome.
+The approved design uses option 1. No text below is presented as a Quran verse, hadith, religious ruling, or promise of a particular outcome.
 
 ## Widget experience
 
@@ -68,13 +68,13 @@ This draft specifies option 1. No text below is presented as a Quran verse, hadi
 - Add a WidgetKit extension target to the existing XcodeGen project and embed it in the app. Support `systemSmall`, `systemMedium`, and `accessoryRectangular` on the existing iOS 18 deployment target.
 - Share a small content module between the app, extension, and tests. It owns the immutable 30-item catalog, theme labels, and deterministic date selection. Keep its date calculations independent of SwiftUI and membership services.
 - Derive the catalog index from Gregorian calendar-day distance from January 1, 2026, normalized to the supplied local time zone. Normalize modulo for dates before the anchor. Advance by calendar days rather than 86,400-second intervals so daylight-saving changes behave correctly.
-- Prepare a timeline containing the current daily entry and the next seven local day boundaries. Request a subsequent timeline after the final entry. WidgetKit controls actual rendering and refresh timing; this is a daily schedule, not a guarantee of an exact midnight refresh.
+- Prepare a timeline containing the current daily entry and the next seven local day boundaries. Always include the membership expiration, even beyond this content horizon, and separately request a new timeline after the seventh local midnight. WidgetKit controls actual rendering and refresh timing; this is a daily schedule, not a guarantee of an exact midnight refresh.
 - Share a verified membership snapshot through an App Group. Save the recognized product identifier and expiration date only after the app's existing StoreKit verification succeeds. Missing, malformed, revoked, and expired snapshots give the locked presentation. Clear the snapshot when refresh finds no verified active subscription.
 - Bound access to the recorded expiration date and insert a locked timeline entry at that date. Every later entry must also be locked. Never use a persisted unrestricted `hasAccess` boolean as authorization.
 - After a purchase, restore, entitlement refresh, or transaction update changes the snapshot, ask WidgetKit to reload this widget's timelines. Offline revocation awareness remains limited to the last verified snapshot and its expiration; document and test this behavior.
 - The locked widget says “Daily reflections” and “Open Prayer Focus to continue.” Its tap enters the existing purchase/restore flow. Widget gallery previews may show a labeled sample; unverified installed widgets do not expose the daily collection.
 - App Group capability and matching app/extension signing must be configured for device distribution. Verify the actual host and extension access to the same container before declaring device readiness.
-- Register the widget URL route in the app. Preserve a pending affirmation destination while membership is checked or the paywall is presented, then open the affirmation view after access is verified.
+- Register the widget URL route in the app. Preserve a pending affirmation destination while membership is checked or the paywall is presented, then open the affirmation view after access is verified. Coalesce overlapping refresh callers so purchase and restore await the same authoritative result. Close Settings before presenting the pending destination; close member content when access expires.
 
 ## Failure behavior
 
