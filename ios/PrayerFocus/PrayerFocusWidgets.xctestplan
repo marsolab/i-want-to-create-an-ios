@@ -1,0 +1,41 @@
+{
+  "configurations": [
+    {
+      "id": "027EF3B6-27E9-4F28-859B-14C79CD5B2A7",
+      "name": "Widget tests",
+      "options": {}
+    }
+  ],
+  "defaultOptions": {
+    "targetForVariableExpansion": {
+      "containerPath": "container:PrayerFocus.xcodeproj",
+      "identifier": "C6D440D902C078F100046FCB",
+      "name": "PrayerFocus"
+    }
+  },
+  "testTargets": [
+    {
+      "parallelizable": false,
+      "target": {
+        "containerPath": "container:PrayerFocus.xcodeproj",
+        "identifier": "E025E757B37029EEE3AB8939",
+        "name": "PrayerFocusTests"
+      },
+      "skippedTests": [
+        "AffirmationMembershipTests"
+      ]
+    },
+    {
+      "parallelizable": false,
+      "target": {
+        "containerPath": "container:PrayerFocus.xcodeproj",
+        "identifier": "DBC43C19D4E7C6BAF0A486C3",
+        "name": "PrayerFocusUITests"
+      },
+      "skippedTests": [
+        "AffirmationMembershipUITests"
+      ]
+    }
+  ],
+  "version": 1
+}

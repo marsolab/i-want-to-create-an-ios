@@ -51,6 +51,7 @@ struct PrayerHeroView: View {
                             .background(.ultraThinMaterial, in: Circle())
                     }
                     .accessibilityLabel("Open settings")
+                    .accessibilityIdentifier("today.settings")
                 }
                 .padding(16)
                 .padding(.top, topSafeAreaInset)

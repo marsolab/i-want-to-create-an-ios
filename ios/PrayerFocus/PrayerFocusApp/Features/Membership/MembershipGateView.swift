@@ -3,12 +3,15 @@ import SwiftUI
 struct MembershipGateView: View {
     let session: PrayerFocusSession
     @Environment(MembershipStore.self) private var membership
+    @Environment(AffirmationDestination.self) private var affirmationDestination
     @State private var isShowingOffer = false
+    @State private var memberSheet: AffirmationPresentation?
+    @State private var isDismissingMemberSheet = false
 
     var body: some View {
         Group {
             if membership.hasAccess {
-                TodayView(session: session)
+                TodayView(session: session, showSettings: { memberSheet = .settings })
             } else {
                 introduction
                     .blur(radius: isShowingOffer ? 20 : 0, opaque: true)
@@ -17,7 +20,7 @@ struct MembershipGateView: View {
                     .accessibilityHidden(isShowingOffer)
             }
         }
-        .sheet(isPresented: $isShowingOffer) {
+        .sheet(isPresented: $isShowingOffer, onDismiss: showPendingAffirmation) {
             MembershipPaywallView()
                 .presentationDetents([.large])
                 .presentationDragIndicator(.hidden)
@@ -28,13 +31,62 @@ struct MembershipGateView: View {
                 .presentationBackgroundInteraction(.enabled(upThrough: .large))
                 .interactiveDismissDisabled(!membership.hasAccess)
         }
+        .sheet(item: $memberSheet, onDismiss: memberSheetDidDismiss) { sheet in
+            switch sheet {
+            case .daily:
+                DailyAffirmationSheet()
+            case .settings:
+                FocusSettingsView(session: session)
+            }
+        }
         .task {
             isShowingOffer = !membership.hasAccess
+            showPendingAffirmation()
         }
         .onChange(of: membership.hasAccess) { _, hasAccess in
             if !hasAccess {
-                isShowingOffer = true
+                if memberSheet != nil {
+                    isDismissingMemberSheet = true
+                    memberSheet = nil
+                } else if !isDismissingMemberSheet {
+                    isShowingOffer = true
+                }
+            } else {
+                showPendingAffirmation()
             }
+        }
+        .onChange(of: affirmationDestination.hasPendingRequest) { _, _ in
+            showPendingAffirmation()
+        }
+        .onChange(of: membership.isRefreshingAccess) { _, isRefreshing in
+            if !isRefreshing { showPendingAffirmation() }
+        }
+    }
+
+    private func showPendingAffirmation() {
+        guard !isShowingOffer, !isDismissingMemberSheet,
+            !membership.isRefreshingAccess, membership.hasAccess,
+            affirmationDestination.hasPendingRequest
+        else { return }
+        if memberSheet == .settings {
+            isDismissingMemberSheet = true
+            memberSheet = nil
+            return
+        }
+        if affirmationDestination.consumeIfAllowed(
+            hasAccess: membership.hasAccess,
+            hasCheckedEntitlements: membership.hasCheckedEntitlements
+        ) {
+            memberSheet = .daily
+        }
+    }
+
+    private func memberSheetDidDismiss() {
+        isDismissingMemberSheet = false
+        if membership.hasAccess {
+            showPendingAffirmation()
+        } else {
+            isShowingOffer = true
         }
     }
 

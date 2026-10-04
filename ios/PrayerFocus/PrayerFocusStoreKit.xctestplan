@@ -1,0 +1,44 @@
+{
+  "configurations": [
+    {
+      "id": "A8E97464-777F-4C7B-B9E5-2308B533883F",
+      "name": "Local StoreKit integration",
+      "options": {}
+    }
+  ],
+  "defaultOptions": {
+    "storeKitConfiguration": {
+      "identifier": "Configuration/PrayerFocusWidgetsTesting.storekit"
+    },
+    "targetForVariableExpansion": {
+      "containerPath": "container:PrayerFocus.xcodeproj",
+      "identifier": "C6D440D902C078F100046FCB",
+      "name": "PrayerFocus"
+    }
+  },
+  "testTargets": [
+    {
+      "parallelizable": false,
+      "target": {
+        "containerPath": "container:PrayerFocus.xcodeproj",
+        "identifier": "E025E757B37029EEE3AB8939",
+        "name": "PrayerFocusTests"
+      },
+      "selectedTests": [
+        "AffirmationMembershipTests"
+      ]
+    },
+    {
+      "parallelizable": false,
+      "target": {
+        "containerPath": "container:PrayerFocus.xcodeproj",
+        "identifier": "DBC43C19D4E7C6BAF0A486C3",
+        "name": "PrayerFocusUITests"
+      },
+      "selectedTests": [
+        "AffirmationMembershipUITests"
+      ]
+    }
+  ],
+  "version": 1
+}
