@@ -1,5 +1,7 @@
 # Membership paywall design QA
 
+This report records the October 3 paid-only design. The October 4 requirement supersedes its no-trial copy and pricing hierarchy: setup now precedes membership, eligible accounts receive three days free, and the full yearly charge is prominent. See [setup and trial QA](setup-trial-qa.md) for the current evidence; the screenshots below remain design history.
+
 Selected visual: `qa-evidence/paywall-selected-paid.png`, 853 × 1844 pixels. Variant 1 was selected with no free tier or trial. Later user instructions override the source pricing: annual displays $2.99/month, with the actual $35.88 yearly charge below Subscribe; monthly remains $3.99/month.
 
 Current native screenshots:

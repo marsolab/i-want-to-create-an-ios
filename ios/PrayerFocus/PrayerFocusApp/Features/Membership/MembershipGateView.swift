@@ -3,12 +3,15 @@ import SwiftUI
 struct MembershipGateView: View {
     let session: PrayerFocusSession
     @Environment(MembershipStore.self) private var membership
+    @Environment(FocusConfiguration.self) private var configuration
     @State private var isShowingOffer = false
 
     var body: some View {
         Group {
             if membership.hasAccess {
                 TodayView(session: session)
+            } else if !configuration.hasCompletedSetup {
+                FocusSettingsView(session: session, isSetup: true, allowsPrayerActions: false)
             } else {
                 introduction
                     .blur(radius: isShowingOffer ? 20 : 0, opaque: true)
@@ -18,7 +21,7 @@ struct MembershipGateView: View {
             }
         }
         .sheet(isPresented: $isShowingOffer) {
-            MembershipPaywallView()
+            MembershipPaywallView(session: session)
                 .presentationDetents([.large])
                 .presentationDragIndicator(.hidden)
                 .presentationCornerRadius(28)
@@ -29,12 +32,13 @@ struct MembershipGateView: View {
                 .interactiveDismissDisabled(!membership.hasAccess)
         }
         .task {
-            isShowingOffer = !membership.hasAccess
+            isShowingOffer = configuration.hasCompletedSetup && !membership.hasAccess
+        }
+        .onChange(of: configuration.hasCompletedSetup) { _, isComplete in
+            isShowingOffer = isComplete && !membership.hasAccess
         }
         .onChange(of: membership.hasAccess) { _, hasAccess in
-            if !hasAccess {
-                isShowingOffer = true
-            }
+            isShowingOffer = configuration.hasCompletedSetup && !hasAccess
         }
     }
 
@@ -52,7 +56,7 @@ struct MembershipGateView: View {
                     .tracking(-1)
                     .foregroundStyle(PrayerTheme.ink)
 
-                Text("A Prayer Focus subscription gives you access to the app.")
+                Text("Your setup is saved. Choose a membership to begin.")
                     .font(.body)
                     .foregroundStyle(PrayerTheme.secondaryInk)
 

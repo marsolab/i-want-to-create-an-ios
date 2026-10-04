@@ -6,19 +6,30 @@ import Observation
 final class PrayerFocusSession {
     private(set) var currentPrayer: Prayer
     private(set) var phase: PrayerSessionPhase
-    var focusEnabled: [Prayer: Bool]
+    var focusEnabled: [Prayer: Bool] {
+        didSet {
+            defaults?.set(
+                Dictionary(uniqueKeysWithValues: focusEnabled.map { ($0.key.rawValue, $0.value) }),
+                forKey: "focus.enabledPrayers"
+            )
+        }
+    }
+    private let defaults: UserDefaults?
 
     init(
         currentPrayer: Prayer = .dhuhr,
         phase: PrayerSessionPhase = .ready,
-        focusEnabled: [Prayer: Bool]? = nil
+        focusEnabled: [Prayer: Bool]? = nil,
+        defaults: UserDefaults? = nil
     ) {
         self.currentPrayer = currentPrayer
         self.phase = phase
+        self.defaults = defaults
+        let savedFocus = defaults?.dictionary(forKey: "focus.enabledPrayers") as? [String: Bool]
         self.focusEnabled =
             focusEnabled
             ?? Dictionary(
-                uniqueKeysWithValues: Prayer.allCases.map { ($0, true) }
+                uniqueKeysWithValues: Prayer.allCases.map { ($0, savedFocus?[$0.rawValue] ?? true) }
             )
     }
 

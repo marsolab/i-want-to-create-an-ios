@@ -1,0 +1,43 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "4FA8BD04-2F42-453B-A753-C6254E949C9C",
+        "deviceName": "iPhone 18 Pro",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "passedTests": 21,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Local StoreKit"
+      }
+    }
+  ],
+  "environmentDescription": "PrayerFocus \u00b7 Built with macOS 27.0",
+  "expectedFailures": 0,
+  "failedTests": 0,
+  "finishTime": 1791143514.315,
+  "passedTests": 21,
+  "result": "Passed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791143413.888,
+  "statistics": [],
+  "testFailures": [],
+  "title": "Test - PrayerFocus",
+  "topInsights": [
+    {
+      "category": "Longest Test Runs",
+      "impact": "50% of duration",
+      "text": "1 longest test run with outlier durations exceeding 0.13s (three standard deviations)"
+    }
+  ],
+  "totalTestCount": 21
+}

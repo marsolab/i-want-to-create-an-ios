@@ -5,8 +5,26 @@ import Observation
 @MainActor
 @Observable
 final class ScreenTimeService {
-    var selection = FamilyActivitySelection()
+    var selection: FamilyActivitySelection {
+        didSet {
+            if let data = try? JSONEncoder().encode(selection) {
+                defaults?.set(data, forKey: "focus.appSelection")
+            }
+        }
+    }
     private(set) var lastError: String?
+    private let defaults: UserDefaults?
+
+    init(defaults: UserDefaults? = nil) {
+        self.defaults = defaults
+        if let data = defaults?.data(forKey: "focus.appSelection"),
+            let savedSelection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data)
+        {
+            selection = savedSelection
+        } else {
+            selection = FamilyActivitySelection()
+        }
+    }
 
     var authorizationStatus: AuthorizationStatus {
         AuthorizationCenter.shared.authorizationStatus

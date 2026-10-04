@@ -1,6 +1,6 @@
 # Product Requirements Document — Prayer Focus beta
 
-Version 0.3 · October 3, 2026 · Product and paid membership direction approved for design and feasibility work
+Version 0.4 · October 4, 2026 · Setup before membership, with a three-day introductory trial
 
 This revision replaces the earlier 14-day journey as the first product. The initial beta tests whether an opt-in iPhone focus mode can help English-speaking Muslims make room for salah. App name and final brand remain open.
 
@@ -33,17 +33,18 @@ This is a voluntary focus tool, not a device-wide lock. The user can deselect ap
 4. Let the user select distracting apps and sites with Apple's system picker; do not preselect any apps.
 5. Explain that authorization is required for focus, then request it. If declined, keep the schedule and allow reminders/check-ins without restrictions.
 6. Confirm all five prayer switches are on by default and show the selected apps and next focus time.
-7. Present membership in a large sheet that slides up from the bottom before granting product access and activating focus. The paywall has no close button or swipe-to-dismiss path. It dismisses only after a verified purchase or restoration of an active subscription.
+7. Save the complete setup locally, then present membership in a large sheet that slides up from the bottom before granting product access and activating focus. Offer a three-day free introductory trial followed by monthly or yearly billing. The trial begins only when Apple confirms the subscription. The paywall has no close button or swipe-to-dismiss path; users can review their setup without unlocking product access. It dismisses only after a verified purchase or restoration of an active subscription, including an active trial.
 
 ### Membership
 
-- Fully paid product, with no free tier or free trial.
+- Membership product with no permanent free tier. Eligible Apple Accounts receive a three-day free introductory trial on either the monthly or yearly plan. After the trial, Apple bills the full monthly or yearly amount for the selected plan, then renews at that interval unless cancelled.
+- Users can configure location, calculation method, distracting apps, prayer switches, and notification preferences before the paywall. Store these choices and setup completion locally so returning to the app or cancelling payment does not lose setup.
 - Paywall uses a large native sheet with rounded top corners. Remove the close control and drag indicator; disable interactive dismissal while there is no active subscription. Pending, cancelled and failed purchases leave the paywall open. Restoring an existing active subscription also unlocks access.
 - Selected mosque-and-arch paywall with the headline “Make space for salah.” Annual is selected by default.
 - Blur the presenting image behind the sheet, including the status-bar safe area. Keep the paywall sharp and fade the lower photo edge into the ivory canvas. The presenting surface must not accept touch or accessibility interaction while the paywall is open.
-- Annual offer displays **$2.99/month** in the plan row; the full **$35.88 yearly** charge and automatic renewal disclosure appear below Subscribe. Monthly is **$3.99/month**.
-- These are the approved design amounts. Select supported actual App Store prices before release; use localized StoreKit prices and compute the annual monthly equivalent from the actual billed price divided by twelve.
-- Subscribe and Restore use Apple StoreKit. Grant access only from a verified, active subscription. Cancellation, pending/unverified transactions, unavailable products, and expired or revoked subscriptions do not grant access.
+- Annual offer prominently displays the full **$35.88/year**, with **$2.99/month** as an optional secondary equivalent when StoreKit's numeric and localized prices agree. Monthly is **$3.99/month**. For eligible accounts, the selected-plan disclosure reads “3 days free, then [full price]/[year or month]” and the action is “Start 3-day free trial.” Display automatic renewal and cancellation information beside the purchase action.
+- These are the approved design amounts. Select supported actual App Store prices before release; use localized StoreKit prices and compute the annual monthly equivalent from the actual billed price divided by twelve. Hide the optional equivalent and value comparison if StoreKit's numeric and display prices disagree; always retain the full localized charge.
+- Subscribe and Restore use Apple StoreKit. Configure both products in one subscription group with a free introductory offer of three days. Check actual product metadata and account eligibility before advertising a trial; an account that has already consumed the group's introductory offer sees ordinary upfront pricing and “Subscribe.” A product that is missing or has a different eligible introductory offer must never receive a fabricated three-day-trial promise. Grant access only from a verified, active subscription or trial. Cancellation, pending/unverified transactions, unavailable products, and expired or revoked subscriptions do not grant access.
 - Never require payment to clear existing app-owned restrictions. Clear those restrictions when access expires before returning to the membership gate; this remains part of real-device shielding validation.
 - Keep Restore purchases, Terms and Privacy visible. No fake ratings, urgency, religious guarantees or guilt language.
 

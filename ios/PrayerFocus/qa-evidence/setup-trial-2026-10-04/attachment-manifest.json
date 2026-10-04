@@ -1,0 +1,28 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Local StoreKit",
+        "deviceId": "4FA8BD04-2F42-453B-A753-C6254E949C9C",
+        "deviceName": "iPhone 18 Pro",
+        "exportedFileName": "paywall-yearly.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Three-day trial \u2014 yearly_0_3A2E4DAA-DF9B-4DD8-BBDA-C99F315179E2.png",
+        "timestamp": 1791143513.734,
+        "sourceExportedFileName": "1C84C9E0-1B3E-44E6-83C1-FD7CA6B862A7.png"
+      },
+      {
+        "configurationName": "Local StoreKit",
+        "deviceId": "4FA8BD04-2F42-453B-A753-C6254E949C9C",
+        "deviceName": "iPhone 18 Pro",
+        "exportedFileName": "paywall-monthly.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Three-day trial \u2014 monthly_0_609ECA06-DD49-4895-ACF5-C51268374D63.png",
+        "timestamp": 1791143512.234,
+        "sourceExportedFileName": "9428B530-B47D-4529-A1B0-C083217C7648.png"
+      }
+    ],
+    "testIdentifier": "MembershipPaywallUITests/testTrialDisclosureFollowsPlanSelection()",
+    "testIdentifierURL": "test://com.apple.xcode/PrayerFocus/PrayerFocusUITests/MembershipPaywallUITests/testTrialDisclosureFollowsPlanSelection"
+  }
+]
