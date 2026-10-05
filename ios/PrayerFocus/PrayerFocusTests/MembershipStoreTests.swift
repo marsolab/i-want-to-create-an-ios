@@ -51,11 +51,13 @@ final class MembershipStoreTests: XCTestCase {
         let updates = Task { await store.observeTransactions() }
         defer { updates.cancel() }
         await store.prepare()
-        await store.subscribe(to: .monthly)
+        let trial = try await session.buyProduct(identifier: MembershipPlan.monthly.productID)
+        try await AppStore.sync()
+        await store.refreshAccess()
         XCTAssertTrue(store.hasAccess)
-        let transaction = try XCTUnwrap(session.allTransactions().first)
-        let expiration = try XCTUnwrap(transaction.expirationDate)
-        XCTAssertEqual(expiration.timeIntervalSince(transaction.purchaseDate), 3 * 24 * 60 * 60, accuracy: 10)
+        XCTAssertEqual(trial.offer?.paymentMode, .freeTrial)
+        let expiration = try XCTUnwrap(trial.expirationDate)
+        XCTAssertEqual(expiration.timeIntervalSince(trial.purchaseDate), 3 * 24 * 60 * 60, accuracy: 10)
 
         try session.expireSubscription(productIdentifier: MembershipPlan.monthly.productID)
         // Refresh the receipt after changing expiration outside StoreKit's purchase flow.
