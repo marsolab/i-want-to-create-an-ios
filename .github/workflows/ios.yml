@@ -18,10 +18,10 @@ concurrency:
 
 jobs:
   native:
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 40
     env:
-      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
     defaults:
       run:
         working-directory: ios/PrayerFocus
