@@ -43,11 +43,22 @@ const canonical = site.release ? new URL(Astro.url.pathname, site.siteURL).href 
         >
       </nav>
     </header>
-    <main id="main"><slot /></main>
+    <main id="main" tabindex="-1"><slot /></main>
     <footer class="site-footer shell">
-      <a class="wordmark" href="/">SalahSide</a>
+      <a class="wordmark" href="/" aria-label="SalahSide home">SalahSide</a>
       <nav aria-label="Footer navigation">
-        <a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
+        <a
+          href="/support/"
+          aria-current={Astro.url.pathname.startsWith('/support') ? 'page' : undefined}>Support</a
+        >
+        <a
+          href="/privacy/"
+          aria-current={Astro.url.pathname.startsWith('/privacy') ? 'page' : undefined}>Privacy</a
+        >
+        <a
+          href="/terms/"
+          aria-current={Astro.url.pathname.startsWith('/terms') ? 'page' : undefined}>Terms</a
+        >
       </nav>
     </footer>
   </body>

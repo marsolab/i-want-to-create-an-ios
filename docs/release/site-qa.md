@@ -39,3 +39,19 @@ Above-the-fold copy diff: matched wordmark, three nav labels, two headline sente
 ## Before public release
 
 Confirm publisher identity, working support mailbox, actual public origin and policy date. Verify hosting/email data practices against the privacy text. Publish the concrete site, verify all legal/support URLs without login, then use those URLs in the native configuration and App Store Connect. App Store release still needs the signing team, Family Controls approval, live subscription configuration and physical-device acceptance documented in [release preparation](README.md).
+
+## Impeccable polish — October 5, 2026
+
+Scoped refinement of the incumbent website: the landing page remains a Persuade surface; support and legal pages remain Read surfaces. Preserved the Georgia/Arial typography, ivory/forest palette, existing artwork, factual product copy, routes, native disclosures and publication configuration. No formal PRODUCT.md or DESIGN.md exists; the implementation and section references supplied the visual context.
+
+- Smoothed container gutters, hero columns, phone sizing and display type across intermediate widths. Converted fixed text sizes to rem, balanced headings, and kept supporting copy from ending on a single short word.
+- Reduced legal/support body measure from 860px to 72ch (approximately 721px at the checked desktop size), with 31.5px line height instead of 27px. Improved section spacing, separated the support contact from request instructions, and spaced the final support paragraph after disclosures.
+- Added consistent current-page footer navigation, hover cues, themed selection/scrollbars, and a restrained CTA arrow response. Existing reduced-motion rules disable these transitions.
+- Corrected incomplete publisher/email sentence composition in preview mode without inventing contact details or changing legal/product claims.
+- The first browser inspection found that Skip to content left focus on BODY, and step numbers had 3.90:1 contrast. The final correction makes MAIN programmatically focusable; Enter focuses MAIN and the following Tab reaches Explore SalahSide with a visible outline. Step numbers now use the shared quiet text color with contrast above 4.5:1.
+
+Verification was bounded to one inspection round, one correction batch and one confirmation round. The built site was checked in Codex's in-app browser at 1280px desktop, 390px mobile, and 320/768/1024px intermediate widths. No horizontal overflow was observed; Privacy and Terms also fit at 320px. The membership/restore disclosures opened with Enter, both images loaded, footer current-page state was correct, and the browser error log was empty. The homepage still contains zero scripts. No actual browser text-zoom or Safari session was captured.
+
+The single requested mechanical detector scan returned no findings. Final build, Astro check (0 errors/warnings; one pre-existing chart deprecation hint), lint, formatting and source whitespace checks passed. The existing three utility tests also passed; they are not visual test coverage. No publication or native distribution action was performed by this refinement.
+
+Final captures: [desktop](screenshots/website-polish-desktop.png), [mobile](screenshots/website-polish-mobile.png), and [privacy reading layout](screenshots/website-polish-privacy.png).

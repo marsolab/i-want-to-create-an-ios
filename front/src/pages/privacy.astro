@@ -12,8 +12,22 @@ export const prerender = true;
 >
   <h2>Who we are</h2>
   <p>
-    {site.publisher || 'The SalahSide publisher will be identified before publication.'} provides SalahSide.
-    For privacy questions, contact <Contact subject="SalahSide privacy request" />.
+    {
+      site.publisher
+        ? `${site.publisher} provides SalahSide.`
+        : 'The SalahSide publisher will be identified before publication.'
+    }
+  </p>
+  <p>
+    {
+      site.supportEmail ? (
+        <>
+          For privacy questions, contact <Contact subject="SalahSide privacy request" />.
+        </>
+      ) : (
+        'Our support email will be added before launch.'
+      )
+    }
   </p>
   <h2>Your information stays close</h2>
   <p>
@@ -80,10 +94,18 @@ export const prerender = true;
   </p>
   <h2>Requests and changes</h2>
   <p>
-    You can contact <Contact subject="SalahSide privacy request" /> about support correspondence or privacy
-    questions. We cannot remotely access or erase data stored only on your device. Depending on the law
-    applicable to you, you may have rights to access, correct, or delete personal information you provide
-    to us.
+    {
+      site.supportEmail ? (
+        <>
+          You can contact <Contact subject="SalahSide privacy request" /> about support
+          correspondence or privacy questions.
+        </>
+      ) : (
+        'Our support email will be added before launch for support correspondence and privacy questions.'
+      )
+    }
+    We cannot remotely access or erase data stored only on your device. Depending on the law applicable
+    to you, you may have rights to access, correct, or delete personal information you provide to us.
   </p>
   <p>
     We will update this page and its effective date when our data practices change. Questions about

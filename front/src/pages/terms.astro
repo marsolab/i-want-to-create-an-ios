@@ -1,6 +1,7 @@
 ---
 import DocumentLayout from '../layouts/site/DocumentLayout.astro';
 import Contact from '../components/site/Contact.astro';
+import { site } from '../lib/site/config';
 export const prerender = true;
 ---
 
@@ -81,8 +82,14 @@ export const prerender = true;
   </p>
   <h2>Support and updates</h2>
   <p>
-    For product questions, visit <a href="/support/">Support</a> or contact <Contact />. Features
-    and supported systems may change with updates. Changes to this page will show a new effective
-    date.
+    For product questions, visit <a href="/support/">Support</a>{
+      site.supportEmail && (
+        <>
+          {' '}
+          or contact <Contact />
+        </>
+      )
+    }. Features and supported systems may change with updates. Changes to this page will show a new
+    effective date.
   </p>
 </DocumentLayout>
