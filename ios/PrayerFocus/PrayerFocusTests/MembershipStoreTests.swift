@@ -80,8 +80,7 @@ final class MembershipStoreTests: XCTestCase {
     func testPendingPurchaseKeepsMembershipLocked() async throws {
         let session = try await testSession()
         defer { session.clearTransactions() }
-        session.askToBuyEnabled = true
-        let store = MembershipStore()
+        let store = MembershipStore(purchaseProduct: { _ in .pending })
         let updates = Task { await store.observeTransactions() }
         defer { updates.cancel() }
         await store.prepare()
