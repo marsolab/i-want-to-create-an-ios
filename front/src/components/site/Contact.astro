@@ -1,0 +1,16 @@
+---
+import { site } from '../../lib/site/config';
+const subject = Astro.props.subject || 'SalahSide support';
+---
+
+{
+  site.supportEmail ? (
+    <a
+      href={`mailto:${encodeURIComponent(site.supportEmail)}?subject=${encodeURIComponent(subject)}`}
+    >
+      {site.supportEmail}
+    </a>
+  ) : (
+    <span>Our support email will be added before launch.</span>
+  )
+}

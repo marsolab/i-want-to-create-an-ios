@@ -1,0 +1,1800 @@
+{
+  "checked_on_dubai": "2026-10-04",
+  "generated_at_utc": "2026-10-04T02:58:10.800356+00:00",
+  "scope": {
+    "names": [
+      "SalahSpace",
+      "PrayerPause",
+      "SalahFirst",
+      "SalahFlow",
+      "SalahMoment",
+      "QuietSalah",
+      "Salahside",
+      "SalahNest",
+      "Five Moments",
+      "Five Pauses",
+      "Quiet Five",
+      "Sacred Pause",
+      "Prayer Haven",
+      "StillTime",
+      "DeenSpace",
+      "DeenRhythm",
+      "QuietDeen",
+      "Deenstead",
+      "Veyami",
+      "Lumeli"
+    ],
+    "apple_storefronts": [
+      "us",
+      "gb",
+      "ae"
+    ],
+    "domain_tlds": [
+      "com",
+      "app"
+    ]
+  },
+  "domains": [
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/salahspace.com",
+      "checked_at_utc": "2026-10-04T02:50:58.349501+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "salahspace.com",
+      "registration": "registered",
+      "rdap_name": "SALAHSPACE.COM",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2025-12-07T00:38:29Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2026-12-07T00:38:29Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2025-12-07T00:38:29Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/salahspace.app",
+      "checked_at_utc": "2026-10-04T02:50:58.609323+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "salahspace.app",
+      "registration": "not_registered",
+      "rdap_name": null,
+      "rdap_status": null,
+      "rdap_error_code": 404,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/prayerpause.com",
+      "checked_at_utc": "2026-10-04T02:50:58.379071+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "prayerpause.com",
+      "registration": "registered",
+      "rdap_name": "PRAYERPAUSE.COM",
+      "rdap_status": [
+        "client delete prohibited",
+        "client renew prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2026-01-05T19:20:09Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-01-05T19:20:09Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-01-08T15:26:04Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/prayerpause.app",
+      "checked_at_utc": "2026-10-04T02:50:58.594267+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "prayerpause.app",
+      "registration": "registered",
+      "rdap_name": "prayerpause.app",
+      "rdap_status": [
+        "client delete prohibited",
+        "client renew prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventActor": "godaddy",
+          "eventDate": "2026-01-18T16:29:53.312Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-01-18T16:29:53.312Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:58.452Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-01-23T16:29:53.312Z"
+        }
+      ]
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/salahfirst.com",
+      "checked_at_utc": "2026-10-04T02:50:59.021901+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "salahfirst.com",
+      "registration": "registered",
+      "rdap_name": "SALAHFIRST.COM",
+      "rdap_status": [
+        "active"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2023-08-12T18:10:54Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2029-08-12T18:10:54Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-09-27T15:37:21Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/salahfirst.app",
+      "checked_at_utc": "2026-10-04T02:50:58.872475+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "salahfirst.app",
+      "registration": "registered",
+      "rdap_name": "salahfirst.app",
+      "rdap_status": [
+        "client delete prohibited",
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventActor": "porkbun",
+          "eventDate": "2026-01-03T18:23:27.896Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-01-03T18:23:27.896Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:58.725Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-05-11T14:33:36.830Z"
+        }
+      ]
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/salahflow.com",
+      "checked_at_utc": "2026-10-04T02:50:59.022431+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "salahflow.com",
+      "registration": "registered",
+      "rdap_name": "SALAHFLOW.COM",
+      "rdap_status": [
+        "client delete prohibited",
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2025-08-09T00:00:27Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2028-08-09T00:00:27Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2025-08-09T00:00:27Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/salahflow.app",
+      "checked_at_utc": "2026-10-04T02:50:59.101510+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "salahflow.app",
+      "registration": "registered",
+      "rdap_name": "salahflow.app",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventActor": "name",
+          "eventDate": "2025-09-21T04:26:28.667Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-09-21T04:26:28.667Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:58.944Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-09-04T17:04:14.094Z"
+        }
+      ]
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/salahmoment.com",
+      "checked_at_utc": "2026-10-04T02:50:59.261979+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "salahmoment.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/salahmoment.app",
+      "checked_at_utc": "2026-10-04T02:50:59.541622+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "salahmoment.app",
+      "registration": "not_registered",
+      "rdap_name": null,
+      "rdap_status": null,
+      "rdap_error_code": 404,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/quietsalah.com",
+      "checked_at_utc": "2026-10-04T02:50:59.414245+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "quietsalah.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/quietsalah.app",
+      "checked_at_utc": "2026-10-04T02:50:59.597391+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "quietsalah.app",
+      "registration": "not_registered",
+      "rdap_name": null,
+      "rdap_status": null,
+      "rdap_error_code": 404,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/salahside.com",
+      "checked_at_utc": "2026-10-04T02:50:59.712807+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "salahside.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/salahside.app",
+      "checked_at_utc": "2026-10-04T02:50:59.912019+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "salahside.app",
+      "registration": "not_registered",
+      "rdap_name": null,
+      "rdap_status": null,
+      "rdap_error_code": 404,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/salahnest.com",
+      "checked_at_utc": "2026-10-04T02:50:59.969647+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "salahnest.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/salahnest.app",
+      "checked_at_utc": "2026-10-04T02:51:00.088448+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "salahnest.app",
+      "registration": "not_registered",
+      "rdap_name": null,
+      "rdap_status": null,
+      "rdap_error_code": 404,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/fivemoments.com",
+      "checked_at_utc": "2026-10-04T02:51:00.203516+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "fivemoments.com",
+      "registration": "registered",
+      "rdap_name": "FIVEMOMENTS.COM",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2012-05-03T20:27:34Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-05-03T20:27:34Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-05-04T08:46:57Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/fivemoments.app",
+      "checked_at_utc": "2026-10-04T02:51:00.443357+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "fivemoments.app",
+      "registration": "not_registered",
+      "rdap_name": null,
+      "rdap_status": null,
+      "rdap_error_code": 404,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/fivepauses.com",
+      "checked_at_utc": "2026-10-04T02:51:00.416690+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "fivepauses.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/fivepauses.app",
+      "checked_at_utc": "2026-10-04T02:53:00.651349+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "fivepauses.app",
+      "registration": "not_registered",
+      "rdap_error_code": 404,
+      "rdap_name": null,
+      "rdap_status": null,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/quietfive.com",
+      "checked_at_utc": "2026-10-04T02:51:00.613212+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "quietfive.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/quietfive.app",
+      "checked_at_utc": "2026-10-04T02:51:00.978475+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "quietfive.app",
+      "registration": "not_registered",
+      "rdap_name": null,
+      "rdap_status": null,
+      "rdap_error_code": 404,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/sacredpause.com",
+      "checked_at_utc": "2026-10-04T02:51:00.848814+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "sacredpause.com",
+      "registration": "registered",
+      "rdap_name": "SACREDPAUSE.COM",
+      "rdap_status": [
+        "client delete prohibited",
+        "client renew prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2002-10-31T16:15:40Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2026-10-31T15:15:40Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2025-11-08T17:21:31Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/sacredpause.app",
+      "checked_at_utc": "2026-10-04T02:53:04.699932+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "sacredpause.app",
+      "registration": "registered",
+      "rdap_error_code": null,
+      "rdap_name": "sacredpause.app",
+      "rdap_status": [
+        "client delete prohibited",
+        "client transfer prohibited"
+      ],
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventActor": "googledomains",
+          "eventDate": "2026-09-16T14:36:33.169Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-09-16T14:36:33.169Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:53:04.550Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-09-21T14:36:33.169Z"
+        }
+      ]
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/prayerhaven.com",
+      "checked_at_utc": "2026-10-04T02:51:01.271895+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "prayerhaven.com",
+      "registration": "registered",
+      "rdap_name": "PRAYERHAVEN.COM",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2014-12-10T05:53:32Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2026-12-10T05:53:32Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2025-11-10T08:47:21Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/prayerhaven.app",
+      "checked_at_utc": "2026-10-04T02:53:08.688940+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "prayerhaven.app",
+      "registration": "not_registered",
+      "rdap_error_code": 404,
+      "rdap_name": null,
+      "rdap_status": null,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/stilltime.com",
+      "checked_at_utc": "2026-10-04T02:51:01.526913+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "stilltime.com",
+      "registration": "registered",
+      "rdap_name": "STILLTIME.COM",
+      "rdap_status": [
+        "client delete prohibited",
+        "client renew prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2025-04-27T18:20:54Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-04-27T18:20:54Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2025-09-28T16:25:02Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/stilltime.app",
+      "checked_at_utc": "2026-10-04T02:53:13.134817+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "stilltime.app",
+      "registration": "registered",
+      "rdap_error_code": null,
+      "rdap_name": "stilltime.app",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventActor": "cloudflare",
+          "eventDate": "2026-08-13T20:59:14.678Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-08-13T20:59:14.678Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:53:12.985Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-08-18T20:59:14.678Z"
+        }
+      ]
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/deenspace.com",
+      "checked_at_utc": "2026-10-04T02:51:01.665053+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "deenspace.com",
+      "registration": "registered",
+      "rdap_name": "DEENSPACE.COM",
+      "rdap_status": [
+        "client delete prohibited",
+        "client renew prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2025-06-29T16:50:06Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-06-29T16:50:06Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-06-26T16:11:57Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:30Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/deenspace.app",
+      "checked_at_utc": "2026-10-04T02:53:16.751515+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "deenspace.app",
+      "registration": "not_registered",
+      "rdap_error_code": 404,
+      "rdap_name": null,
+      "rdap_status": null,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/deenrhythm.com",
+      "checked_at_utc": "2026-10-04T02:51:01.993163+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "deenrhythm.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/deenrhythm.app",
+      "checked_at_utc": "2026-10-04T02:53:20.698360+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "deenrhythm.app",
+      "registration": "not_registered",
+      "rdap_error_code": 404,
+      "rdap_name": null,
+      "rdap_status": null,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/quietdeen.com",
+      "checked_at_utc": "2026-10-04T02:51:02.439117+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "quietdeen.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/quietdeen.app",
+      "checked_at_utc": "2026-10-04T02:53:24.773474+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "quietdeen.app",
+      "registration": "not_registered",
+      "rdap_error_code": 404,
+      "rdap_name": null,
+      "rdap_status": null,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/deenstead.com",
+      "checked_at_utc": "2026-10-04T02:51:02.816243+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "deenstead.com",
+      "registration": "not_registered",
+      "interpretation": "Verisign authoritative endpoint returns HTTP 404 with an empty application/rdap+json body for this name."
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/deenstead.app",
+      "checked_at_utc": "2026-10-04T02:53:28.724098+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "deenstead.app",
+      "registration": "not_registered",
+      "rdap_error_code": 404,
+      "rdap_name": null,
+      "rdap_status": null,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/veyami.com",
+      "checked_at_utc": "2026-10-04T02:51:03.138164+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "veyami.com",
+      "registration": "registered",
+      "rdap_name": "VEYAMI.COM",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2026-07-21T08:04:28Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-07-21T08:04:28Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-07-21T08:04:30Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:45Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/veyami.app",
+      "checked_at_utc": "2026-10-04T02:53:32.703447+00:00",
+      "http_status": "404",
+      "error": null,
+      "domain": "veyami.app",
+      "registration": "not_registered",
+      "rdap_error_code": 404,
+      "rdap_name": null,
+      "rdap_status": null,
+      "events": []
+    },
+    {
+      "url": "https://rdap.verisign.com/com/v1/domain/lumeli.com",
+      "checked_at_utc": "2026-10-04T02:51:03.221531+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "lumeli.com",
+      "registration": "registered",
+      "rdap_name": "LUMELI.COM",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "rdap_error_code": null,
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventDate": "2010-08-11T22:29:18Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2028-08-11T22:29:18Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-09-12T02:41:10Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:50:45Z"
+        }
+      ]
+    },
+    {
+      "url": "https://pubapi.registry.google/rdap/domain/lumeli.app",
+      "checked_at_utc": "2026-10-04T02:53:36.825509+00:00",
+      "http_status": "200",
+      "error": null,
+      "domain": "lumeli.app",
+      "registration": "registered",
+      "rdap_error_code": null,
+      "rdap_name": "lumeli.app",
+      "rdap_status": [
+        "client transfer prohibited"
+      ],
+      "events": [
+        {
+          "eventAction": "registration",
+          "eventActor": "namecheap",
+          "eventDate": "2026-06-08T12:04:48.558Z"
+        },
+        {
+          "eventAction": "expiration",
+          "eventDate": "2027-06-08T12:04:48.558Z"
+        },
+        {
+          "eventAction": "last update of RDAP database",
+          "eventDate": "2026-10-04T02:53:36.616Z"
+        },
+        {
+          "eventAction": "last changed",
+          "eventDate": "2026-06-23T16:45:52.652Z"
+        }
+      ]
+    }
+  ],
+  "apple_searches": [
+    {
+      "url": "https://itunes.apple.com/search?term=SalahSpace&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:08.238701+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahSpace",
+      "country": "us",
+      "result_count": 184,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=PrayerPause&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:12.379371+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "PrayerPause",
+      "country": "us",
+      "result_count": 161,
+      "matches": [
+        {
+          "trackName": "Prayer Pause: Screen Time",
+          "trackId": 6757287456,
+          "trackViewUrl": "https://apps.apple.com/us/app/prayer-pause-screen-time/id6757287456?uo=4",
+          "artistName": "ABDULLAH M ALOBAIDI",
+          "sellerName": "ABDULLAH M ALOBAIDI",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "prayer pause: focus on God",
+          "trackId": 6758054860,
+          "trackViewUrl": "https://apps.apple.com/us/app/prayer-pause-focus-on-god/id6758054860?uo=4",
+          "artistName": "Ingenuity Labs LLC",
+          "sellerName": "Ingenuity Labs LLC",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "Prayer Pause - Habit Tracker",
+          "trackId": 6761688820,
+          "trackViewUrl": "https://apps.apple.com/us/app/prayer-pause-habit-tracker/id6761688820?uo=4",
+          "artistName": "SIMPLE STUDIO LIMITED",
+          "sellerName": "SIMPLE STUDIO LIMITED",
+          "primaryGenreName": "Lifestyle"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahFirst&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:16.204656+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahFirst",
+      "country": "us",
+      "result_count": 174,
+      "matches": [
+        {
+          "trackName": "Salah First",
+          "trackId": 6757348350,
+          "trackViewUrl": "https://apps.apple.com/us/app/salah-first/id6757348350?uo=4",
+          "artistName": "Muhammad Moghees Bajwa",
+          "sellerName": "Muhammad Moghees Bajwa",
+          "primaryGenreName": "Productivity"
+        },
+        {
+          "trackName": "Salah First: Önce Namaz",
+          "trackId": 6813800192,
+          "trackViewUrl": "https://apps.apple.com/us/app/salah-first-%C3%B6nce-namaz/id6813800192?uo=4",
+          "artistName": "BERAT DEMIRCI",
+          "sellerName": "BERAT DEMIRCI",
+          "primaryGenreName": "Health & Fitness"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahFlow&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:23.365081+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahFlow",
+      "country": "us",
+      "result_count": 183,
+      "matches": [
+        {
+          "trackName": "Salah Flow",
+          "trackId": 6758021191,
+          "trackViewUrl": "https://apps.apple.com/us/app/salah-flow/id6758021191?uo=4",
+          "artistName": "RENE PUPALA",
+          "sellerName": "RENE PUPALA",
+          "primaryGenreName": "Reference"
+        },
+        {
+          "trackName": "Salah Flow",
+          "trackId": 6754946039,
+          "trackViewUrl": "https://apps.apple.com/us/app/salah-flow/id6754946039?uo=4",
+          "artistName": "Luqman Hussain",
+          "sellerName": "Luqman Hussain",
+          "primaryGenreName": "Productivity"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahMoment&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:27.370418+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahMoment",
+      "country": "us",
+      "result_count": 185,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=QuietSalah&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:31.259241+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "QuietSalah",
+      "country": "us",
+      "result_count": 174,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Salahside&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:35.208654+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Salahside",
+      "country": "us",
+      "result_count": 175,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahNest&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:39.281773+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahNest",
+      "country": "us",
+      "result_count": 172,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Five+Moments&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:43.099290+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Five Moments",
+      "country": "us",
+      "result_count": 144,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Five+Pauses&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:45.803506+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Five Pauses",
+      "country": "us",
+      "result_count": 73,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Quiet+Five&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:48.457683+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Quiet Five",
+      "country": "us",
+      "result_count": 56,
+      "matches": [
+        {
+          "trackName": "QuietFive: Daily Bible Reading",
+          "trackId": 6801104900,
+          "trackViewUrl": "https://apps.apple.com/us/app/quietfive-daily-bible-reading/id6801104900?uo=4",
+          "artistName": "VIVA APPS YAZILIM VE DANISMANLIK SANAYI VE TICARET LIMITED SIRKETI",
+          "sellerName": "VIVA APPS YAZILIM VE DANISMANLIK SANAYI VE TICARET LIMITED SIRKETI",
+          "primaryGenreName": "Reference"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Sacred+Pause&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:53.775474+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Sacred Pause",
+      "country": "us",
+      "result_count": 159,
+      "matches": [
+        {
+          "trackName": "Sacred Pause: Daily Prayer",
+          "trackId": 6762171509,
+          "trackViewUrl": "https://apps.apple.com/us/app/sacred-pause-daily-prayer/id6762171509?uo=4",
+          "artistName": "Christopher Lee",
+          "sellerName": "Christopher Lee",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "Sacred Pause",
+          "trackId": 6759350575,
+          "trackViewUrl": "https://apps.apple.com/us/app/sacred-pause/id6759350575?uo=4",
+          "artistName": "Marie Patrice Santiago",
+          "sellerName": "Marie Patrice Santiago",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "Sacred Pause: Prayer & Focus",
+          "trackId": 6785541174,
+          "trackViewUrl": "https://apps.apple.com/us/app/sacred-pause-prayer-focus/id6785541174?uo=4",
+          "artistName": "Carlo Alexander Di Lorenzo",
+          "sellerName": "Carlo Alexander Di Lorenzo",
+          "primaryGenreName": "Lifestyle"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Prayer+Haven&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:57.776130+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Prayer Haven",
+      "country": "us",
+      "result_count": 181,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=StillTime&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:51:58.894688+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "StillTime",
+      "country": "us",
+      "result_count": 2,
+      "matches": [
+        {
+          "trackName": "stilltime - singing bowl timer",
+          "trackId": 6443432012,
+          "trackViewUrl": "https://apps.apple.com/us/app/stilltime-singing-bowl-timer/id6443432012?uo=4",
+          "artistName": "Hongru Wang",
+          "sellerName": "Hongru Wang",
+          "primaryGenreName": "Health & Fitness"
+        },
+        {
+          "trackName": "StillTime",
+          "trackId": 6747281882,
+          "trackViewUrl": "https://apps.apple.com/us/app/stilltime/id6747281882?uo=4",
+          "artistName": "Tim Deacon",
+          "sellerName": "Tim Deacon",
+          "primaryGenreName": "Productivity"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=DeenSpace&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:03.118730+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "DeenSpace",
+      "country": "us",
+      "result_count": 48,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=DeenRhythm&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:05.213941+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "DeenRhythm",
+      "country": "us",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=QuietDeen&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:09.792796+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "QuietDeen",
+      "country": "us",
+      "result_count": 37,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Deenstead&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:12.124406+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Deenstead",
+      "country": "us",
+      "result_count": 3,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Veyami&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:18.636666+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Veyami",
+      "country": "us",
+      "result_count": 139,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Lumeli&country=us&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:23.311562+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Lumeli",
+      "country": "us",
+      "result_count": 184,
+      "matches": [
+        {
+          "trackName": "Lumeli",
+          "trackId": 6772631941,
+          "trackViewUrl": "https://apps.apple.com/us/app/lumeli/id6772631941?uo=4",
+          "artistName": "Sebastian Ariel Burrieza",
+          "sellerName": "Sebastian Ariel Burrieza",
+          "primaryGenreName": "Shopping"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahSpace&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:28.191547+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahSpace",
+      "country": "gb",
+      "result_count": 191,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=PrayerPause&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:32.751410+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "PrayerPause",
+      "country": "gb",
+      "result_count": 173,
+      "matches": [
+        {
+          "trackName": "Prayer Pause: Screen Time",
+          "trackId": 6757287456,
+          "trackViewUrl": "https://apps.apple.com/gb/app/prayer-pause-screen-time/id6757287456?uo=4",
+          "artistName": "ABDULLAH M ALOBAIDI",
+          "sellerName": "ABDULLAH M ALOBAIDI",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "prayer pause: focus on God",
+          "trackId": 6758054860,
+          "trackViewUrl": "https://apps.apple.com/gb/app/prayer-pause-focus-on-god/id6758054860?uo=4",
+          "artistName": "Ingenuity Labs LLC",
+          "sellerName": "Ingenuity Labs LLC",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "Prayer Pause - Habit Tracker",
+          "trackId": 6761688820,
+          "trackViewUrl": "https://apps.apple.com/gb/app/prayer-pause-habit-tracker/id6761688820?uo=4",
+          "artistName": "SIMPLE STUDIO LIMITED",
+          "sellerName": "SIMPLE STUDIO LIMITED",
+          "primaryGenreName": "Lifestyle"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahFirst&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:36.877302+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahFirst",
+      "country": "gb",
+      "result_count": 184,
+      "matches": [
+        {
+          "trackName": "Salah First",
+          "trackId": 6757348350,
+          "trackViewUrl": "https://apps.apple.com/gb/app/salah-first/id6757348350?uo=4",
+          "artistName": "Muhammad Moghees Bajwa",
+          "sellerName": "Muhammad Moghees Bajwa",
+          "primaryGenreName": "Productivity"
+        },
+        {
+          "trackName": "Salah First: Önce Namaz",
+          "trackId": 6813800192,
+          "trackViewUrl": "https://apps.apple.com/gb/app/salah-first-%C3%B6nce-namaz/id6813800192?uo=4",
+          "artistName": "BERAT DEMIRCI",
+          "sellerName": "BERAT DEMIRCI",
+          "primaryGenreName": "Health & Fitness"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahFlow&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:41.539716+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahFlow",
+      "country": "gb",
+      "result_count": 189,
+      "matches": [
+        {
+          "trackName": "Salah Flow",
+          "trackId": 6758021191,
+          "trackViewUrl": "https://apps.apple.com/gb/app/salah-flow/id6758021191?uo=4",
+          "artistName": "RENE PUPALA",
+          "sellerName": "RENE PUPALA",
+          "primaryGenreName": "Reference"
+        },
+        {
+          "trackName": "Salah Flow",
+          "trackId": 6754946039,
+          "trackViewUrl": "https://apps.apple.com/gb/app/salah-flow/id6754946039?uo=4",
+          "artistName": "Luqman Hussain",
+          "sellerName": "Luqman Hussain",
+          "primaryGenreName": "Productivity"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahMoment&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:45.859748+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahMoment",
+      "country": "gb",
+      "result_count": 187,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=QuietSalah&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:49.792253+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "QuietSalah",
+      "country": "gb",
+      "result_count": 182,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Salahside&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:54.374434+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Salahside",
+      "country": "gb",
+      "result_count": 189,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahNest&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:52:59.441171+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahNest",
+      "country": "gb",
+      "result_count": 184,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Five+Moments&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:03.043980+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Five Moments",
+      "country": "gb",
+      "result_count": 133,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Five+Pauses&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:05.576679+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Five Pauses",
+      "country": "gb",
+      "result_count": 60,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Quiet+Five&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:08.518983+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Quiet Five",
+      "country": "gb",
+      "result_count": 52,
+      "matches": [
+        {
+          "trackName": "QuietFive: Daily Bible Reading",
+          "trackId": 6801104900,
+          "trackViewUrl": "https://apps.apple.com/gb/app/quietfive-daily-bible-reading/id6801104900?uo=4",
+          "artistName": "VIVA APPS YAZILIM VE DANISMANLIK SANAYI VE TICARET LIMITED SIRKETI",
+          "sellerName": "VIVA APPS YAZILIM VE DANISMANLIK SANAYI VE TICARET LIMITED SIRKETI",
+          "primaryGenreName": "Reference"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Sacred+Pause&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:14.114684+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Sacred Pause",
+      "country": "gb",
+      "result_count": 155,
+      "matches": [
+        {
+          "trackName": "Sacred Pause: Daily Prayer",
+          "trackId": 6762171509,
+          "trackViewUrl": "https://apps.apple.com/gb/app/sacred-pause-daily-prayer/id6762171509?uo=4",
+          "artistName": "Christopher Lee",
+          "sellerName": "Christopher Lee",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "Sacred Pause",
+          "trackId": 6759350575,
+          "trackViewUrl": "https://apps.apple.com/gb/app/sacred-pause/id6759350575?uo=4",
+          "artistName": "Marie Patrice Santiago",
+          "sellerName": "Marie Patrice Santiago",
+          "primaryGenreName": "Lifestyle"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Prayer+Haven&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:18.876771+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Prayer Haven",
+      "country": "gb",
+      "result_count": 178,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=StillTime&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:20.119960+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "StillTime",
+      "country": "gb",
+      "result_count": 1,
+      "matches": [
+        {
+          "trackName": "stilltime - singing bowl timer",
+          "trackId": 6443432012,
+          "trackViewUrl": "https://apps.apple.com/gb/app/stilltime-singing-bowl-timer/id6443432012?uo=4",
+          "artistName": "Hongru Wang",
+          "sellerName": "Hongru Wang",
+          "primaryGenreName": "Health & Fitness"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=DeenSpace&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:24.908266+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "DeenSpace",
+      "country": "gb",
+      "result_count": 47,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=DeenRhythm&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:26.253039+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "DeenRhythm",
+      "country": "gb",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=QuietDeen&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:30.689756+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "QuietDeen",
+      "country": "gb",
+      "result_count": 37,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Deenstead&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:33.162942+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Deenstead",
+      "country": "gb",
+      "result_count": 3,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Veyami&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:39.164015+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Veyami",
+      "country": "gb",
+      "result_count": 140,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Lumeli&country=gb&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:43.800063+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Lumeli",
+      "country": "gb",
+      "result_count": 191,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahSpace&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:44.386005+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahSpace",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=PrayerPause&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:49.124769+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "PrayerPause",
+      "country": "ae",
+      "result_count": 46,
+      "matches": [
+        {
+          "trackName": "Prayer Pause: Screen Time",
+          "trackId": 6757287456,
+          "trackViewUrl": "https://apps.apple.com/ae/app/prayer-pause-screen-time/id6757287456?uo=4",
+          "artistName": "ABDULLAH M ALOBAIDI",
+          "sellerName": "ABDULLAH M ALOBAIDI",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "prayer pause: focus on God",
+          "trackId": 6758054860,
+          "trackViewUrl": "https://apps.apple.com/ae/app/prayer-pause-focus-on-god/id6758054860?uo=4",
+          "artistName": "Ingenuity Labs LLC",
+          "sellerName": "Ingenuity Labs LLC",
+          "primaryGenreName": "Lifestyle"
+        },
+        {
+          "trackName": "Prayer Pause - Habit Tracker",
+          "trackId": 6761688820,
+          "trackViewUrl": "https://apps.apple.com/ae/app/prayer-pause-habit-tracker/id6761688820?uo=4",
+          "artistName": "SIMPLE STUDIO LIMITED",
+          "sellerName": "SIMPLE STUDIO LIMITED",
+          "primaryGenreName": "Lifestyle"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahFirst&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:51.713737+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahFirst",
+      "country": "ae",
+      "result_count": 2,
+      "matches": [
+        {
+          "trackName": "Salah First",
+          "trackId": 6757348350,
+          "trackViewUrl": "https://apps.apple.com/ae/app/salah-first/id6757348350?uo=4",
+          "artistName": "Muhammad Moghees Bajwa",
+          "sellerName": "Muhammad Moghees Bajwa",
+          "primaryGenreName": "Productivity"
+        },
+        {
+          "trackName": "Salah First: Önce Namaz",
+          "trackId": 6813800192,
+          "trackViewUrl": "https://apps.apple.com/ae/app/salah-first-%C3%B6nce-namaz/id6813800192?uo=4",
+          "artistName": "BERAT DEMIRCI",
+          "sellerName": "BERAT DEMIRCI",
+          "primaryGenreName": "Health & Fitness"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahFlow&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:54.662745+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahFlow",
+      "country": "ae",
+      "result_count": 2,
+      "matches": [
+        {
+          "trackName": "Salah Flow",
+          "trackId": 6758021191,
+          "trackViewUrl": "https://apps.apple.com/ae/app/salah-flow/id6758021191?uo=4",
+          "artistName": "RENE PUPALA",
+          "sellerName": "RENE PUPALA",
+          "primaryGenreName": "Reference"
+        },
+        {
+          "trackName": "Salah Flow",
+          "trackId": 6754946039,
+          "trackViewUrl": "https://apps.apple.com/ae/app/salah-flow/id6754946039?uo=4",
+          "artistName": "Luqman Hussain",
+          "sellerName": "Luqman Hussain",
+          "primaryGenreName": "Productivity"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahMoment&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:53:58.423499+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahMoment",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=QuietSalah&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:01.480108+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "QuietSalah",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Salahside&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:04.821009+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Salahside",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=SalahNest&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:08.288795+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "SalahNest",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Five+Moments&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:14.345499+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Five Moments",
+      "country": "ae",
+      "result_count": 96,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Five+Pauses&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:15.905326+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Five Pauses",
+      "country": "ae",
+      "result_count": 23,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Quiet+Five&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:20.130664+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Quiet Five",
+      "country": "ae",
+      "result_count": 39,
+      "matches": [
+        {
+          "trackName": "QuietFive: Daily Bible Reading",
+          "trackId": 6801104900,
+          "trackViewUrl": "https://apps.apple.com/ae/app/quietfive-daily-bible-reading/id6801104900?uo=4",
+          "artistName": "VIVA APPS YAZILIM VE DANISMANLIK SANAYI VE TICARET LIMITED SIRKETI",
+          "sellerName": "VIVA APPS YAZILIM VE DANISMANLIK SANAYI VE TICARET LIMITED SIRKETI",
+          "primaryGenreName": "Reference"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Sacred+Pause&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:22.148366+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Sacred Pause",
+      "country": "ae",
+      "result_count": 3,
+      "matches": [
+        {
+          "trackName": "Sacred Pause: Daily Prayer",
+          "trackId": 6762171509,
+          "trackViewUrl": "https://apps.apple.com/ae/app/sacred-pause-daily-prayer/id6762171509?uo=4",
+          "artistName": "Christopher Lee",
+          "sellerName": "Christopher Lee",
+          "primaryGenreName": "Lifestyle"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Prayer+Haven&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:26.907285+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Prayer Haven",
+      "country": "ae",
+      "result_count": 76,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=StillTime&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:28.730641+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "StillTime",
+      "country": "ae",
+      "result_count": 1,
+      "matches": [
+        {
+          "trackName": "stilltime - singing bowl timer",
+          "trackId": 6443432012,
+          "trackViewUrl": "https://apps.apple.com/ae/app/stilltime-singing-bowl-timer/id6443432012?uo=4",
+          "artistName": "Hongru Wang",
+          "sellerName": "Hongru Wang",
+          "primaryGenreName": "Health & Fitness"
+        }
+      ]
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=DeenSpace&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:32.017991+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "DeenSpace",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=DeenRhythm&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:35.545213+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "DeenRhythm",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=QuietDeen&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:38.826389+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "QuietDeen",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Deenstead&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:42.360197+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Deenstead",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Veyami&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:45.711909+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Veyami",
+      "country": "ae",
+      "result_count": 0,
+      "matches": []
+    },
+    {
+      "url": "https://itunes.apple.com/search?term=Lumeli&country=ae&entity=software&limit=200",
+      "checked_at_utc": "2026-10-04T02:54:53.169001+00:00",
+      "http_status": "200",
+      "error": null,
+      "name": "Lumeli",
+      "country": "ae",
+      "result_count": 195,
+      "matches": []
+    }
+  ],
+  "web_notes": {
+    "PrayerPause": {
+      "status": "Есть: Prayer Pause: Screen Time",
+      "source": "https://apps.apple.com/us/app/prayer-pause-screen-time/id6757287456",
+      "note": "Прямой конкурент: по описанию блокирует выбранные приложения на время намаза."
+    },
+    "SalahFirst": {
+      "status": "Есть: Salah First",
+      "source": "https://apps.apple.com/us/app/salah-first-%C3%B6nce-namaz/id6813800192",
+      "note": "Прямое совпадение базового имени и основной функции."
+    },
+    "SalahFlow": {
+      "status": "Есть: Salah Flow",
+      "source": "https://apps.apple.com/us/app/salah-flow/id6754946039",
+      "note": "Два разных приложения с этим базовым именем: IDs 6754946039 и 6758021191."
+    },
+    "Five Moments": {
+      "status": "Употребляется в описании другого приложения",
+      "source": "https://apps.apple.com/us/app/5memories-instant-photo-board/id6760924859",
+      "note": "В текущем заголовке 5Memories; Five Moments используется в описании. Не точное совпадение текущего заголовка."
+    },
+    "Quiet Five": {
+      "status": "Есть: QuietFive",
+      "source": "https://apps.apple.com/es/app/quietfive-daily-bible-reading/id6801104900",
+      "note": "Приложение для чтения Библии. Разница в пробеле не обеспечивает различимость бренда."
+    },
+    "Sacred Pause": {
+      "status": "Есть: Sacred Pause",
+      "source": "https://apps.apple.com/us/app/sacred-pause/id6759350575",
+      "note": "Несколько приложений используют это имя, в том числе prayer/focus apps."
+    },
+    "Prayer Haven": {
+      "status": "Похожее: Pray Haven",
+      "source": "https://apps.apple.com/us/app/pray-haven-christian-journal/id6757599083",
+      "note": "Точного Prayer Haven не найдено; Pray Haven — сходное имя и функция блокировки приложений ради молитвы."
+    },
+    "StillTime": {
+      "status": "Есть: stilltime",
+      "source": "https://apps.apple.com/ca/app/stilltime-singing-bowl-timer/id6443432012",
+      "note": "Совпадающее базовое имя; таймер для медитации/фокуса."
+    },
+    "Lumeli": {
+      "status": "Есть: Lumeli",
+      "source": "https://apps.apple.com/us/app/lumeli/id6772631941",
+      "note": "Точное имя уже используется приложением для продавцов Mercado Libre."
+    }
+  },
+  "registrar_confirmation": {
+    "name": "Namecheap",
+    "source": "https://www.namecheap.com/domains/registration/results/?domain=salahside.com",
+    "domains": [
+      "salahside.com",
+      "salahside.app"
+    ],
+    "observed_signal": "Both exact domains displayed prices and Add to cart controls. No purchase/cart action was performed.",
+    "displayed_first_year_usd": {
+      "salahside.com": "11.28",
+      "salahside.app": "10.98"
+    }
+  }
+}

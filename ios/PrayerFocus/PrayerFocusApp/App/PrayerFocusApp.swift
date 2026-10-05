@@ -9,6 +9,7 @@ struct PrayerFocusApp: App {
     @State private var configuration: FocusConfiguration
     @State private var membership = MembershipStore()
     @State private var affirmationDestination = AffirmationDestination()
+    private let notifications = PrayerNotificationService()
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
@@ -27,7 +28,9 @@ struct PrayerFocusApp: App {
             defaults = .standard
         #endif
         _configuration = State(initialValue: FocusConfiguration(defaults: defaults))
-        _session = State(initialValue: PrayerFocusSession(defaults: defaults))
+        let session = PrayerFocusSession(defaults: defaults)
+        session.onRelease = { FocusRuntime().release(eventID: $0) }
+        _session = State(initialValue: session)
         _screenTime = State(initialValue: ScreenTimeService(defaults: defaults))
     }
 
@@ -69,12 +72,31 @@ struct PrayerFocusApp: App {
                     }
                 #endif
                 await membership.prepare()
+                await refreshPrayerSchedule()
                 await membership.observeTransactions()
+            }
+            .onReceive(Timer.publish(every: 30, on: .main, in: .common).autoconnect()) { _ in
+                if configuration.canCompleteSetup { session.refresh(configuration: configuration) }
+                if !isUnitTestHost && !ProcessInfo.processInfo.arguments.contains("-ui-testing") {
+                    FocusRuntime().applyCurrent()
+                }
+            }
+            .task(
+                id:
+                    "\(configuration.city)|\(configuration.calculationMethod)|\(configuration.highLatitudeRule)|\(configuration.hanafiAsr)|\(configuration.adjustments.sorted(by: { $0.key < $1.key }))|\(configuration.notificationsEnabled)|\(screenTime.authorizationLabel)|\(membership.hasAccess)|\(configuration.hasCompletedSetup)|\(session.focusEnabled.sorted(by: { $0.key.rawValue < $1.key.rawValue }))"
+            ) {
+                await refreshPrayerSchedule()
+            }
+            .onChange(of: screenTime.selection) { _, _ in
+                Task { await refreshPrayerSchedule() }
             }
             .onChange(of: scenePhase) { _, phase in
                 if phase == .active && !isUnitTestHost {
                     membership.beginAccessRefresh()
-                    Task { await membership.refreshAccess() }
+                    Task {
+                        await membership.refreshAccess()
+                        await refreshPrayerSchedule()
+                    }
                     WidgetCenter.shared.reloadTimelines(ofKind: WidgetMembershipStore.widgetKind)
                 }
             }
@@ -82,10 +104,27 @@ struct PrayerFocusApp: App {
                 _ in
                 guard !isUnitTestHost else { return }
                 membership.beginAccessRefresh()
-                Task { await membership.refreshAccess() }
+                Task {
+                    await membership.refreshAccess()
+                    await refreshPrayerSchedule()
+                }
                 WidgetCenter.shared.reloadTimelines(ofKind: WidgetMembershipStore.widgetKind)
             }
         }
+    }
+
+    private func refreshPrayerSchedule() async {
+        session.refresh(configuration: configuration)
+        guard !isUnitTestHost else { return }
+        #if DEBUG
+            guard !ProcessInfo.processInfo.arguments.contains("-ui-testing") else { return }
+        #endif
+        if configuration.hasCompletedSetup && configuration.canCompleteSetup {
+            screenTime.updateFocus(configuration: configuration, session: session)
+        } else {
+            FocusRuntime().erase()
+        }
+        await notifications.update(configuration: configuration, membership: membership.verifiedMembership)
     }
 
     private var isUnitTestHost: Bool {

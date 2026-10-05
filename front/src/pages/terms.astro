@@ -1,0 +1,95 @@
+---
+import DocumentLayout from '../layouts/site/DocumentLayout.astro';
+import Contact from '../components/site/Contact.astro';
+import { site } from '../lib/site/config';
+export const prerender = true;
+---
+
+<DocumentLayout
+  title="Terms"
+  description="How SalahSide membership, app focus, and your choices work."
+  legal
+>
+  <h2>App license</h2>
+  <p>
+    SalahSide is licensed through the App Store under <a
+      href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+      >Apple's Standard End User License Agreement</a
+    >. This page explains the product and membership. It does not replace that agreement or limit
+    rights you have under applicable consumer law.
+  </p>
+  <h2>Membership and payment</h2>
+  <p>
+    Set up your prayer and optional focus preferences before choosing membership. SalahSide requires
+    an active paid subscription or eligible introductory trial for membership features. Monthly and
+    yearly plans are purchased through your Apple account; the localized price, billing period, and
+    renewal terms appear in the app and Apple's purchase confirmation before you commit.
+  </p>
+  <p>
+    A three-day free trial is available only when Apple confirms that your account and selected
+    product are eligible for that offer. If you accept it, the subscription converts to the selected
+    paid plan unless you cancel in time. A trial is not guaranteed for every account or storefront.
+  </p>
+  <h2>Renewal, cancellation, and restoration</h2>
+  <p>
+    Subscriptions renew automatically unless canceled through Apple. To manage or cancel, open
+    iPhone Settings, tap your name, then Subscriptions, and select SalahSide. Follow the renewal or
+    trial deadline shown by Apple; Apple recommends canceling a free or discounted trial at least 24
+    hours before it ends.
+  </p>
+  <p>
+    Deleting the app or using Erase local data does not cancel your subscription. To restore an
+    existing purchase, use Restore purchases in SalahSide with the same Apple account. Access
+    depends on a verified active entitlement. Pending or unverified purchases do not unlock
+    membership.
+  </p>
+  <p>
+    Apple handles billing and refund decisions. See <a href="https://support.apple.com/en-us/118428"
+      >Apple's cancellation guide</a
+    > or <a href="https://support.apple.com/en-us/118223">Apple's refund guide</a>.
+  </p>
+  <h2>Prayer times and check-ins</h2>
+  <p>
+    The first release supports London, New York, Toronto, Dubai, and Kuala Lumpur. Times depend on
+    the city, its time zone, calculation method, Asr convention, high-latitude setting, and manual
+    adjustments you choose. Compare these settings with your local mosque's timetable, including
+    seasonal and Ramadan conventions. SalahSide is a personal aid and does not replace qualified
+    religious guidance.
+  </p>
+  <p>
+    Prayer check-ins are voluntary self-reports. SalahSide does not automatically mark a past prayer
+    as completed or verify that you prayed.
+  </p>
+  <h2>Optional app focus and reminders</h2>
+  <p>
+    App focus needs Apple Screen Time permission and your selection of apps, categories, or
+    websites. You can unlock the current prayer, change focus settings, or pause for one hour. These
+    features depend on iOS permission and scheduling behavior. Keep access to essential apps in mind
+    when selecting what to quiet.
+  </p>
+  <p>
+    Reminders need notification permission and may be affected by iOS Focus, notification settings,
+    or device state. Do not rely on app notifications or focus scheduling as your only timekeeping
+    method.
+  </p>
+  <h2>Privacy and local data</h2>
+  <p>
+    Your settings and check-ins are stored on your device. Device backups may include them. Erase
+    local data clears the app's settings, selections, and check-ins and releases its focus
+    restrictions, but does not remove an Apple subscription or existing backups. Read the <a
+      href="/privacy/">Privacy Policy</a
+    > for details.
+  </p>
+  <h2>Support and updates</h2>
+  <p>
+    For product questions, visit <a href="/support/">Support</a>{
+      site.supportEmail && (
+        <>
+          {' '}
+          or contact <Contact />
+        </>
+      )
+    }. Features and supported systems may change with updates. Changes to this page will show a new
+    effective date.
+  </p>
+</DocumentLayout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  question: string;
+}
+const { question } = Astro.props;
+---
+
+<details>
+  <summary
+    >{question}<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"
+      ><path
+        d="m4 7 6 6 6-6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path></svg
+    ></summary
+  >
+  <div class="answer"><slot /></div>
+</details>

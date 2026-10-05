@@ -10,6 +10,7 @@ struct FocusSettingsView: View {
     var allowsPrayerActions = true
 
     @State private var isPickerPresented = false
+    @State private var isConfirmingErase = false
 
     var body: some View {
         @Bindable var screenTime = screenTime
@@ -45,11 +46,38 @@ struct FocusSettingsView: View {
                         }
                     }
                     .accessibilityIdentifier("setup.calculationMethod")
+
+                    Picker("High-latitude rule", selection: $configuration.highLatitudeRule) {
+                        ForEach(FocusConfiguration.highLatitudeRules, id: \.self) { Text($0).tag($0) }
+                    }
+                    Text(
+                        "Recommended uses one seventh of the night for London, and the middle of the night for the other supported cities."
+                    )
+                    .font(.footnote).foregroundStyle(PrayerTheme.secondaryInk)
+
+                    Toggle("Hanafi Asr time", isOn: $configuration.hanafiAsr)
+                    Text(
+                        configuration.hanafiAsr
+                            ? "Asr uses the Hanafi shadow convention." : "Asr uses the standard shadow convention."
+                    )
+                    .font(.footnote)
+                    .foregroundStyle(PrayerTheme.secondaryInk)
+
+                    DisclosureGroup("Adjust prayer times") {
+                        ForEach(Prayer.allCases) { prayer in
+                            Stepper(
+                                "\(prayer.displayName): \(configuration.adjustments[prayer.rawValue, default: 0]) min",
+                                value: Binding(
+                                    get: { configuration.adjustments[prayer.rawValue, default: 0] },
+                                    set: { configuration.adjustments[prayer.rawValue] = $0 }),
+                                in: -120...120)
+                        }
+                    }
                 } header: {
                     Text("Prayer schedule")
                 } footer: {
                     Text(
-                        "Choose the settings used by your local mosque. Prayer-time calculation is still being prepared; these choices are saved on this device."
+                        "Times are calculated on this device in your selected city’s time zone. Match the method, Asr convention and adjustments to your local mosque. For Umm al-Qura, adjust Isha by +30 minutes during Ramadan if your local timetable requires it."
                     )
                 }
 
@@ -89,7 +117,7 @@ struct FocusSettingsView: View {
                     Text("Screen Time")
                 } footer: {
                     Text(
-                        "Scheduled shielding still requires the Family Controls entitlement and validation on a physical iPhone."
+                        "Choose the apps you want to pause during enabled prayers. Finish, already prayed, unlock, or pause focus to restore access."
                     )
                 }
 
@@ -104,10 +132,27 @@ struct FocusSettingsView: View {
                     }
                 }
 
-                Section("Notifications") {
+                if !isSetup && allowsPrayerActions {
+                    Section("Pause focus") {
+                        if let until = screenTime.pauseUntil, until > Date() {
+                            LabeledContent("Paused until", value: until.formatted(date: .omitted, time: .shortened))
+                            Button("Resume focus") { screenTime.resumeFocus() }
+                        } else {
+                            Button("Pause for one hour") { screenTime.pauseForOneHour() }
+                        }
+                    }
+                }
+
+                Section {
                     Toggle("Prayer start notification", isOn: $configuration.notificationsEnabled)
                         .tint(PrayerTheme.sage)
                         .accessibilityIdentifier("setup.notifications")
+                } header: {
+                    Text("Notifications")
+                } footer: {
+                    Text(
+                        "Requires notification permission in iOS Settings. Reminders are scheduled for the next seven days, within your membership period, and refreshed when you open SalahSide."
+                    )
                 }
 
                 if allowsPrayerActions && !isSetup {
@@ -117,11 +162,31 @@ struct FocusSettingsView: View {
                             dismiss()
                         }
                     } footer: {
-                        Text("Check-ins are self-reported and stored only on this device in this development slice.")
+                        Text("Check-ins are self-reported and saved locally. They may be included in device backups.")
                     }
                 }
+                Section("Privacy") {
+                    NavigationLink("Privacy policy") { MembershipPrivacyView() }
+                    Button("Erase local data", role: .destructive) { isConfirmingErase = true }
+                }
             }
-            .navigationTitle(isSetup ? "Set up Prayer Focus" : "Settings")
+            .confirmationDialog("Erase local data?", isPresented: $isConfirmingErase, titleVisibility: .visible) {
+                Button("Erase settings and check-ins", role: .destructive) {
+                    FocusRuntime().erase()
+                    session.eraseLocalHistory()
+                    session.focusEnabled = Dictionary(uniqueKeysWithValues: Prayer.allCases.map { ($0, true) })
+                    screenTime.selection = FamilyActivitySelection()
+                    screenTime.resumeFocus()
+                    configuration.eraseLocalSetup()
+                    dismiss()
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text(
+                    "This deletes local prayer settings, app selections and check-ins, and unlocks selected apps. Your Apple subscription remains active. Existing device backups are not erased."
+                )
+            }
+            .navigationTitle(isSetup ? "Set up SalahSide" : "Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if !isSetup {

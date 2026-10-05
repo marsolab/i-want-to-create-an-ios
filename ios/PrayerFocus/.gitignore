@@ -5,3 +5,8 @@ build/
 *.xcresult/
 *.xctestproducts/
 .DS_Store
+.build/
+.swiftpm/
+Configuration/Release.local.xcconfig
+Configuration/ExportOptions.local.plist
+__pycache__/

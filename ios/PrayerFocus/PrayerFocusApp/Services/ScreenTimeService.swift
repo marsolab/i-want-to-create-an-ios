@@ -1,3 +1,4 @@
+import Combine
 import FamilyControls
 import Foundation
 import Observation
@@ -13,6 +14,9 @@ final class ScreenTimeService {
         }
     }
     private(set) var lastError: String?
+    private(set) var pauseUntil: Date?
+    private(set) var authorizationStatus: AuthorizationStatus = .notDetermined
+    @ObservationIgnored private var authorizationObservation: AnyCancellable?
     private let defaults: UserDefaults?
 
     init(defaults: UserDefaults? = nil) {
@@ -24,10 +28,10 @@ final class ScreenTimeService {
         } else {
             selection = FamilyActivitySelection()
         }
-    }
-
-    var authorizationStatus: AuthorizationStatus {
-        AuthorizationCenter.shared.authorizationStatus
+        authorizationStatus = AuthorizationCenter.shared.authorizationStatus
+        authorizationObservation = AuthorizationCenter.shared.$authorizationStatus.sink { [weak self] status in
+            Task { @MainActor in self?.authorizationStatus = status }
+        }
     }
 
     var isAuthorized: Bool {
@@ -52,11 +56,43 @@ final class ScreenTimeService {
         }
     }
 
+    func updateFocus(configuration: FocusConfiguration, session: PrayerFocusSession) {
+        refreshPauseStatus()
+        let focus = FocusScheduleConfiguration(
+            city: configuration.city, method: configuration.calculationMethod,
+            hanafiAsr: configuration.hanafiAsr, highLatitudeRule: configuration.highLatitudeRule,
+            adjustments: configuration.adjustments,
+            enabledPrayers: Set(session.focusEnabled.filter { $0.value }.keys.map(\.rawValue)))
+        if !FocusRuntime().configure(focus, selection: selection, releasedEventIDs: session.releasedEventIDs) {
+            lastError =
+                "Focus could not be scheduled. Selected apps have been unlocked. Review Screen Time access and try again."
+        } else {
+            lastError = nil
+        }
+    }
+
+    func pauseForOneHour() {
+        pauseUntil = Date().addingTimeInterval(3600)
+        FocusRuntime().pause(until: pauseUntil)
+    }
+
+    func resumeFocus() {
+        pauseUntil = nil
+        FocusRuntime().pause(until: nil)
+    }
+
+    private func refreshPauseStatus() {
+        FocusStateStore().transaction { state in
+            pauseUntil = state?.pauseUntil.flatMap { $0 > Date() ? $0 : nil }
+        }
+    }
+
     func requestAuthorization() async {
         lastError = nil
 
         do {
             try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+            authorizationStatus = AuthorizationCenter.shared.authorizationStatus
         } catch {
             lastError = error.localizedDescription
         }

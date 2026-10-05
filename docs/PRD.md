@@ -1,4 +1,4 @@
-# Product Requirements Document — Prayer Focus beta
+# Product Requirements Document — SalahSide beta
 
 Version 0.5 · October 4, 2026 · Setup before a three-day membership trial, with daily affirmation widgets
 
@@ -51,7 +51,7 @@ This is a voluntary focus tool, not a device-wide lock. The user can deselect ap
 ### Daily use
 
 - **Today screen:** next prayer and time, focus status, primary action, and a compact list of the five prayer times with independent focus switches accessible in settings.
-- When an enabled prayer starts, selected apps show a calm, branded shield that names the prayer and offers a route to Prayer Focus. The Prayer Focus app itself remains accessible.
+- When an enabled prayer starts, selected apps show a calm, branded shield that names the prayer and offers a route to SalahSide. The SalahSide app itself remains accessible.
 - The app shows “Start prayer.” After the user taps it, it shows a quiet “Your phone is ready to be put away” state and a “Finish prayer” action on return. The screen may be locked during prayer; there is no required timer or minimum duration.
 - “Already prayed” ends the restriction and stores a self-reported completion without requiring a start/finish sequence.
 - “Unlock for this prayer” ends the restriction without recording completion and asks for one brief confirmation to prevent accidental taps. Do not require a reason.

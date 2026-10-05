@@ -125,6 +125,27 @@ final class MembershipPaywallUITests: XCTestCase {
         app.buttons["membership.subscribe"].tap()
         XCTAssertTrue(app.buttons["Start prayer"].waitForExistence(timeout: 15))
         XCTAssertFalse(app.buttons["membership.subscribe"].exists)
+        capture(app, name: "SalahSide Today with calculated schedule")
+    }
+
+    @MainActor
+    func testErasingLocalDataReturnsPaidMemberToSetup() {
+        let app = launchSetup()
+        completeSetup(app)
+        XCTAssertTrue(app.buttons["Start 3-day free trial"].waitForExistence(timeout: 10))
+        app.buttons["membership.subscribe"].tap()
+        XCTAssertTrue(app.buttons["today.settings"].waitForExistence(timeout: 15))
+        app.buttons["today.settings"].tap()
+        let erase = app.buttons["Erase local data"]
+        for _ in 0..<6 {
+            if erase.exists && erase.isHittable && erase.frame.midY < app.frame.maxY - 70 { break }
+            app.swipeUp()
+        }
+        erase.tap()
+        app.buttons["Erase settings and check-ins"].tap()
+        XCTAssertTrue(app.buttons["setup.continue"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.buttons["setup.continue"].isEnabled)
+        XCTAssertFalse(app.buttons["Start prayer"].exists)
     }
 
     @MainActor

@@ -1,0 +1,65 @@
+---
+import '../../styles/salahside.css';
+import { site } from '../../lib/site/config';
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = site.release ? new URL(Astro.url.pathname, site.siteURL).href : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f5ef" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {!site.release && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/png" href="/salahside-icon.png" />
+    <link rel="apple-touch-icon" href="/salahside-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SalahSide" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header shell">
+      <a class="wordmark" href="/" aria-label="SalahSide home">SalahSide</a>
+      <nav aria-label="Main navigation">
+        <a href="/#how-it-works">How it works</a>
+        <a
+          href="/support/"
+          aria-current={Astro.url.pathname.startsWith('/support') ? 'page' : undefined}>Support</a
+        >
+        <a
+          href="/privacy/"
+          aria-current={Astro.url.pathname.startsWith('/privacy') ? 'page' : undefined}>Privacy</a
+        >
+      </nav>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer shell">
+      <a class="wordmark" href="/" aria-label="SalahSide home">SalahSide</a>
+      <nav aria-label="Footer navigation">
+        <a
+          href="/support/"
+          aria-current={Astro.url.pathname.startsWith('/support') ? 'page' : undefined}>Support</a
+        >
+        <a
+          href="/privacy/"
+          aria-current={Astro.url.pathname.startsWith('/privacy') ? 'page' : undefined}>Privacy</a
+        >
+        <a
+          href="/terms/"
+          aria-current={Astro.url.pathname.startsWith('/terms') ? 'page' : undefined}>Terms</a
+        >
+      </nav>
+    </footer>
+  </body>
+</html>

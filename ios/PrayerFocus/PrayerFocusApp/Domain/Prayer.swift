@@ -20,7 +20,7 @@ enum Prayer: String, CaseIterable, Codable, Identifiable, Sendable {
     }
 }
 
-enum PrayerSessionPhase: Equatable, Sendable {
+enum PrayerSessionPhase: String, Codable, Equatable, Sendable {
     case ready
     case inProgress
     case checkedIn

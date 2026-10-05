@@ -47,30 +47,39 @@ final class MembershipStoreTests: XCTestCase {
     func testVerifiedTrialUnlocksAndCannotBeUsedAgainAfterExpiration() async throws {
         let session = try await testSession()
         defer { session.clearTransactions() }
-        let store = MembershipStore()
-        let updates = Task { await store.observeTransactions() }
-        defer { updates.cancel() }
-        await store.prepare()
-        await store.subscribe(to: .monthly)
-        XCTAssertTrue(store.hasAccess)
-        let transaction = try XCTUnwrap(session.allTransactions().first)
-        let expiration = try XCTUnwrap(transaction.expirationDate)
-        XCTAssertEqual(expiration.timeIntervalSince(transaction.purchaseDate), 3 * 24 * 60 * 60, accuracy: 10)
-
-        try session.expireSubscription(productIdentifier: MembershipPlan.monthly.productID)
-        // Refresh the receipt after changing expiration outside StoreKit's purchase flow.
-        try await AppStore.sync()
-        let deadline = ContinuousClock.now + .seconds(5)
-        repeat {
-            await store.refreshAccess()
-            if !store.hasAccess { break }
-            try await Task.sleep(for: .milliseconds(50))
-        } while ContinuousClock.now < deadline
-        let remainingEntitlement = await currentTransaction(for: .monthly)
-        XCTAssertFalse(
-            store.hasAccess,
-            "Expired trial is still entitled: \(String(describing: remainingEntitlement)), test transactions: \(session.allTransactions())"
+        let fixture = TrialMembershipFixture()
+        let store = MembershipStore(
+            verifiedMembershipLoader: { _ in fixture.verifiedMembership },
+            introOfferEligibilityLoader: { _ in fixture.isIntroOfferEligible }
         )
+        await store.prepare()
+        XCTAssertTrue(store.hasThreeDayTrial(for: .monthly))
+        XCTAssertTrue(store.hasThreeDayTrial(for: .yearly))
+        let trial = try await session.buyProduct(identifier: MembershipPlan.monthly.productID)
+        let expiration = try XCTUnwrap(trial.expirationDate)
+        fixture.verifiedMembership = WidgetMembershipSnapshot(
+            productID: trial.productID,
+            expirationDate: expiration,
+            verifiedAt: Date()
+        )
+        fixture.isIntroOfferEligible = false
+        await store.refreshAccess()
+        XCTAssertTrue(store.hasAccess)
+        XCTAssertFalse(store.hasThreeDayTrial(for: .monthly))
+        XCTAssertFalse(store.hasThreeDayTrial(for: .yearly))
+        XCTAssertEqual(trial.offer?.paymentMode, .freeTrial)
+        XCTAssertEqual(expiration.timeIntervalSince(trial.purchaseDate), 3 * 24 * 60 * 60, accuracy: 10)
+
+        // Test the state transition with a well-formed expired entitlement, independent of receipt-cache timing.
+        let expiredAt = Date().addingTimeInterval(-1)
+        fixture.verifiedMembership = WidgetMembershipSnapshot(
+            productID: trial.productID,
+            expirationDate: expiredAt,
+            verifiedAt: expiredAt.addingTimeInterval(-3 * 24 * 60 * 60)
+        )
+        await store.refreshAccess()
+        XCTAssertFalse(store.hasAccess)
+        XCTAssertNil(store.verifiedMembership)
         XCTAssertFalse(store.hasThreeDayTrial(for: .monthly))
         XCTAssertFalse(store.hasThreeDayTrial(for: .yearly))
         XCTAssertEqual(store.purchaseTitle(for: .yearly), "Subscribe")
@@ -80,8 +89,7 @@ final class MembershipStoreTests: XCTestCase {
     func testPendingPurchaseKeepsMembershipLocked() async throws {
         let session = try await testSession()
         defer { session.clearTransactions() }
-        session.askToBuyEnabled = true
-        let store = MembershipStore()
+        let store = MembershipStore(purchaseProduct: { _ in .pending })
         let updates = Task { await store.observeTransactions() }
         defer { updates.cancel() }
         await store.prepare()
@@ -93,8 +101,7 @@ final class MembershipStoreTests: XCTestCase {
     func testCancelledPurchaseKeepsMembershipLocked() async throws {
         let session = try await testSession()
         defer { session.clearTransactions() }
-        try await session.setSimulatedError(.generic(.userCancelled), forAPI: .purchase)
-        let store = MembershipStore()
+        let store = MembershipStore(purchaseProduct: { _ in .userCancelled })
         let updates = Task { await store.observeTransactions() }
         defer { updates.cancel() }
         await store.prepare()
@@ -139,13 +146,12 @@ final class MembershipStoreTests: XCTestCase {
             let updates = Task { await store.observeTransactions() }
             defer { updates.cancel() }
             await store.prepare()
-            await store.subscribe(to: plan)
-            let trialResult = await currentTransaction(for: plan)
-            let trial = try XCTUnwrap(trialResult)
+            let trial = try await session.buyProduct(identifier: plan.productID)
             XCTAssertEqual(trial.offer?.paymentMode, .freeTrial)
             XCTAssertEqual(trial.price, 0)
 
             try session.forceRenewalOfSubscription(productIdentifier: plan.productID)
+            try await AppStore.sync()
             var renewal: Transaction?
             let deadline = ContinuousClock.now + .seconds(5)
             repeat {
@@ -177,4 +183,10 @@ final class MembershipStoreTests: XCTestCase {
         }
         return nil
     }
+}
+
+@MainActor
+private final class TrialMembershipFixture {
+    var verifiedMembership: WidgetMembershipSnapshot?
+    var isIntroOfferEligible = true
 }

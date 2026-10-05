@@ -11,10 +11,10 @@ struct MembershipGateView: View {
 
     var body: some View {
         Group {
-            if membership.hasAccess {
-                TodayView(session: session, showSettings: { memberSheet = .settings })
-            } else if !configuration.hasCompletedSetup {
+            if !configuration.hasCompletedSetup {
                 FocusSettingsView(session: session, isSetup: true, allowsPrayerActions: false)
+            } else if membership.hasAccess {
+                TodayView(session: session, showSettings: { memberSheet = .settings })
             } else {
                 introduction
                     .blur(radius: isShowingOffer ? 20 : 0, opaque: true)

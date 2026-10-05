@@ -123,13 +123,13 @@ struct DailyAffirmationView: View {
                 title: "Home Screen",
                 icon: "square.grid.2x2",
                 detail:
-                    "Touch and hold an empty area on your Home Screen. Tap Edit, then Add Widget. Find Prayer Focus, choose a size, and tap Add Widget."
+                    "Touch and hold an empty area on your Home Screen. Tap Edit, then Add Widget. Find SalahSide, choose a size, and tap Add Widget."
             )
             instruction(
                 title: "Lock Screen",
                 icon: "lock.rectangle",
                 detail:
-                    "Touch and hold your Lock Screen, then tap Customize and select Lock Screen. Tap the widget area below the clock and choose Prayer Focus."
+                    "Touch and hold your Lock Screen, then tap Customize and select Lock Screen. Tap the widget area below the clock and choose SalahSide."
             )
 
             Text("A new reflection each day. Your reflections are available offline with an active membership.")

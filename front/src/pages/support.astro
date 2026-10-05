@@ -1,0 +1,110 @@
+---
+import DocumentLayout from '../layouts/site/DocumentLayout.astro';
+import Disclosure from '../components/site/Disclosure.astro';
+import Contact from '../components/site/Contact.astro';
+export const prerender = true;
+---
+
+<DocumentLayout
+  title="SalahSide Support"
+  description="A little help getting your prayer times, focus, and membership settled."
+>
+  <div class="support-contact">
+    <p><Contact /></p>
+    <p>
+      Include your app version, iOS version, selected city, and a short description of the issue.
+      Please leave out sensitive information.
+    </p>
+  </div>
+  <h2>Prayer times</h2>
+  <Disclosure question="Why are my times different from my mosque's?"
+    ><p>
+      In SalahSide Settings, confirm your city, calculation method, Asr convention, high-latitude
+      rule, and minute adjustments. The first release supports London, New York, Toronto, Dubai, and
+      Kuala Lumpur and uses the selected city's time zone.
+    </p><p>
+      Compare with a timetable using the same conventions. High-latitude seasons, daylight saving,
+      and local Ramadan conventions can change expected times. For Umm al-Qura Ramadan adjustments,
+      check your local timetable and apply the appropriate Isha offset.
+    </p></Disclosure
+  >
+  <Disclosure question="What does a prayer check-in mean?"
+    ><p>
+      Start prayer begins your own prayer flow. Mark completion yourself, or use Already prayed.
+      Unlock for this prayer releases focus without recording a completed prayer. A past prayer
+      without your action remains unmarked.
+    </p></Disclosure
+  >
+  <h2>App focus and reminders</h2>
+  <Disclosure question="How do I choose apps or turn focus off?"
+    ><p>
+      Open SalahSide Settings and allow optional Screen Time access, then choose targets in Apple's
+      picker. Turn individual prayer focus switches on or off. Prayer times work with active
+      membership even if Screen Time stays off.
+    </p></Disclosure
+  >
+  <Disclosure question="How do I regain access to my apps?"
+    ><p>
+      Open SalahSide and choose Unlock for this prayer, or open Settings and Pause for one hour. You
+      can also change the app selection or disable focus in Settings. If a shield cannot open
+      SalahSide directly on your iOS version, open SalahSide from your Home Screen.
+    </p><p>
+      If restrictions persist, reopen SalahSide to refresh permissions and membership, then disable
+      focus. Erase local data in SalahSide Settings clears its saved selections and app-owned
+      restrictions. You can also revoke SalahSide's Screen Time permission in iOS Settings.
+    </p></Disclosure
+  >
+  <Disclosure question="Why didn't I receive a reminder?"
+    ><p>
+      Enable reminders in SalahSide and allow notifications in iOS Settings → Notifications →
+      SalahSide. Check iOS Focus and notification settings. Reopen the app to refresh the upcoming
+      schedule. Permission, device settings, or device state can affect delivery.
+    </p></Disclosure
+  >
+  <h2>Membership</h2>
+  <Disclosure question="How do I restore a subscription?"
+    ><p>
+      Use Restore purchases in SalahSide with the Apple account that purchased the subscription.
+      Membership requires a verified active subscription or trial. If Apple shows an active
+      subscription but access remains unavailable, reopen the app and contact support with the error
+      text; do not send payment-card information.
+    </p></Disclosure
+  >
+  <Disclosure question="Why don't I see a three-day trial?"
+    ><p>
+      Apple decides eligibility for the selected subscription offer. An eligible exact three-day
+      free trial is shown only after Apple confirms it. Otherwise you can purchase at the localized
+      price shown in the app.
+    </p></Disclosure
+  >
+  <Disclosure question="How do I cancel or request a refund?"
+    ><p>
+      Open iPhone Settings → your name → Subscriptions → SalahSide to manage renewal. Deleting the
+      app does not cancel membership. See <a href="https://support.apple.com/en-us/118428"
+        >Apple's cancellation instructions</a
+      >. For a refund, follow <a href="https://support.apple.com/en-us/118223"
+        >Apple's refund instructions</a
+      >; Apple decides eligibility.
+    </p></Disclosure
+  >
+  <h2>Widgets and local data</h2>
+  <Disclosure question="Why does my affirmation widget ask me to open SalahSide?"
+    ><p>
+      The widget needs a saved, verified active membership. Open SalahSide to refresh access, then
+      return to the widget. Check that the widget and app are installed together and use the same
+      device.
+    </p></Disclosure
+  >
+  <Disclosure question="How do I erase my data?"
+    ><p>
+      Open SalahSide Settings → Erase local data and confirm. This removes prayer settings,
+      selections, and local check-in history and clears focus restrictions. It returns you to setup.
+      Apple subscriptions and existing device backups are managed separately through Apple.
+    </p></Disclosure
+  >
+  <p>
+    For the full details, read our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/"
+      >Terms</a
+    >.
+  </p>
+</DocumentLayout>

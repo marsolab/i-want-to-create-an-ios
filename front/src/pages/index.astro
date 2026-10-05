@@ -1,11 +1,143 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/site/SiteLayout.astro';
+import Arrow from '../components/site/Arrow.astro';
+import Disclosure from '../components/site/Disclosure.astro';
+import today from '../assets/salahside/today.png';
+import architecture from '../assets/salahside/architecture.png';
+import { site } from '../lib/site/config';
+export const prerender = true;
 ---
 
-<Layout>
-  <Welcome />
-</Layout>
+<SiteLayout
+  title="SalahSide — Prayer times & app focus"
+  description="Make room for salah with prayer times, gentle reminders, and optional app focus on your iPhone."
+>
+  <section class="hero shell" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title">A little less scrolling.<br />A little more presence.</h1>
+      <p>
+        Make room for salah with prayer times,<br class="desktop-break" /> gentle reminders, and app focus
+        on your iPhone.
+      </p>
+      <a class="button" href={site.appStoreURL || '#how-it-works'}
+        >{site.appStoreURL ? 'Get SalahSide' : 'Explore SalahSide'}<Arrow /></a
+      >
+      <p class="availability">
+        {site.appStoreURL ? 'Available on the App Store' : 'Coming soon to the App Store'}
+      </p>
+    </div>
+    <div class="phone-stage">
+      <div class="phone-frame">
+        <Image
+          src={today}
+          alt="SalahSide Today screen showing Dhuhr at 12:08, with Start prayer, Already prayed, and Unlock for this prayer actions."
+          widths={[320, 640, 960]}
+          sizes="(max-width: 720px) 260px, 320px"
+          loading="eager"
+          fetchpriority="high"
+          format="webp"
+          quality={85}
+        />
+      </div>
+    </div>
+  </section>
+  <section class="feature-strip shell" aria-label="SalahSide at a glance">
+    <div><h2>Built around your prayers</h2><p>Set your city and prayer conventions.</p></div>
+    <div><h2>You choose the pause</h2><p>Choose apps to quiet, or keep Screen Time off.</p></div>
+  </section>
+  <section class="journey shell" id="how-it-works" aria-labelledby="journey-title">
+    <svg width="0" height="0" aria-hidden="true" focusable="false" class="frame-definition">
+      <defs>
+        <clipPath id="architectural-frame" clipPathUnits="objectBoundingBox">
+          <path d="M0,1V.22C.08,.13,.28,.045,.5,0C.72,.045,.92,.13,1,.22V1Z"></path>
+        </clipPath>
+      </defs>
+    </svg>
+    <Image
+      class="architecture"
+      src={architecture}
+      alt="Sunlit stone arch overlooking a mosque courtyard and a prayer rug."
+      widths={[560, 900, 1122]}
+      sizes="(max-width: 850px) 90vw, 45vw"
+      loading="lazy"
+      format="webp"
+      quality={85}
+    />
+    <div>
+      <h2 id="journey-title">A rhythm that fits<br />your day.</h2>
+      <ol class="steps">
+        <li>
+          <span aria-hidden="true">01</span><div>
+            <h3>Set your prayer times</h3><p>
+              Choose London, New York, Toronto, Dubai, or Kuala Lumpur. Adjust calculation methods
+              and prayer conventions to match your local timetable.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span aria-hidden="true">02</span><div>
+            <h3>Choose what can wait</h3><p>
+              Select distracting apps with Apple Screen Time. Focus is optional, and you can pause
+              or unlock it whenever you need.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span aria-hidden="true">03</span><div>
+            <h3>Return with intention</h3><p>
+              Start a prayer, mark it yourself, and keep a simple private record. Add a daily
+              affirmation to your Home Screen.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+  <section class="principles shell" aria-label="Privacy and membership">
+    <div>
+      <h2>Your practice.<br />Your privacy.</h2><p>
+        No account. No advertising. Prayer settings and check-ins stay on your device, with Apple
+        device backups managed by you.
+      </p><a class="text-link" href="/privacy/">Read our privacy policy</a>
+    </div>
+    <div>
+      <h2>Simple membership</h2><p>
+        Set things up before choosing monthly or yearly membership. An eligible three-day free trial
+        is offered only when Apple confirms it for your account. Prices and renewal terms appear in
+        the app before purchase.
+      </p>
+    </div>
+  </section>
+  <section class="faq shell" aria-labelledby="faq-title">
+    <h2 id="faq-title">A few things to know</h2>
+    <Disclosure question="Which cities are supported?"
+      ><p>
+        The first release supports London, New York, Toronto, Dubai, and Kuala Lumpur. Your chosen
+        city's time zone is used. Compare your settings with your local mosque's timetable,
+        especially around daylight saving and high-latitude seasons.
+      </p></Disclosure
+    >
+    <Disclosure question="Do I need Screen Time?"
+      ><p>
+        No. With active membership, prayer times, reminders, and check-ins work without it. App
+        focus needs your optional Screen Time permission. You control the selection, can unlock a
+        prayer, and can pause focus for one hour.
+      </p></Disclosure
+    >
+    <Disclosure question="How do subscriptions work?"
+      ><p>
+        Membership is paid monthly or yearly through Apple. A three-day trial appears only for an
+        eligible Apple account and offer. The selected subscription renews at the price shown before
+        purchase unless you cancel through Apple. See <a href="/terms/">membership terms</a> for cancellation
+        and restoration.
+      </p></Disclosure
+    >
+    <Disclosure question="How do I get help?"
+      ><p>
+        Visit <a href="/support/">SalahSide Support</a> for help with prayer times, app focus, subscriptions,
+        notifications, widgets, and local data.
+      </p></Disclosure
+    >
+  </section>
+</SiteLayout>
