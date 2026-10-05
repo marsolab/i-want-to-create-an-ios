@@ -137,13 +137,12 @@ final class MembershipStoreTests: XCTestCase {
             let updates = Task { await store.observeTransactions() }
             defer { updates.cancel() }
             await store.prepare()
-            await store.subscribe(to: plan)
-            let trialResult = await currentTransaction(for: plan)
-            let trial = try XCTUnwrap(trialResult)
+            let trial = try await session.buyProduct(identifier: plan.productID)
             XCTAssertEqual(trial.offer?.paymentMode, .freeTrial)
             XCTAssertEqual(trial.price, 0)
 
             try session.forceRenewalOfSubscription(productIdentifier: plan.productID)
+            try await AppStore.sync()
             var renewal: Transaction?
             let deadline = ContinuousClock.now + .seconds(5)
             repeat {
