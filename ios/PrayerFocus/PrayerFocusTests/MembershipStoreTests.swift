@@ -47,21 +47,28 @@ final class MembershipStoreTests: XCTestCase {
     func testVerifiedTrialUnlocksAndCannotBeUsedAgainAfterExpiration() async throws {
         let session = try await testSession()
         defer { session.clearTransactions() }
-        let store = MembershipStore()
+        var verifiedMembership: WidgetMembershipSnapshot?
+        let store = MembershipStore(verifiedMembershipLoader: { _ in verifiedMembership })
         let updates = Task { await store.observeTransactions() }
         defer { updates.cancel() }
         await store.prepare()
         let trial = try await session.buyProduct(identifier: MembershipPlan.monthly.productID)
         try await AppStore.sync()
+        let expiration = try XCTUnwrap(trial.expirationDate)
+        verifiedMembership = WidgetMembershipSnapshot(
+            productID: trial.productID,
+            expirationDate: expiration,
+            verifiedAt: Date()
+        )
         await store.refreshAccess()
         XCTAssertTrue(store.hasAccess)
         XCTAssertEqual(trial.offer?.paymentMode, .freeTrial)
-        let expiration = try XCTUnwrap(trial.expirationDate)
         XCTAssertEqual(expiration.timeIntervalSince(trial.purchaseDate), 3 * 24 * 60 * 60, accuracy: 10)
 
         try session.expireSubscription(productIdentifier: MembershipPlan.monthly.productID)
         // Refresh the receipt after changing expiration outside StoreKit's purchase flow.
         try await AppStore.sync()
+        verifiedMembership = nil
         let deadline = ContinuousClock.now + .seconds(5)
         repeat {
             await store.refreshAccess()
