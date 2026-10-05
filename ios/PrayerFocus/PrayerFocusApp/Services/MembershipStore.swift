@@ -24,18 +24,23 @@ final class MembershipStore {
     @ObservationIgnored private var expirationTask: Task<Void, Never>?
     @ObservationIgnored private let widgetMembershipStore: WidgetMembershipStore
     @ObservationIgnored private let verifiedMembershipLoader: @MainActor (Date) async -> WidgetMembershipSnapshot?
+    @ObservationIgnored private let introOfferEligibilityLoader: @MainActor (Product.SubscriptionInfo) async -> Bool
     @ObservationIgnored private let purchaseProduct: @MainActor (Product) async throws -> Product.PurchaseResult
 
     init(
         widgetMembershipStore: WidgetMembershipStore = WidgetMembershipStore(),
         verifiedMembershipLoader: @escaping @MainActor (Date) async -> WidgetMembershipSnapshot? =
             MembershipStore.loadVerifiedStoreKitMembership,
+        introOfferEligibilityLoader: @escaping @MainActor (Product.SubscriptionInfo) async -> Bool = { subscription in
+            await subscription.isEligibleForIntroOffer
+        },
         purchaseProduct: @escaping @MainActor (Product) async throws -> Product.PurchaseResult = { product in
             try await product.purchase()
         }
     ) {
         self.widgetMembershipStore = widgetMembershipStore
         self.verifiedMembershipLoader = verifiedMembershipLoader
+        self.introOfferEligibilityLoader = introOfferEligibilityLoader
         self.purchaseProduct = purchaseProduct
     }
 
@@ -292,7 +297,7 @@ final class MembershipStore {
         for product in products {
             guard let subscription = product.subscription,
                 subscription.introductoryOffer != nil,
-                await subscription.isEligibleForIntroOffer
+                await introOfferEligibilityLoader(subscription)
             else { continue }
             eligible.insert(product.id)
         }
