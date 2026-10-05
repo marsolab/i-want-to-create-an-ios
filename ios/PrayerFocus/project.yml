@@ -12,6 +12,12 @@ settings:
     CURRENT_PROJECT_VERSION: 1
     MARKETING_VERSION: 0.1.0
 
+fileGroups:
+  - Configuration
+  - PrayerFocus.xctestplan
+  - PrayerFocusWidgets.xctestplan
+  - PrayerFocusStoreKit.xctestplan
+
 targets:
   PrayerFocus:
     type: application
@@ -80,7 +86,10 @@ targets:
     platform: iOS
     sources:
       - PrayerFocusTests
+      - path: Configuration/PrayerFocus.storekit
+        buildPhase: resources
       - path: Configuration/PrayerFocusWidgetsTesting.storekit
+        buildPhase: resources
     dependencies:
       - target: PrayerFocus
     hostApplication: PrayerFocus
@@ -94,7 +103,10 @@ targets:
     platform: iOS
     sources:
       - PrayerFocusUITests
+      - path: Configuration/PrayerFocus.storekit
+        buildPhase: resources
       - path: Configuration/PrayerFocusWidgetsTesting.storekit
+        buildPhase: resources
     dependencies:
       - target: PrayerFocus
     settings:
@@ -107,7 +119,7 @@ targets:
 schemes:
   PrayerFocus:
     run:
-      storeKitConfiguration: Configuration/PrayerFocusWidgetsTesting.storekit
+      storeKitConfiguration: Configuration/PrayerFocus.storekit
     build:
       targets:
         PrayerFocus: all
@@ -119,6 +131,7 @@ schemes:
         - path: PrayerFocusWidgets.xctestplan
           defaultPlan: true
         - path: PrayerFocusStoreKit.xctestplan
+        - path: PrayerFocus.xctestplan
       targets:
         - PrayerFocusTests
         - PrayerFocusUITests

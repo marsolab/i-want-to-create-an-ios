@@ -4,11 +4,32 @@ import WidgetKit
 
 @main
 struct PrayerFocusApp: App {
-    @State private var session = PrayerFocusSession()
-    @State private var screenTime = ScreenTimeService()
+    @State private var session: PrayerFocusSession
+    @State private var screenTime: ScreenTimeService
+    @State private var configuration: FocusConfiguration
     @State private var membership = MembershipStore()
     @State private var affirmationDestination = AffirmationDestination()
     @Environment(\.scenePhase) private var scenePhase
+
+    init() {
+        let defaults: UserDefaults
+        #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("-ui-testing") {
+                let suite = "com.marsolab.PrayerFocus.UITests"
+                defaults = UserDefaults(suiteName: suite)!
+                if ProcessInfo.processInfo.arguments.contains("-reset-setup") {
+                    defaults.removePersistentDomain(forName: suite)
+                }
+            } else {
+                defaults = .standard
+            }
+        #else
+            defaults = .standard
+        #endif
+        _configuration = State(initialValue: FocusConfiguration(defaults: defaults))
+        _session = State(initialValue: PrayerFocusSession(defaults: defaults))
+        _screenTime = State(initialValue: ScreenTimeService(defaults: defaults))
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -30,6 +51,7 @@ struct PrayerFocusApp: App {
             }
             .environment(screenTime)
             .environment(membership)
+            .environment(configuration)
             .environment(affirmationDestination)
             .preferredColorScheme(.light)
             .onOpenURL { url in
@@ -39,6 +61,8 @@ struct PrayerFocusApp: App {
                 }
             }
             .task {
+                // The unit-test host must let SKTestSession configure StoreKit first.
+                guard !isUnitTestHost else { return }
                 #if DEBUG
                     if ProcessInfo.processInfo.arguments.contains("-open-affirmation") {
                         affirmationDestination.receive(URL(string: "prayerfocus://daily-affirmation")!)
@@ -48,7 +72,7 @@ struct PrayerFocusApp: App {
                 await membership.observeTransactions()
             }
             .onChange(of: scenePhase) { _, phase in
-                if phase == .active {
+                if phase == .active && !isUnitTestHost {
                     membership.beginAccessRefresh()
                     Task { await membership.refreshAccess() }
                     WidgetCenter.shared.reloadTimelines(ofKind: WidgetMembershipStore.widgetKind)
@@ -56,11 +80,20 @@ struct PrayerFocusApp: App {
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.significantTimeChangeNotification)) {
                 _ in
+                guard !isUnitTestHost else { return }
                 membership.beginAccessRefresh()
                 Task { await membership.refreshAccess() }
                 WidgetCenter.shared.reloadTimelines(ofKind: WidgetMembershipStore.widgetKind)
             }
         }
+    }
+
+    private var isUnitTestHost: Bool {
+        #if DEBUG
+            NSClassFromString("XCTestCase") != nil
+        #else
+            false
+        #endif
     }
 
     private var isTodayPreview: Bool {

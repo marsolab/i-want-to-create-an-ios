@@ -79,6 +79,9 @@
          <TestPlanReference
             reference = "container:PrayerFocusStoreKit.xctestplan">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:PrayerFocus.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <MacroExpansion>
          <BuildableReference
@@ -139,7 +142,7 @@
       <CommandLineArguments>
       </CommandLineArguments>
       <StoreKitConfigurationFileReference
-         identifier = "../../Configuration/PrayerFocusWidgetsTesting.storekit">
+         identifier = "../../Configuration/PrayerFocus.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

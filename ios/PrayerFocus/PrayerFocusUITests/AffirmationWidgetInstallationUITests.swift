@@ -13,7 +13,9 @@ final class AffirmationWidgetInstallationUITests: XCTestCase {
     @MainActor
     func testHomeScreenWidgetCanBeAddedAndOpensMembership() throws {
         let app = XCUIApplication()
+        app.launchArguments = ["-ui-testing", "-reset-setup"]
         app.launch()
+        completePrayerFocusSetup(in: app)
         XCTAssertTrue(app.buttons["membership.subscribe"].waitForExistence(timeout: 15))
         XCUIDevice.shared.press(.home)
         XCUIDevice.shared.press(.home)

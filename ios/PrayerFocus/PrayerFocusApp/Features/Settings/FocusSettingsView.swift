@@ -4,28 +4,64 @@ import SwiftUI
 struct FocusSettingsView: View {
     @Bindable var session: PrayerFocusSession
     @Environment(ScreenTimeService.self) private var screenTime
+    @Environment(FocusConfiguration.self) private var configuration
     @Environment(\.dismiss) private var dismiss
+    var isSetup = false
+    var allowsPrayerActions = true
 
     @State private var isPickerPresented = false
-    @State private var notificationsEnabled = true
-    @State private var city = "Select city"
-    @State private var calculationMethod = "Select method"
-
-    private let cities = ["Select city", "London", "New York", "Toronto", "Dubai", "Kuala Lumpur"]
-    private let methods = ["Select method", "Muslim World League", "ISNA", "Umm al-Qura", "Egyptian Authority"]
 
     var body: some View {
         @Bindable var screenTime = screenTime
+        @Bindable var configuration = configuration
 
         NavigationStack {
             Form {
-                Section {
-                    NavigationLink {
-                        DailyAffirmationView()
-                    } label: {
-                        Label("Daily affirmations", systemImage: "moon")
+                if isSetup {
+                    Section {
+                        Text("Make space for salah, your way.")
+                            .font(.title2.weight(.semibold))
+                        Text(
+                            "Choose your prayer settings and the apps you want to pause. You can change these later, pause focus, or unlock apps for any prayer."
+                        )
+                        Text(
+                            "Next, choose a monthly or yearly membership. Eligible subscribers can start with 3 days free after confirming with Apple."
+                        )
+                        .foregroundStyle(PrayerTheme.secondaryInk)
                     }
-                    .accessibilityIdentifier("settings.dailyAffirmations")
+                }
+
+                Section {
+                    Picker("City", selection: $configuration.city) {
+                        ForEach(FocusConfiguration.cities, id: \.self) { city in
+                            Text(city).tag(city)
+                        }
+                    }
+                    .accessibilityIdentifier("setup.city")
+
+                    Picker("Calculation method", selection: $configuration.calculationMethod) {
+                        ForEach(FocusConfiguration.methods, id: \.self) { method in
+                            Text(method).tag(method)
+                        }
+                    }
+                    .accessibilityIdentifier("setup.calculationMethod")
+                } header: {
+                    Text("Prayer schedule")
+                } footer: {
+                    Text(
+                        "Choose the settings used by your local mosque. Prayer-time calculation is still being prepared; these choices are saved on this device."
+                    )
+                }
+
+                if !isSetup && allowsPrayerActions {
+                    Section {
+                        NavigationLink {
+                            DailyAffirmationView()
+                        } label: {
+                            Label("Daily affirmations", systemImage: "moon")
+                        }
+                        .accessibilityIdentifier("settings.dailyAffirmations")
+                    }
                 }
 
                 Section {
@@ -64,47 +100,55 @@ struct FocusSettingsView: View {
                             isOn: focusBinding(for: prayer)
                         )
                         .tint(PrayerTheme.sage)
+                        .accessibilityIdentifier("setup.prayer.\(prayer.rawValue)")
                     }
-                }
-
-                Section {
-                    Picker("City", selection: $city) {
-                        ForEach(cities, id: \.self) { city in
-                            Text(city).tag(city)
-                        }
-                    }
-
-                    Picker("Calculation method", selection: $calculationMethod) {
-                        ForEach(methods, id: \.self) { method in
-                            Text(method).tag(method)
-                        }
-                    }
-                } header: {
-                    Text("Prayer schedule")
-                } footer: {
-                    Text("Compare the schedule with a trusted local timetable before turning focus on.")
                 }
 
                 Section("Notifications") {
-                    Toggle("Prayer start notification", isOn: $notificationsEnabled)
+                    Toggle("Prayer start notification", isOn: $configuration.notificationsEnabled)
                         .tint(PrayerTheme.sage)
+                        .accessibilityIdentifier("setup.notifications")
                 }
 
-                Section {
-                    Button("Unlock current prayer") {
-                        session.unlockWithoutCheckIn()
-                        dismiss()
+                if allowsPrayerActions && !isSetup {
+                    Section {
+                        Button("Unlock current prayer") {
+                            session.unlockWithoutCheckIn()
+                            dismiss()
+                        }
+                    } footer: {
+                        Text("Check-ins are self-reported and stored only on this device in this development slice.")
                     }
-                } footer: {
-                    Text("Check-ins are self-reported and stored only on this device in this development slice.")
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(isSetup ? "Set up Prayer Focus" : "Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
-                        .fontWeight(.semibold)
+                if !isSetup {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Done") { dismiss() }
+                            .fontWeight(.semibold)
+                    }
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                if isSetup {
+                    VStack(spacing: 8) {
+                        Button("Continue to membership") { configuration.completeSetup() }
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity, minHeight: PrayerTheme.controlHeight)
+                            .background(PrayerTheme.sage, in: RoundedRectangle(cornerRadius: 16))
+                            .buttonStyle(.plain)
+                            .disabled(!configuration.canCompleteSetup)
+                            .opacity(configuration.canCompleteSetup ? 1 : 0.5)
+                            .accessibilityIdentifier("setup.continue")
+                        Text("Your setup is saved. No payment is taken here.")
+                            .font(.footnote)
+                            .foregroundStyle(PrayerTheme.secondaryInk)
+                    }
+                    .padding(16)
+                    .background(PrayerTheme.canvas)
                 }
             }
             .familyActivityPicker(

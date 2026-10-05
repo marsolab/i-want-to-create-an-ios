@@ -40,8 +40,12 @@ final class DailyAffirmationUITests: XCTestCase {
     @MainActor
     func testWidgetDestinationCannotBypassMembership() {
         let app = XCUIApplication()
-        app.launchArguments = ["-open-affirmation"]
+        app.launchArguments = ["-ui-testing", "-reset-setup", "-open-affirmation"]
         app.launch()
+        XCTAssertTrue(app.buttons["setup.continue"].waitForExistence(timeout: 15))
+        XCTAssertFalse(app.buttons["settings.dailyAffirmations"].exists)
+        XCTAssertFalse(app.navigationBars["Daily affirmation"].exists)
+        completePrayerFocusSetup(in: app)
         XCTAssertTrue(app.buttons["membership.subscribe"].waitForExistence(timeout: 15))
         XCTAssertFalse(app.staticTexts["An original reflection"].exists)
         XCTAssertFalse(app.navigationBars["Daily affirmation"].exists)

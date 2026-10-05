@@ -1,3 +1,4 @@
+import StoreKit
 import StoreKitTest
 import XCTest
 
@@ -23,6 +24,8 @@ final class AffirmationMembershipTests: XCTestCase {
     @MainActor
     func testVerifiedEntitlementPublishesSnapshotAndRefreshDefersDestination() async throws {
         let membership = MembershipStore()
+        let updates = Task { await membership.observeTransactions() }
+        defer { updates.cancel() }
         await membership.refreshAccess()
         XCTAssertFalse(membership.hasAccess)
         _ = try await storeKitSession.buyProduct(identifier: "com.marsolab.PrayerFocus.monthly")
@@ -49,6 +52,8 @@ final class AffirmationMembershipTests: XCTestCase {
                 hasCheckedEntitlements: membership.hasCheckedEntitlements && !membership.isRefreshingAccess
             ))
         try storeKitSession.expireSubscription(productIdentifier: "com.marsolab.PrayerFocus.monthly")
+        // The local test service must update its receipt after forced expiration.
+        try await AppStore.sync()
         await membership.refreshAccess()
         XCTAssertFalse(membership.hasAccess)
         XCTAssertNil(WidgetMembershipStore().read())
@@ -57,9 +62,11 @@ final class AffirmationMembershipTests: XCTestCase {
     @MainActor
     func testRecordedExpirationClearsAccessWithoutAStoreKitRefresh() async throws {
         storeKitSession.timeRate = .oneRenewalEveryTenSeconds
+        let membership = MembershipStore()
+        let updates = Task { await membership.observeTransactions() }
+        defer { updates.cancel() }
         let transaction = try await storeKitSession.buyProduct(identifier: "com.marsolab.PrayerFocus.monthly")
         try storeKitSession.disableAutoRenewForTransaction(identifier: UInt(transaction.id))
-        let membership = MembershipStore()
         await membership.refreshAccess()
         XCTAssertTrue(membership.hasAccess)
         let snapshot = try XCTUnwrap(membership.verifiedMembership)

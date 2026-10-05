@@ -111,4 +111,5 @@ struct TodayView: View {
 #Preview {
     TodayView(session: PrayerFocusSession())
         .environment(ScreenTimeService())
+        .environment(FocusConfiguration())
 }

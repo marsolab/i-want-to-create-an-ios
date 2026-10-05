@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		063504D1654864CAD4F048C6 /* MembershipStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15531635A97F6031ED7F67AF /* MembershipStoreTests.swift */; };
 		11012A59C87A5E4F4F699EAB /* MembershipStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F132C7B14F61643EC0DCFC8 /* MembershipStore.swift */; };
 		11529438E0472E1B7B2AA806 /* AffirmationDestinationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216EDC655714AB96687989FF /* AffirmationDestinationTests.swift */; };
+		11F410C5B9B59F25869E6B00 /* PrayerFocus.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 8339025B8310E68C1B2D292F /* PrayerFocus.storekit */; };
 		1B9416A3E3808EAA13CA1EFC /* AffirmationTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4875838F5F4DD0B7A13561 /* AffirmationTimelineTests.swift */; };
 		1C20F4B3955948612F6ADFC8 /* AffirmationTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CB18B7596DEF08620A736 /* AffirmationTimeline.swift */; };
+		22BC6E71C4F40A93F9BD52A0 /* FocusConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFC4E04384C670A72027C1 /* FocusConfigurationTests.swift */; };
 		260FD7864B3D45643510AEDE /* MembershipGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1721308FD229E3CBF79350C /* MembershipGateView.swift */; };
 		26E4170D4EF53BB52D1BD8D7 /* PrayerScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096DA58FD63F1CE55F1B1B05 /* PrayerScheduleView.swift */; };
 		30DA064B23B5E13243904E89 /* PrayerFocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F539B8DCB361F182E11D5A /* PrayerFocusSession.swift */; };
@@ -20,6 +23,7 @@
 		3CAD7B42F5C76EF7D74F64EC /* PrayerFocusWidgetsTesting.storekit in Resources */ = {isa = PBXBuildFile; fileRef = E69A2A9BEEDCE80EEB661F06 /* PrayerFocusWidgetsTesting.storekit */; };
 		44EB735B31691DC9BBCF55A3 /* WidgetMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B3E29BFAD14554F7F80A12 /* WidgetMembership.swift */; };
 		4D93176E80FB5787532AFA70 /* PrayerHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00087EF3F8DEE7ECB240C45E /* PrayerHeroView.swift */; };
+		52254A9BA4FA3E2ABE7FEAD7 /* FocusConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCF2C6FFC92DB30EE44F27 /* FocusConfiguration.swift */; };
 		55F528B11569B0664BC34ADC /* FamilyControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD25194F9A5A4249D3627FF4 /* FamilyControls.framework */; };
 		5C2BE81E7F6DC3F9B0DA7228 /* PrayerFocusSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9CA6368BC1E6366926987 /* PrayerFocusSessionTests.swift */; };
 		5E922E9D075850C7F4CDE88B /* DailyAffirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469EB6A6C5FB74150AC4AB7A /* DailyAffirmationView.swift */; };
@@ -34,6 +38,7 @@
 		95E392A42BD4364112E5A028 /* PrayerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A00E09DC2B59AFD258C2CA7 /* PrayerTheme.swift */; };
 		A08D2BACBAF93C1C28159B06 /* PrayerFocusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255D973F557A2A26333DDC47 /* PrayerFocusApp.swift */; };
 		A12035C3B08CEA6856595C1A /* AffirmationWidgetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08458FC05021A85AA18DACC2 /* AffirmationWidgetCard.swift */; };
+		BBF518CECD4A370E6D19FB77 /* PrayerFocusSetupUITestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D781E7D01B576044252860E /* PrayerFocusSetupUITestSupport.swift */; };
 		C0EE5ECD70FA388BBD7B56DF /* AffirmationWidgetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08458FC05021A85AA18DACC2 /* AffirmationWidgetCard.swift */; };
 		C378DDA371BC451D4F600CF9 /* PrayerFocusWidgetsTesting.storekit in Resources */ = {isa = PBXBuildFile; fileRef = E69A2A9BEEDCE80EEB661F06 /* PrayerFocusWidgetsTesting.storekit */; };
 		CABFC1EC5A109FB7481FCAB0 /* AffirmationTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CB18B7596DEF08620A736 /* AffirmationTimeline.swift */; };
@@ -44,6 +49,7 @@
 		DFB2833C77D6DB87C1BE2D01 /* ScreenTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615EF22F7FD9BBF57153DF30 /* ScreenTimeService.swift */; };
 		E4F196B083767BAA22062616 /* DailyAffirmationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4684B1028C0AE0C18F9ABC /* DailyAffirmationTests.swift */; };
 		E603F0D534BC673E043B92DD /* DailyAffirmationWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A6121414E10FCE9915166E /* DailyAffirmationWidget.swift */; };
+		F2F4213B2919E536760AF82A /* PrayerFocus.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 8339025B8310E68C1B2D292F /* PrayerFocus.storekit */; };
 		F69B911EC520AA96670623E2 /* AffirmationMembershipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1FC4836352432F803B001 /* AffirmationMembershipTests.swift */; };
 		F9EC758A6E278FF5913AE110 /* DailyAffirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01AA293E3509470599AD6F /* DailyAffirmation.swift */; };
 		FBBFFF0ABC7B11D9ED9E078A /* AffirmationWidgetInstallationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCA991416E18FA9917025C /* AffirmationWidgetInstallationUITests.swift */; };
@@ -93,7 +99,10 @@
 		0891F4A8044172A5AEB4D489 /* MembershipPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipPaywallView.swift; sourceTree = "<group>"; };
 		096DA58FD63F1CE55F1B1B05 /* PrayerScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerScheduleView.swift; sourceTree = "<group>"; };
 		1260EEE8FFE4139AF8976433 /* PrayerFocusUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PrayerFocusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13EFC4E04384C670A72027C1 /* FocusConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusConfigurationTests.swift; sourceTree = "<group>"; };
+		15531635A97F6031ED7F67AF /* MembershipStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipStoreTests.swift; sourceTree = "<group>"; };
 		216EDC655714AB96687989FF /* AffirmationDestinationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationDestinationTests.swift; sourceTree = "<group>"; };
+		22A92FAB34FC31E23B4D6B2C /* PrayerFocusStoreKit.xctestplan */ = {isa = PBXFileReference; path = PrayerFocusStoreKit.xctestplan; sourceTree = "<group>"; };
 		255D973F557A2A26333DDC47 /* PrayerFocusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerFocusApp.swift; sourceTree = "<group>"; };
 		2B008858F7E963B84D349F9A /* DailyAffirmationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAffirmationUITests.swift; sourceTree = "<group>"; };
 		2F3F7FCE3EFF58E46AC73042 /* Prayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer.swift; sourceTree = "<group>"; };
@@ -102,6 +111,7 @@
 		3F132C7B14F61643EC0DCFC8 /* MembershipStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipStore.swift; sourceTree = "<group>"; };
 		42B08F706B5E81897B127E26 /* AffirmationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationDestination.swift; sourceTree = "<group>"; };
 		469EB6A6C5FB74150AC4AB7A /* DailyAffirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAffirmationView.swift; sourceTree = "<group>"; };
+		4FA23A9D844002A32010C804 /* PrayerFocusWidgets.xctestplan */ = {isa = PBXFileReference; path = PrayerFocusWidgets.xctestplan; sourceTree = "<group>"; };
 		528A3A184DFEB5083F3CEEF6 /* PrayerFocusTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PrayerFocusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F4684B1028C0AE0C18F9ABC /* DailyAffirmationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAffirmationTests.swift; sourceTree = "<group>"; };
 		6134154E03B4AA7CFB5F7985 /* MembershipPaywallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipPaywallUITests.swift; sourceTree = "<group>"; };
@@ -111,11 +121,15 @@
 		75B3E29BFAD14554F7F80A12 /* WidgetMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMembership.swift; sourceTree = "<group>"; };
 		7736001BEA8E857987B6833B /* MembershipPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipPlan.swift; sourceTree = "<group>"; };
 		79F539B8DCB361F182E11D5A /* PrayerFocusSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerFocusSession.swift; sourceTree = "<group>"; };
+		8339025B8310E68C1B2D292F /* PrayerFocus.storekit */ = {isa = PBXFileReference; path = PrayerFocus.storekit; sourceTree = "<group>"; };
 		8D468E2CD6DA747116120223 /* FocusSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSettingsView.swift; sourceTree = "<group>"; };
 		95A6121414E10FCE9915166E /* DailyAffirmationWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAffirmationWidget.swift; sourceTree = "<group>"; };
 		9BA82ACEACA7E6EA95FBDB26 /* PrayerFocus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrayerFocus.entitlements; sourceTree = "<group>"; };
+		9D781E7D01B576044252860E /* PrayerFocusSetupUITestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerFocusSetupUITestSupport.swift; sourceTree = "<group>"; };
 		A75E346F3F0C22B21D73DD6F /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		AD5DF40FDDC56E559B88CE6E /* PrayerFocus.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PrayerFocus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFAFE0C6B87D2A1E67DD9A33 /* PrayerFocus.xctestplan */ = {isa = PBXFileReference; path = PrayerFocus.xctestplan; sourceTree = "<group>"; };
+		C5CCF2C6FFC92DB30EE44F27 /* FocusConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusConfiguration.swift; sourceTree = "<group>"; };
 		C6A1FC4836352432F803B001 /* AffirmationMembershipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationMembershipTests.swift; sourceTree = "<group>"; };
 		D7C37395CE3231D3149E349E /* PrayerFocusWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrayerFocusWidgets.entitlements; sourceTree = "<group>"; };
 		D85B373692CB97ED11C93AF6 /* PrayerFocusWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PrayerFocusWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +174,9 @@
 				C6A1FC4836352432F803B001 /* AffirmationMembershipTests.swift */,
 				DD4875838F5F4DD0B7A13561 /* AffirmationTimelineTests.swift */,
 				5F4684B1028C0AE0C18F9ABC /* DailyAffirmationTests.swift */,
+				13EFC4E04384C670A72027C1 /* FocusConfigurationTests.swift */,
 				E8FDC88BEF60B4CF69A8244E /* MembershipRefreshTests.swift */,
+				15531635A97F6031ED7F67AF /* MembershipStoreTests.swift */,
 				FED9CA6368BC1E6366926987 /* PrayerFocusSessionTests.swift */,
 			);
 			path = PrayerFocusTests;
@@ -220,6 +236,7 @@
 				FAFCA991416E18FA9917025C /* AffirmationWidgetInstallationUITests.swift */,
 				2B008858F7E963B84D349F9A /* DailyAffirmationUITests.swift */,
 				6134154E03B4AA7CFB5F7985 /* MembershipPaywallUITests.swift */,
+				9D781E7D01B576044252860E /* PrayerFocusSetupUITestSupport.swift */,
 			);
 			path = PrayerFocusUITests;
 			sourceTree = "<group>";
@@ -259,6 +276,7 @@
 		92420D3A51EC164E0739CBEA /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				8339025B8310E68C1B2D292F /* PrayerFocus.storekit */,
 				E69A2A9BEEDCE80EEB661F06 /* PrayerFocusWidgetsTesting.storekit */,
 			);
 			path = Configuration;
@@ -322,6 +340,9 @@
 		EFE61B1C40C88CE371294258 = {
 			isa = PBXGroup;
 			children = (
+				AFAFE0C6B87D2A1E67DD9A33 /* PrayerFocus.xctestplan */,
+				22A92FAB34FC31E23B4D6B2C /* PrayerFocusStoreKit.xctestplan */,
+				4FA23A9D844002A32010C804 /* PrayerFocusWidgets.xctestplan */,
 				92420D3A51EC164E0739CBEA /* Configuration */,
 				8F5B38B8EE0E5A6D1C22747B /* PrayerFocusApp */,
 				1C2B92BF5DB782EC9BF1303F /* PrayerFocusTests */,
@@ -336,6 +357,7 @@
 		FA209478C9B4CF9DFF6D2414 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				C5CCF2C6FFC92DB30EE44F27 /* FocusConfiguration.swift */,
 				2F3F7FCE3EFF58E46AC73042 /* Prayer.swift */,
 				79F539B8DCB361F182E11D5A /* PrayerFocusSession.swift */,
 			);
@@ -462,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F410C5B9B59F25869E6B00 /* PrayerFocus.storekit in Resources */,
 				3CAD7B42F5C76EF7D74F64EC /* PrayerFocusWidgetsTesting.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +501,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F4213B2919E536760AF82A /* PrayerFocus.storekit in Resources */,
 				C378DDA371BC451D4F600CF9 /* PrayerFocusWidgetsTesting.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +531,7 @@
 				A12035C3B08CEA6856595C1A /* AffirmationWidgetCard.swift in Sources */,
 				7BD2C72E59854D3F5B0D6FE3 /* DailyAffirmation.swift in Sources */,
 				5E922E9D075850C7F4CDE88B /* DailyAffirmationView.swift in Sources */,
+				52254A9BA4FA3E2ABE7FEAD7 /* FocusConfiguration.swift in Sources */,
 				69FC14DE268FB8728977C63F /* FocusSettingsView.swift in Sources */,
 				260FD7864B3D45643510AEDE /* MembershipGateView.swift in Sources */,
 				5EA4B08A4B9D6048B349DF86 /* MembershipPaywallView.swift in Sources */,
@@ -532,7 +557,9 @@
 				F69B911EC520AA96670623E2 /* AffirmationMembershipTests.swift in Sources */,
 				1B9416A3E3808EAA13CA1EFC /* AffirmationTimelineTests.swift in Sources */,
 				E4F196B083767BAA22062616 /* DailyAffirmationTests.swift in Sources */,
+				22BC6E71C4F40A93F9BD52A0 /* FocusConfigurationTests.swift in Sources */,
 				60D9EC938B5407BDC3994C38 /* MembershipRefreshTests.swift in Sources */,
+				063504D1654864CAD4F048C6 /* MembershipStoreTests.swift in Sources */,
 				5C2BE81E7F6DC3F9B0DA7228 /* PrayerFocusSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +572,7 @@
 				FBBFFF0ABC7B11D9ED9E078A /* AffirmationWidgetInstallationUITests.swift in Sources */,
 				DB1BCC268F87E0DEB333A4D5 /* DailyAffirmationUITests.swift in Sources */,
 				356FA37F63316A9C1436C794 /* MembershipPaywallUITests.swift in Sources */,
+				BBF518CECD4A370E6D19FB77 /* PrayerFocusSetupUITestSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,6 +3,7 @@ import SwiftUI
 struct MembershipGateView: View {
     let session: PrayerFocusSession
     @Environment(MembershipStore.self) private var membership
+    @Environment(FocusConfiguration.self) private var configuration
     @Environment(AffirmationDestination.self) private var affirmationDestination
     @State private var isShowingOffer = false
     @State private var memberSheet: AffirmationPresentation?
@@ -12,6 +13,8 @@ struct MembershipGateView: View {
         Group {
             if membership.hasAccess {
                 TodayView(session: session, showSettings: { memberSheet = .settings })
+            } else if !configuration.hasCompletedSetup {
+                FocusSettingsView(session: session, isSetup: true, allowsPrayerActions: false)
             } else {
                 introduction
                     .blur(radius: isShowingOffer ? 20 : 0, opaque: true)
@@ -21,7 +24,7 @@ struct MembershipGateView: View {
             }
         }
         .sheet(isPresented: $isShowingOffer, onDismiss: showPendingAffirmation) {
-            MembershipPaywallView()
+            MembershipPaywallView(session: session)
                 .presentationDetents([.large])
                 .presentationDragIndicator(.hidden)
                 .presentationCornerRadius(28)
@@ -40,8 +43,11 @@ struct MembershipGateView: View {
             }
         }
         .task {
-            isShowingOffer = !membership.hasAccess
+            isShowingOffer = configuration.hasCompletedSetup && !membership.hasAccess
             showPendingAffirmation()
+        }
+        .onChange(of: configuration.hasCompletedSetup) { _, isComplete in
+            isShowingOffer = isComplete && !membership.hasAccess
         }
         .onChange(of: membership.hasAccess) { _, hasAccess in
             if !hasAccess {
@@ -49,9 +55,10 @@ struct MembershipGateView: View {
                     isDismissingMemberSheet = true
                     memberSheet = nil
                 } else if !isDismissingMemberSheet {
-                    isShowingOffer = true
+                    isShowingOffer = configuration.hasCompletedSetup
                 }
             } else {
+                isShowingOffer = false
                 showPendingAffirmation()
             }
         }
@@ -86,7 +93,7 @@ struct MembershipGateView: View {
         if membership.hasAccess {
             showPendingAffirmation()
         } else {
-            isShowingOffer = true
+            isShowingOffer = configuration.hasCompletedSetup
         }
     }
 
@@ -104,7 +111,7 @@ struct MembershipGateView: View {
                     .tracking(-1)
                     .foregroundStyle(PrayerTheme.ink)
 
-                Text("A Prayer Focus subscription gives you access to the app.")
+                Text("Your setup is saved. Choose a membership to begin.")
                     .font(.body)
                     .foregroundStyle(PrayerTheme.secondaryInk)
 

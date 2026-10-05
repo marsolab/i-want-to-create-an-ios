@@ -1,10 +1,11 @@
 import SwiftUI
 
 struct MembershipPaywallView: View {
+    let session: PrayerFocusSession
     @Environment(MembershipStore.self) private var membership
     @Environment(\.dismiss) private var dismiss
     @State private var selectedPlan = MembershipPlan.yearly
-    @State private var isShowingPrivacy = false
+    @State private var secondarySheet: SecondarySheet?
     @ScaledMetric(relativeTo: .largeTitle) private var headlineSize = 42.0
     @ScaledMetric(relativeTo: .body) private var bodySize = 15.0
 
@@ -29,11 +30,15 @@ struct MembershipPaywallView: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .accessibilityAddTraits(.isHeader)
 
-                        Text("Let your distractions pause when prayer begins.")
-                            .font(.system(size: bodySize))
-                            .foregroundStyle(PrayerTheme.secondaryInk)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding(.top, 8)
+                        Text(
+                            membership.hasThreeDayTrial(for: selectedPlan)
+                                ? "Your setup is ready. Try Prayer Focus free for 3 days."
+                                : "Your setup is ready. Choose your membership."
+                        )
+                        .font(.system(size: bodySize))
+                        .foregroundStyle(PrayerTheme.secondaryInk)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.top, 8)
 
                         VStack(alignment: .leading, spacing: 8) {
                             benefit("Selected apps pause automatically")
@@ -52,7 +57,7 @@ struct MembershipPaywallView: View {
                             Task { await membership.subscribe(to: selectedPlan) }
                         } label: {
                             ZStack {
-                                Text("Subscribe")
+                                Text(membership.purchaseTitle(for: selectedPlan))
                                     .font(.system(size: 18, weight: .semibold))
                                 HStack {
                                     Spacer()
@@ -70,22 +75,31 @@ struct MembershipPaywallView: View {
                             .background(PrayerTheme.sage, in: RoundedRectangle(cornerRadius: 16))
                         }
                         .buttonStyle(.plain)
-                        .disabled(membership.isBusy)
+                        .disabled(membership.isBusy || membership.isLoadingProducts)
                         .accessibilityIdentifier("membership.subscribe")
                         .padding(.top, 12)
 
-                        VStack(spacing: 2) {
-                            Text("Billed \(membership.price(for: selectedPlan)) \(selectedPlan.billingPeriod).")
-                            Text("Auto-renews unless cancelled.")
+                        VStack(spacing: 4) {
+                            Text(membership.billingDisclosure(for: selectedPlan))
+                                .fontWeight(.medium)
+                                .accessibilityIdentifier("membership.billingDisclosure")
+                            Text("Auto-renews unless cancelled in Apple Account settings.")
                         }
                         .font(.system(size: 12.5))
                         .foregroundStyle(PrayerTheme.secondaryInk)
                         .frame(maxWidth: .infinity)
-                        .accessibilityIdentifier("membership.billingDisclosure")
+                        .multilineTextAlignment(.center)
                         .padding(.top, 10)
 
+                        Button("Review your setup") { secondarySheet = .settings }
+                            .font(.footnote.weight(.medium))
+                            .foregroundStyle(PrayerTheme.sage)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                            .buttonStyle(.plain)
+                            .disabled(membership.isBusy)
+                            .accessibilityIdentifier("membership.reviewSetup")
+
                         footer
-                            .padding(.top, 16)
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 4)
@@ -108,8 +122,13 @@ struct MembershipPaywallView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-        .sheet(isPresented: $isShowingPrivacy) {
-            MembershipPrivacyView()
+        .sheet(item: $secondarySheet) { sheet in
+            switch sheet {
+            case .privacy:
+                MembershipPrivacyView()
+            case .settings:
+                FocusSettingsView(session: session, allowsPrayerActions: false)
+            }
         }
     }
 
@@ -170,12 +189,19 @@ struct MembershipPaywallView: View {
                         .background(PrayerTheme.sageSoft, in: Capsule())
                 }
                 Spacer(minLength: 4)
-                Text("\(membership.monthlyPrice(for: plan))/month")
-                    .font(.system(size: 18, weight: .semibold))
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("\(membership.price(for: plan))/\(plan.period)")
+                        .font(.system(size: 18, weight: .semibold))
+                    if plan == .yearly, let equivalent = membership.monthlyPrice(for: plan) {
+                        Text("\(equivalent)/month")
+                            .font(.caption)
+                            .foregroundStyle(PrayerTheme.secondaryInk)
+                    }
+                }
             }
             .foregroundStyle(PrayerTheme.ink)
             .padding(.horizontal, 14)
-            .frame(minHeight: 52)
+            .frame(minHeight: 58)
             .contentShape(Rectangle())
             .background(PrayerTheme.surface.opacity(isSelected ? 0.7 : 0), in: RoundedRectangle(cornerRadius: 12))
             .overlay {
@@ -184,9 +210,7 @@ struct MembershipPaywallView: View {
             }
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(
-            "\(plan.title), \(membership.monthlyPrice(for: plan)) per month, billed \(membership.price(for: plan)) \(plan.billingPeriod)"
-        )
+        .accessibilityLabel("\(plan.title), \(membership.billingDisclosure(for: plan))")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
         .accessibilityIdentifier("membership.plan.\(plan.rawValue)")
         .disabled(membership.isBusy)
@@ -202,12 +226,18 @@ struct MembershipPaywallView: View {
             Spacer(minLength: 4)
             Link(
                 "Terms", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-            Button("Privacy") { isShowingPrivacy = true }
+            Button("Privacy") { secondarySheet = .privacy }
         }
         .font(.system(size: 12))
         .foregroundStyle(PrayerTheme.secondaryInk)
         .buttonStyle(.plain)
         .frame(minHeight: 44)
+    }
+
+    private enum SecondarySheet: String, Identifiable {
+        case privacy
+        case settings
+        var id: String { rawValue }
     }
 }
 
@@ -242,6 +272,8 @@ private struct MembershipPrivacyView: View {
 }
 
 #Preview {
-    MembershipPaywallView()
+    MembershipPaywallView(session: PrayerFocusSession())
         .environment(MembershipStore())
+        .environment(FocusConfiguration())
+        .environment(ScreenTimeService())
 }

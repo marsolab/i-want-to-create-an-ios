@@ -1,0 +1,86 @@
+{
+  "identifier": "DB6393B5-151A-4E03-94D7-F33D9DF8A1CF",
+  "nonRenewingSubscriptions": [],
+  "products": [],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "200001",
+      "localizations": [
+        {
+          "description": "Prayer Focus membership",
+          "displayName": "Prayer Focus",
+          "locale": "en_US"
+        }
+      ],
+      "name": "Prayer Focus",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "35.88",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "100001",
+          "introductoryOffer": {
+            "displayPrice": "0",
+            "internalID": "1000010",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P3D"
+          },
+          "localizations": [
+            {
+              "description": "Prayer Focus membership",
+              "displayName": "Prayer Focus yearly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.marsolab.PrayerFocus.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Yearly",
+          "subscriptionGroupID": "200001",
+          "type": "RecurringSubscription",
+          "winBackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "3.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "100002",
+          "introductoryOffer": {
+            "displayPrice": "0",
+            "internalID": "1000020",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P3D"
+          },
+          "localizations": [
+            {
+              "description": "Prayer Focus membership",
+              "displayName": "Prayer Focus monthly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.marsolab.PrayerFocus.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Monthly",
+          "subscriptionGroupID": "200001",
+          "type": "RecurringSubscription",
+          "winBackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

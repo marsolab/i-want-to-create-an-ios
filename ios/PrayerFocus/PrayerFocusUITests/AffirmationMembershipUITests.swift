@@ -23,8 +23,9 @@ final class AffirmationMembershipUITests: XCTestCase {
     @MainActor
     func testPurchaseResumesPendingWidgetDestination() {
         let app = XCUIApplication()
-        app.launchArguments = ["-open-affirmation"]
+        app.launchArguments = ["-ui-testing", "-reset-setup", "-open-affirmation"]
         app.launch()
+        completePrayerFocusSetup(in: app)
         let subscribe = app.buttons["membership.subscribe"]
         XCTAssertTrue(subscribe.waitForExistence(timeout: 15))
         subscribe.tap()
@@ -36,8 +37,8 @@ final class AffirmationMembershipUITests: XCTestCase {
 
     @MainActor
     func testActiveWidgetURLReplacesSettingsAfterItsDismissal() async throws {
+        let app = prepareSetup()
         _ = try await storeKitSession.buyProduct(identifier: "com.marsolab.PrayerFocus.yearly")
-        let app = XCUIApplication()
         app.launch()
         let settings = app.buttons["today.settings"]
         XCTAssertTrue(settings.waitForExistence(timeout: 15))
@@ -53,18 +54,33 @@ final class AffirmationMembershipUITests: XCTestCase {
 
     @MainActor
     func testExpirationDismissesAffirmationAndLocksWarmWidgetURL() async throws {
-        _ = try await storeKitSession.buyProduct(identifier: "com.marsolab.PrayerFocus.monthly")
-        let app = XCUIApplication()
+        let app = prepareSetup()
+        storeKitSession.timeRate = .oneRenewalEveryThirtySeconds
+        let transaction = try await storeKitSession.buyProduct(identifier: "com.marsolab.PrayerFocus.monthly")
+        try storeKitSession.disableAutoRenewForTransaction(identifier: UInt(transaction.id))
         app.launch()
         XCTAssertTrue(app.buttons["today.settings"].waitForExistence(timeout: 15))
         app.open(URL(string: "prayerfocus://daily-affirmation")!)
         XCTAssertTrue(app.navigationBars["Daily affirmation"].waitForExistence(timeout: 10))
-        try storeKitSession.expireSubscription(productIdentifier: "com.marsolab.PrayerFocus.monthly")
-        XCTAssertTrue(app.buttons["membership.subscribe"].waitForExistence(timeout: 15))
+        // Observe actual recorded expiration rather than a forced receipt edit;
+        // the app must dismiss member content and reopen its locked paywall.
+        XCTAssertTrue(app.buttons["membership.subscribe"].waitForExistence(timeout: 45))
         XCTAssertFalse(app.staticTexts["An original reflection"].exists)
         XCUIDevice.shared.press(.home)
         app.open(URL(string: "prayerfocus://daily-affirmation")!)
         XCTAssertTrue(app.buttons["membership.subscribe"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.navigationBars["Daily affirmation"].exists)
     }
+
+    @MainActor
+    private func prepareSetup() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments = ["-ui-testing", "-reset-setup"]
+        app.launch()
+        completePrayerFocusSetup(in: app)
+        app.terminate()
+        app.launchArguments = ["-ui-testing"]
+        return app
+    }
+
 }
