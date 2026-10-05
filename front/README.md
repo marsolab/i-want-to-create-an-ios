@@ -38,7 +38,7 @@ Preview builds are marked noindex and disallow crawling. Legal pages label thems
 SALAH_SIDE_SITE_RELEASE=1 bun run build
 ```
 
-`dist/` can be hosted as static files. Wrangler targets an assets-only Cloudflare Worker with a custom 404 page and security headers. After the concrete site and destination are approved, `bunx wrangler deploy` publishes it to the selected account. No deployment was performed in this task. See [Astro's Cloudflare guide](https://docs.astro.build/en/guides/deploy/cloudflare/).
+`dist/` is published as static assets from the `salahside` Cloudflare Worker. `bun run deploy` builds the site and publishes it to the account's `workers.dev` subdomain using the checked-in Wrangler configuration; the custom domain can be attached to the Worker later. The default preview stays `noindex`, disallows crawling, and labels the legal pages as drafts until the real domain, publisher, support email, and policy effective date are configured. For a release publication, set those fields with `SALAH_SIDE_SITE_RELEASE=1`, then deploy again. See [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) and [Astro's Cloudflare guide](https://docs.astro.build/en/guides/deploy/cloudflare/).
 
 After publishing, verify `/privacy/`, `/terms/`, and `/support/` over HTTPS without login. Set the same public policy URL in native `Release.local.xcconfig` and the policy/support URLs in App Store Connect. Validate the mailbox and hosting/email data practices described in the policy.
 
