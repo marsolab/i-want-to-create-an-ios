@@ -24,14 +24,19 @@ final class MembershipStore {
     @ObservationIgnored private var expirationTask: Task<Void, Never>?
     @ObservationIgnored private let widgetMembershipStore: WidgetMembershipStore
     @ObservationIgnored private let verifiedMembershipLoader: @MainActor (Date) async -> WidgetMembershipSnapshot?
+    @ObservationIgnored private let purchaseProduct: @MainActor (Product) async throws -> Product.PurchaseResult
 
     init(
         widgetMembershipStore: WidgetMembershipStore = WidgetMembershipStore(),
         verifiedMembershipLoader: @escaping @MainActor (Date) async -> WidgetMembershipSnapshot? =
-            MembershipStore.loadVerifiedStoreKitMembership
+            MembershipStore.loadVerifiedStoreKitMembership,
+        purchaseProduct: @escaping @MainActor (Product) async throws -> Product.PurchaseResult = { product in
+            try await product.purchase()
+        }
     ) {
         self.widgetMembershipStore = widgetMembershipStore
         self.verifiedMembershipLoader = verifiedMembershipLoader
+        self.purchaseProduct = purchaseProduct
     }
 
     var hasAccess: Bool {
@@ -209,7 +214,7 @@ final class MembershipStore {
         }
 
         do {
-            switch try await product.purchase() {
+            switch try await purchaseProduct(product) {
             case .success(let verification):
                 guard case .verified(let transaction) = verification else {
                     message = MembershipMessage(

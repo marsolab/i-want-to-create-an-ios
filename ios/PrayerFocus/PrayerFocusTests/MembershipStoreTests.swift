@@ -93,8 +93,7 @@ final class MembershipStoreTests: XCTestCase {
     func testCancelledPurchaseKeepsMembershipLocked() async throws {
         let session = try await testSession()
         defer { session.clearTransactions() }
-        try await session.setSimulatedError(.generic(.userCancelled), forAPI: .purchase)
-        let store = MembershipStore()
+        let store = MembershipStore(purchaseProduct: { _ in .userCancelled })
         let updates = Task { await store.observeTransactions() }
         defer { updates.cancel() }
         await store.prepare()
