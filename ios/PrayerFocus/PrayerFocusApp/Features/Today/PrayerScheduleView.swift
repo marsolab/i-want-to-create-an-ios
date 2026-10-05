@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct PrayerScheduleView: View {
-    let currentPrayer: Prayer
-    let phase: PrayerSessionPhase
+    let session: PrayerFocusSession
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -14,7 +13,8 @@ struct PrayerScheduleView: View {
                 ForEach(Array(Prayer.allCases.enumerated()), id: \.element.id) { index, prayer in
                     PrayerRow(
                         prayer: prayer,
-                        state: rowState(for: prayer)
+                        state: rowState(for: prayer),
+                        time: session.schedule?.time(for: prayer)
                     )
 
                     if index < Prayer.allCases.count - 1 {
@@ -28,18 +28,13 @@ struct PrayerScheduleView: View {
     }
 
     private func rowState(for prayer: Prayer) -> PrayerRowState {
-        guard let prayerIndex = Prayer.allCases.firstIndex(of: prayer),
-            let currentIndex = Prayer.allCases.firstIndex(of: currentPrayer)
-        else {
-            return .upcoming("Later")
-        }
-
-        if prayerIndex < currentIndex {
+        if session.recordedPhase(for: prayer) == .checkedIn {
             return .complete
         }
 
-        if prayer == currentPrayer {
-            switch phase {
+        let entry = session.schedule?.entries.first { $0.prayer == prayer }
+        if entry?.id == session.currentEventID && session.isPrayerTime {
+            switch session.phase {
             case .checkedIn: return .complete
             case .unlocked: return .current("Unlocked")
             case .inProgress: return .current("In prayer")
@@ -47,7 +42,8 @@ struct PrayerScheduleView: View {
             }
         }
 
-        if prayerIndex == currentIndex + 1 {
+        if let entry, entry.date <= Date() { return .upcoming("No check-in") }
+        if session.schedule?.entries.first(where: { $0.date > Date() })?.prayer == prayer {
             return .upcoming("Coming next")
         }
 
@@ -64,15 +60,21 @@ private enum PrayerRowState {
 private struct PrayerRow: View {
     let prayer: Prayer
     let state: PrayerRowState
+    let time: String?
 
     var body: some View {
         HStack(spacing: 14) {
             stateIcon
                 .frame(width: 28, height: 28)
 
-            Text(prayer.displayName)
-                .font(.body.weight(.medium))
-                .foregroundStyle(PrayerTheme.ink)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(prayer.displayName)
+                    .font(.body.weight(.medium))
+                    .foregroundStyle(PrayerTheme.ink)
+                if let time {
+                    Text(time).font(.caption).foregroundStyle(PrayerTheme.secondaryInk)
+                }
+            }
 
             Spacer()
 

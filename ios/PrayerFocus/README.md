@@ -1,74 +1,76 @@
-# Prayer Focus for iPhone
+# SalahSide for iPhone
 
-This folder contains the first native SwiftUI slice of the approved Prayer Focus experience.
+Native SwiftUI app for calculated prayer times, optional Screen Time focus, private self-reported check-ins and daily affirmation widgets. The public name is SalahSide; the Xcode project, bundle/product IDs and existing URL scheme retain PrayerFocus.
 
-## Included
+## Current implementation
 
-- Arch-and-mosque Today screen without the rejected masthead or slogan block
-- Local start, finish, already-prayed, and unlock-without-check-in states
-- Five prayer rows with focus enabled for every prayer by default
-- Setup before the paywall, with locally persisted per-prayer settings, app selection, placeholder schedule choices, notification preferences and setup completion
-- Family Controls individual-authorization request and Apple's `FamilyActivityPicker`
-- Unit tests for the local prayer focus state machine
-- Native UI tests for setup ordering and persistence, trial/plan disclosure, blocked swipe dismissal, Privacy and access after a verified trial
-- Selected mosque-led membership paywall, annual/monthly selection and matching renewal disclosure
-- Blurred image behind the membership sheet and status bar, with a soft ivory fade from the paywall photo into its content
-- StoreKit purchase, restore and verified-entitlement gate; the paywall slides up in a large native sheet with no close control or interactive dismissal until an active subscription is verified
-- 30 original English daily affirmations, a Settings guide, and small/medium Home Screen plus rectangular Lock Screen widgets
-- Calendar-day/DST/time-zone selection, expiration-aware widget timelines, and a pending widget destination that waits for membership verification
+- Approved arch-and-mosque Today/paywall artwork and an opaque 1024px app icon.
+- Setup before membership, with persisted city/method, standard/Hanafi Asr, high-latitude rule, minute adjustments, focus switches and app selection.
+- Five prayer times calculated on device for London, New York, Toronto, Dubai and Kuala Lumpur, using the selected city's Gregorian calendar and time zone. A pinned MIT-licensed Adhan 1.5.0 package and its reference fixtures are vendored in `Vendor/Adhan` for offline builds.
+- Explicit check-ins, already prayed and unlock. Earlier prayers are never inferred complete. Previous Isha remains current across midnight until Fajr; the Today list uses today's city-local date.
+- Optional prayer-start notifications for the next seven days, bounded by verified membership expiration. Updates are serialized; disabling notifications or losing access removes app-owned pending requests. Open the app to refresh the horizon.
+- Family Controls individual authorization and Apple's app/category/website picker.
+- A named Managed Settings store, bounded Device Activity monitors, a prayer-aware shield and a shield action. Finish, already prayed, unlock, pause, a disabled next prayer, permission loss and invalid/expired state clear app-owned restrictions.
+- File-locked, versioned App Group focus state protects against concurrent app/extension writes and repeated delivery of released events. Scheduling failures stop app-owned monitors and clear app-owned settings.
+- One-hour pause/manual resume and erase-local-data action. Erasing returns even an active member to setup and does not cancel their Apple subscription or erase existing backups.
+- Verified StoreKit membership, restore and eligibility-based three-day introductory trial. Paywall has no close/swipe escape while access is unverified; setup review and Privacy remain accessible.
+- Thirty original English affirmations, small/medium Home Screen and rectangular Lock Screen widgets, expiration-aware timelines and membership-gated deep links.
+- Privacy manifests in the app and extensions; required UserDefaults reasons cover own-app and App Group settings. No advertising or behavioral analytics SDK.
 
-## Membership design
+## Membership and identity
 
-The October 4 direction is setup → membership → three days free → monthly or yearly billing. The user configures the app before seeing the paywall; those choices persist through relaunches and cancelled purchases. Completing setup does not start a trial or grant product access. A verified StoreKit trial or subscription unlocks the Today flow.
+Product IDs remain `com.marsolab.PrayerFocus.yearly` and `com.marsolab.PrayerFocus.monthly`. Configure both in one App Store Connect subscription group with year/month durations and **Free, 3 Days** introductory offers for the intended storefronts. Local preview prices are $35.88/year and $3.99/month; choose supported live Apple price points before release. Production copy always uses localized StoreKit prices and actual eligibility. The full annual charge is shown, and its optional monthly equivalent is hidden if numeric/display metadata disagree.
 
-Both plans offer a three-day introductory free trial to eligible Apple Accounts. Yearly is selected by default and displays the full $35.88/year, with $2.99/month as an optional secondary equivalent when StoreKit's price metadata agree. Monthly is $3.99/month. The action reads “Start 3-day free trial”; the disclosure states “3 days free, then [full price]/[year or month].” The app checks the actual introductory-offer metadata and StoreKit eligibility. Accounts that have already used the group's offer see “Subscribe” and ordinary billing. Unsupported eligible introductory offers are blocked rather than described with incorrect terms.
+Test fixtures are included only in test targets. No local `.storekit` file is bundled in the release app. Local tests do not configure App Store Connect or prove sandbox billing.
 
-These are local preview/test prices. Configure supported actual App Store prices before release. StoreKit's localized prices replace them when products are available. Show the annual monthly equivalent only when StoreKit's numeric and display prices agree; some local testing runtimes return truncated numeric prices. The full yearly charge remains visible in all cases.
+| Target | Bundle ID | Capabilities |
+|---|---|---|
+| App | `com.marsolab.PrayerFocus` | Family Controls, App Group |
+| Widgets | `com.marsolab.PrayerFocus.Widgets` | App Group |
+| Monitor | `com.marsolab.PrayerFocus.Monitor` | Family Controls, App Group |
+| Shield configuration | `com.marsolab.PrayerFocus.Shield` | Family Controls, App Group |
+| Shield action | `com.marsolab.PrayerFocus.ShieldAction` | Family Controls |
 
-The subscription identifiers are `com.marsolab.PrayerFocus.yearly` and `com.marsolab.PrayerFocus.monthly`. In App Store Connect:
+App Group: `group.com.marsolab.PrayerFocus`. Use one real Apple Developer team and matching profiles. Request Family Controls distribution approval for the app and all three Screen Time extensions. On iOS 26.5+, the shield's Open SalahSide action uses Apple's supported `openParentalControlsApp`; earlier iOS explains the manual return path.
 
-1. Put both auto-renewable products in the same subscription group, with durations of one year and one month.
-2. Add a **Free, 3 Days** introductory offer to each product for the intended storefronts and dates.
-3. Confirm product prices and availability, then test new-account trial purchase, trial renewal into paid membership, cancellation, ineligible accounts, restoration, pending purchases and expiration in the sandbox.
+The widget deep link remains `prayerfocus://daily-affirmation`. Missing/malformed/expired membership locks widgets. Refund/revocation awareness requires a fresh app entitlement check; offline extensions can only rely on the last verified snapshot until its expiration. WidgetKit controls actual refresh timing.
 
-Apple permits one introductory offer per account per subscription group; changing plans does not provide another trial. See [Apple's introductory-offer configuration guide](https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-introductory-offers-for-auto-renewable-subscriptions/).
+## Local validation
 
-`Configuration/PrayerFocus.storekit` supplies both offers to local Xcode runs and tests, without changing App Store Connect. It is bundled only into test targets. Until live products exist, Subscribe reports unavailability and never grants access. Successful production billing still requires App Store Connect configuration and StoreKit sandbox/device validation. The local Privacy sheet is informational; provide a published privacy-policy URL before release.
-
-The existing Today flow can be opened in Debug builds with the `-preview-today` launch argument. This design-preview switch is excluded from Release builds.
-
-## Daily affirmation widgets
-
-Open Settings → Daily affirmations for today's reflection, sample widget sizes, and installation instructions. The widgets show one original reflection per local Gregorian day and repeat the bundled collection after 30 days. Widget taps use `prayerfocus://daily-affirmation`. Requests made while the app checks access or presents the paywall are retained until a verified subscription is available.
-
-The app and `PrayerFocusWidgets` extension both declare App Group `group.com.marsolab.PrayerFocus`. In the Apple Developer account, register this group and enable it for both `com.marsolab.PrayerFocus` and `com.marsolab.PrayerFocus.Widgets`; use the same development team and matching provisioning profiles. Both targets' version/build values come from `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION`.
-
-The app publishes recognized product ID, expiration, and verification date from verified active StoreKit entitlements. Missing, unreadable, malformed, or expired data shows “Open Prayer Focus to continue.” A locked entry is scheduled at subscription expiration. Revocation is detected when the app next refreshes StoreKit access; while offline or without reopening the app, the widget can only use its last verified snapshot until that snapshot expires. WidgetKit controls refresh timing, so daily changes are scheduled without promising an exact midnight redraw.
-
-Debug-only `-preview-affirmation` displays the guide using the longest reflection. `-open-affirmation` exercises a pending widget destination behind the normal membership gate. Neither argument grants or writes widget membership; both are excluded from Release builds.
-
-See [widget QA](affirmation-widgets-qa.md) for verification evidence and remaining physical-device/StoreKit checks.
-
-## Build
-
-Current setup/trial validation and screenshots: [setup and trial QA](setup-trial-qa.md).
+Use Xcode 26.5+ or Xcode 27, with an installed iPhone simulator and XcodeGen. The project deploys to iOS 18+ and availability-guards newer APIs. CI uses the documented macOS 26 image with Xcode 26.6; its workflow does not upload builds.
 
 ```sh
 cd ios/PrayerFocus
-xcrun swift-format lint --strict --recursive --configuration .swift-format \
-  PrayerFocusApp Shared PrayerFocusWidgets PrayerFocusTests PrayerFocusUITests
 xcodegen generate
-xcodebuild \
-  -project PrayerFocus.xcodeproj \
-  -scheme PrayerFocus \
-  -testPlan PrayerFocusWidgets \
-  -destination 'platform=iOS Simulator,name=iPhone 18 Pro' \
-  -parallel-testing-enabled NO \
-  test
+xcrun swift-format lint --strict --recursive --configuration .swift-format \
+  PrayerFocusApp Shared PrayerFocusWidgets PrayerFocusMonitor PrayerFocusShield \
+  PrayerFocusShieldAction PrayerFocusTests PrayerFocusUITests
+swift test --package-path Vendor/Adhan
+SALAH_SIM_ID=$(python3 scripts/select_simulator.py)
+xcodebuild -project PrayerFocus.xcodeproj -scheme PrayerFocus \
+  -testPlan PrayerFocusWidgets -only-testing:PrayerFocusTests \
+  -destination "platform=iOS Simulator,id=$SALAH_SIM_ID" \
+  -parallel-testing-enabled NO test
 ```
 
-`PrayerFocusWidgets` is the default test plan for calendar, access policy, refresh coordination, navigation, and widget checks. `PrayerFocus` covers setup, trial eligibility, purchases, renewal, restoration, and paywall UI with the three-day fixture. Select it with `-testPlan PrayerFocus`. `PrayerFocusStoreKit` retains the widget entitlement and deep-link integration cases with the no-trial fixture; select it with `-testPlan PrayerFocusStoreKit`. Run the StoreKit plans sequentially on a runtime with a working local StoreKit testing service. Both fixtures are included only in test targets, and neither is bundled into the release app or widget. The Xcode Run action uses `Configuration/PrayerFocus.storekit` for the current trial flow.
+Run `-testPlan PrayerFocus` for setup, trial, purchase/restore, paywall, Privacy and local deletion UI. Run `-testPlan PrayerFocusStoreKit` for widget subscription expiry and deep-link integration. Run StoreKit plans sequentially with normal simulator signing. Disabling code signing prevents the real App Group container from opening in the widget integration tests. The default widget plan also includes manual widget UI installation cases; those are separate from the unit-only command above.
 
-## Current platform gate
+## Release preparation
 
-The simulator build does not claim to shield apps. Scheduled shielding still needs the Family Controls distribution entitlement, Managed Settings and Device Activity extension targets, and validation on a physical iPhone. The settings UI says this directly.
+See [release package](../../docs/release/README.md), [device acceptance log](../../docs/release/physical-device-qa.md), and [asset provenance/prompt](../../docs/release/asset-provenance.md). Set the actual team and published policy URL using a local copy of `Configuration/Release.example.xcconfig`. The public policy is linked in the in-app Privacy view when the HTTPS URL is configured.
+
+```sh
+xcodebuild -project PrayerFocus.xcodeproj -scheme PrayerFocus \
+  -configuration Release -destination 'generic/platform=iOS' \
+  -xcconfig Configuration/Release.local.xcconfig \
+  -archivePath build/SalahSide.xcarchive archive
+python3 scripts/release_preflight.py \
+  build/SalahSide.xcarchive/Products/Applications/PrayerFocus.app \
+  --team-id YOUR_REAL_TEAM_ID
+```
+
+`--structural-only` permits unsigned local/CI artifact inspection and never confirms distribution readiness. Even the signed-artifact mode does not prove Apple approval, published policy contents, live subscription configuration or device behavior.
+
+## Remaining release gates
+
+Physical iPhone Screen Time behavior is **not validated**. Device Activity callbacks depend on device activity and are not exact wall-clock alarms. Monitor intervals shorter than Apple's 15-minute minimum are not registered. Qualified timetable review, actual notification delivery, sandbox subscription billing, real App Group sharing, distribution capability approval and accessibility/device acceptance all remain gates. Do not upload or describe this build as release-ready until those checks are recorded.

@@ -23,12 +23,15 @@ final class AffirmationMembershipTests: XCTestCase {
 
     @MainActor
     func testVerifiedEntitlementPublishesSnapshotAndRefreshDefersDestination() async throws {
+        // SKTestSession reset/clear changes its receipt outside the app purchase flow.
+        try await AppStore.sync()
         let membership = MembershipStore()
         let updates = Task { await membership.observeTransactions() }
         defer { updates.cancel() }
         await membership.refreshAccess()
         XCTAssertFalse(membership.hasAccess)
         _ = try await storeKitSession.buyProduct(identifier: "com.marsolab.PrayerFocus.monthly")
+        try await AppStore.sync()
         await membership.refreshAccess()
         XCTAssertTrue(membership.hasAccess)
         let snapshot = try XCTUnwrap(WidgetMembershipStore().read())
@@ -61,6 +64,7 @@ final class AffirmationMembershipTests: XCTestCase {
 
     @MainActor
     func testRecordedExpirationClearsAccessWithoutAStoreKitRefresh() async throws {
+        try await AppStore.sync()
         storeKitSession.timeRate = .oneRenewalEveryTenSeconds
         let membership = MembershipStore()
         let updates = Task { await membership.observeTransactions() }

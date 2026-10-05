@@ -32,7 +32,7 @@ struct MembershipPaywallView: View {
 
                         Text(
                             membership.hasThreeDayTrial(for: selectedPlan)
-                                ? "Your setup is ready. Try Prayer Focus free for 3 days."
+                                ? "Your setup is ready. Try SalahSide free for 3 days."
                                 : "Your setup is ready. Choose your membership."
                         )
                         .font(.system(size: bodySize))
@@ -99,7 +99,6 @@ struct MembershipPaywallView: View {
                             .disabled(membership.isBusy)
                             .accessibilityIdentifier("membership.reviewSetup")
 
-                        footer
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 4)
@@ -108,6 +107,12 @@ struct MembershipPaywallView: View {
             .contentMargins(.top, 0, for: .scrollContent)
             .scrollIndicators(.hidden)
             .ignoresSafeArea(.container, edges: .top)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            footer
+                .padding(.horizontal, 24)
+                .padding(.vertical, 4)
+                .background(PrayerTheme.canvas)
         }
         .background(PrayerTheme.canvas.ignoresSafeArea())
         .onChange(of: membership.hasAccess) { _, hasAccess in
@@ -221,12 +226,16 @@ struct MembershipPaywallView: View {
             Button("Restore purchases") {
                 Task { await membership.restore() }
             }
+            .frame(minHeight: 44)
             .accessibilityIdentifier("membership.restore")
             .disabled(membership.isBusy)
             Spacer(minLength: 4)
             Link(
-                "Terms", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                "Terms", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
+            )
+            .frame(minHeight: 44)
             Button("Privacy") { secondarySheet = .privacy }
+                .frame(minHeight: 44)
         }
         .font(.system(size: 12))
         .foregroundStyle(PrayerTheme.secondaryInk)
@@ -241,18 +250,31 @@ struct MembershipPaywallView: View {
     }
 }
 
-private struct MembershipPrivacyView: View {
+struct MembershipPrivacyView: View {
+    private var policyURL: URL? {
+        guard let raw = Bundle.main.object(forInfoDictionaryKey: "SalahSidePrivacyPolicyURL") as? String,
+            let url = URL(string: raw), url.scheme == "https", let host = url.host, !host.isEmpty
+        else { return nil }
+        return url
+    }
+
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
-                Text("Your prayer check-ins stay on this device.")
+                Text("Your prayer check-ins are saved locally.")
                     .font(.title2.weight(.semibold))
                 Text(
-                    "Prayer Focus does not require an account. Prayer check-ins and app selections are used on this device for the focus experience."
+                    "SalahSide does not require an account. Prayer check-ins and app selections are used on this device for the focus experience."
                 )
-                Text("Apple processes subscription payments. Prayer Focus does not receive your payment card details.")
+                Text(
+                    "Settings, check-ins and opaque app-selection tokens are stored locally and may be included in your device backups. You can erase them in Settings. SalahSide does not upload them or use advertising trackers."
+                )
+                if let policyURL {
+                    Link("Read the full privacy policy", destination: policyURL)
+                }
+                Text("Apple processes subscription payments. SalahSide does not receive your payment card details.")
                 Spacer()
             }
             .font(.body)

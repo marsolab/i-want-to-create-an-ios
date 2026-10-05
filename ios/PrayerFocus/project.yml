@@ -10,7 +10,11 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 0.1.0
+    MARKETING_VERSION: 1.0.0
+
+packages:
+  Adhan:
+    path: Vendor/Adhan
 
 fileGroups:
   - Configuration
@@ -26,12 +30,22 @@ targets:
       - path: PrayerFocusApp
       - path: Shared
     dependencies:
+      - package: Adhan
       - sdk: FamilyControls.framework
+      - sdk: ManagedSettings.framework
+      - sdk: DeviceActivity.framework
+      - target: PrayerFocusMonitor
+        embed: true
+      - target: PrayerFocusShield
+        embed: true
+      - target: PrayerFocusShieldAction
+        embed: true
       - target: PrayerFocusWidgets
         embed: true
     entitlements:
       path: PrayerFocusApp/PrayerFocus.entitlements
       properties:
+        com.apple.developer.family-controls: true
         com.apple.security.application-groups:
           - group.com.marsolab.PrayerFocus
     info:
@@ -39,6 +53,8 @@ targets:
       properties:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
+        SalahSidePrivacyPolicyURL: $(SALAH_SIDE_PRIVACY_POLICY_URL)
         CFBundleURLTypes:
           - CFBundleURLName: com.marsolab.PrayerFocus.affirmations
             CFBundleURLSchemes:
@@ -47,10 +63,10 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: Prayer Focus
+        INFOPLIST_KEY_CFBundleDisplayName: SalahSide
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SUPPORTS_MACCATALYST: NO
         TARGETED_DEVICE_FAMILY: 1
 
@@ -59,7 +75,8 @@ targets:
     platform: iOS
     sources:
       - path: PrayerFocusWidgets
-      - path: Shared
+      - path: Shared/Affirmations
+      - path: Shared/PrivacyInfo.xcprivacy
       - path: PrayerFocusApp/Design/PrayerTheme.swift
     entitlements:
       path: PrayerFocusWidgets/PrayerFocusWidgets.entitlements
@@ -77,6 +94,106 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus.Widgets
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+
+  PrayerFocusMonitor:
+    type: app-extension
+    platform: iOS
+    sources:
+      - PrayerFocusMonitor
+      - Shared/Focus
+      - Shared/Affirmations/WidgetMembership.swift
+      - Shared/PrivacyInfo.xcprivacy
+      - PrayerFocusApp/Domain/Prayer.swift
+      - PrayerFocusApp/Domain/PrayerSchedule.swift
+    dependencies:
+      - package: Adhan
+      - sdk: DeviceActivity.framework
+      - sdk: FamilyControls.framework
+      - sdk: ManagedSettings.framework
+    entitlements:
+      path: PrayerFocusMonitor/PrayerFocusMonitor.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups:
+          - group.com.marsolab.PrayerFocus
+    info:
+      path: PrayerFocusMonitor/Info.plist
+      properties:
+        CFBundleDisplayName: SalahSide Focus
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.deviceactivity.monitor-extension
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PrayerFocusMonitor
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus.Monitor
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+
+  PrayerFocusShield:
+    type: app-extension
+    platform: iOS
+    sources:
+      - PrayerFocusShield
+      - Shared/PrivacyInfo.xcprivacy
+      - Shared/Focus/FocusState.swift
+      - Shared/Focus/FocusStateStore.swift
+      - Shared/Focus/FocusPolicy.swift
+      - Shared/Affirmations/WidgetMembership.swift
+      - PrayerFocusApp/Domain/Prayer.swift
+    dependencies:
+      - sdk: ManagedSettings.framework
+      - sdk: ManagedSettingsUI.framework
+    entitlements:
+      path: PrayerFocusShield/PrayerFocusShield.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups:
+          - group.com.marsolab.PrayerFocus
+    info:
+      path: PrayerFocusShield/Info.plist
+      properties:
+        CFBundleDisplayName: SalahSide Shield
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettingsUI.shield-configuration-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PrayerFocusShield
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus.Shield
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+
+  PrayerFocusShieldAction:
+    type: app-extension
+    platform: iOS
+    sources:
+      - PrayerFocusShieldAction
+    dependencies:
+      - sdk: ManagedSettings.framework
+    entitlements:
+      path: PrayerFocusShieldAction/PrayerFocusShieldAction.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+    info:
+      path: PrayerFocusShieldAction/Info.plist
+      properties:
+        CFBundleDisplayName: SalahSide Shield Action
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettings.shield-action-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PrayerFocusShieldAction
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marsolab.PrayerFocus.ShieldAction
         APPLICATION_EXTENSION_API_ONLY: YES
         SKIP_INSTALL: YES
         TARGETED_DEVICE_FAMILY: 1

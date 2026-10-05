@@ -1,3 +1,5 @@
+> **Selected October 5, 2026: SalahSide.** Use this exact capitalization for customer-facing text. The candidates below are retained as earlier exploration. Technical bundle/product IDs remain unchanged. Availability checks are a dated snapshot, not a reservation.
+
 # App names: shortlist and zero-cost selection plan
 
 Prepared 13 September 2026. Brand has been set to **Deenstead** for this validation cycle.

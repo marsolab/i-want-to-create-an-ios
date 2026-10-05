@@ -1,13 +1,8 @@
 {
-  "compatibility_date": "2026-05-05",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "name": "saaskit-front",
-  "main": "@astrojs/cloudflare/entrypoints/server",
+  "name": "salahside-web",
+  "compatibility_date": "2026-10-05",
   "assets": {
     "directory": "./dist",
-    "binding": "ASSETS",
-  },
-  "observability": {
-    "enabled": true,
+    "not_found_handling": "404-page",
   },
 }

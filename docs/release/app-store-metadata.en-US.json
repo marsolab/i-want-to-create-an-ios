@@ -1,0 +1,17 @@
+{
+  "locale": "en-US",
+  "name": "SalahSide",
+  "subtitle": "Prayer times & app focus",
+  "promotionalText": "Make space for salah with calculated prayer times, optional app focus, private check-ins and daily reflections. Set up your preferences before choosing membership.",
+  "description": "Make space for salah, your way.\n\nSalahSide brings your prayer schedule and voluntary app focus into a calm daily routine. Choose your city and prayer-time convention, select the apps you want to pause, and adjust focus for each of the five prayers.\n\n• Prayer times calculated on your iPhone for London, New York, Toronto, Dubai and Kuala Lumpur.\n• Select a calculation method, Asr convention, high-latitude rule and minute adjustments to match your local timetable.\n• Optional Screen Time focus for selected apps, categories and websites during enabled prayers.\n• Start and finish prayer, mark it as already prayed, unlock for the current prayer, or pause focus for an hour.\n• Optional prayer-start reminders and private, self-reported check-ins.\n• Thirty original English reflections, with Home Screen and Lock Screen widgets.\n\nNo SalahSide account is required. Settings and check-ins are stored locally and can be erased in Settings. They may be included in device backups. Prayer times are estimates based on your chosen convention; compare them with a timetable you trust.\n\nMEMBERSHIP\nConfigure the app before choosing membership. An active Apple subscription is required for the prayer experience and affirmation widgets. Eligible Apple Accounts can start with a three-day free trial, followed by monthly or yearly billing. The full localized price and renewal interval are shown before confirmation. Apple determines eligibility. Subscriptions renew automatically unless cancelled in Apple account settings.\n\nScreen Time and notification permissions are optional and controlled by iOS.\n\nTerms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPrivacy policy: [published policy URL required]",
+  "keywords": "salah,prayer,namaz,focus,muslim,screen time,adhan,reflection,widget",
+  "primaryCategory": "Lifestyle",
+  "secondaryCategory": "Productivity",
+  "version": "1.0.0",
+  "bundleID": "com.marsolab.PrayerFocus",
+  "privacyPolicyURL": null,
+  "supportURL": null,
+  "supportEmail": null,
+  "publisherLegalName": null,
+  "status": "Draft. Review only after Family Controls approval, sandbox billing and physical-device QA pass."
+}

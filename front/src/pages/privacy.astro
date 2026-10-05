@@ -1,0 +1,92 @@
+---
+import DocumentLayout from '../layouts/site/DocumentLayout.astro';
+import Contact from '../components/site/Contact.astro';
+import { site } from '../lib/site/config';
+export const prerender = true;
+---
+
+<DocumentLayout
+  title="Privacy Policy"
+  description="A clear view of what SalahSide stores, what Apple handles, and what you control."
+  legal
+>
+  <h2>Who we are</h2>
+  <p>
+    {site.publisher || 'The SalahSide publisher will be identified before publication.'} provides SalahSide.
+    For privacy questions, contact <Contact subject="SalahSide privacy request" />.
+  </p>
+  <h2>Your information stays close</h2>
+  <p>
+    The iPhone app does not require an account and has no application backend, advertising SDK,
+    behavioral analytics SDK, or app cloud-sync service. It calculates prayer times from bundled
+    coordinates for the city you select; it does not request GPS permission or send your city to us.
+  </p>
+  <p>
+    On your device, SalahSide saves your city, calculation method, prayer conventions and minute
+    adjustments, notification preferences, focus switches, self-reported prayer actions, temporary
+    focus pause, and opaque Apple Screen Time selection tokens. Prayer history is limited to 90
+    event records. Check-ins are voluntary and self-reported; the app does not verify worship.
+  </p>
+  <h2>On-device extensions</h2>
+  <p>
+    Apple Screen Time extensions use a shared on-device App Group containing the minimum
+    configuration, calculated schedule, release and pause state, and selection tokens needed for
+    focus. The app and widgets also share a recognized subscription product identifier, verification
+    time, and expiration time so membership features can stop when saved access expires.
+  </p>
+  <p>
+    These extensions run on your device. SalahSide does not upload selected app identities,
+    app-usage reports, or prayer history.
+  </p>
+  <h2>Apple purchases and services</h2>
+  <p>
+    Apple handles purchases, renewals, cancellation, and restoration through StoreKit. SalahSide
+    receives verified subscription information to decide access. We do not receive your payment-card
+    details. Apple's own services, diagnostic settings, and Apple account are governed by <a
+      href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a
+    >.
+  </p>
+  <h2>Optional permissions</h2>
+  <p>
+    Screen Time access and notifications are optional. Without Screen Time permission, prayer times
+    and check-ins remain available with active membership. You can adjust focus switches, unlock a
+    prayer, pause focus, and change permissions in iOS Settings. Notifications require permission
+    and may be affected by your device's notification and Focus settings.
+  </p>
+  <h2>Storage, backup, and deletion</h2>
+  <p>
+    Local data may be included in iOS device or iCloud backups according to your Apple backup
+    settings. SalahSide does not promise exclusion from every backup.
+  </p>
+  <p>
+    In SalahSide, open Settings and choose Erase local data to remove prayer settings, app
+    selection, and check-in history and clear app-owned focus restrictions. This does not cancel an
+    Apple subscription or remove existing device backups. Manage subscriptions and backups through
+    Apple's settings.
+  </p>
+  <h2>This website and support email</h2>
+  <p>
+    This website uses no advertising trackers, analytics scripts, account system, or contact form.
+    Its fonts and images are served with the site. The hosting service may process routine
+    connection information, such as your IP address, requested page, and browser information, to
+    deliver and secure the website under its retention settings.
+  </p>
+  <p>
+    If you email support, we receive your email address, message, and any attachments you choose to
+    send. We use them to answer your request and resolve the issue, retaining correspondence only as
+    needed for that purpose or applicable obligations. Avoid sending sensitive information; prayer
+    history and Screen Time selections are not needed for most requests. Email is handled by the
+    selected email provider.
+  </p>
+  <h2>Requests and changes</h2>
+  <p>
+    You can contact <Contact subject="SalahSide privacy request" /> about support correspondence or privacy
+    questions. We cannot remotely access or erase data stored only on your device. Depending on the law
+    applicable to you, you may have rights to access, correct, or delete personal information you provide
+    to us.
+  </p>
+  <p>
+    We will update this page and its effective date when our data practices change. Questions about
+    membership are covered in the <a href="/terms/">Terms</a> and <a href="/support/">Support</a> pages.
+  </p>
+</DocumentLayout>

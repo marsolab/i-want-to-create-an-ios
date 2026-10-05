@@ -1,25 +1,22 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
-
-import partytown from '@astrojs/partytown';
-
-import mdx from '@astrojs/mdx';
-
 import react from '@astrojs/react';
-
-import cloudflare from '@astrojs/cloudflare';
-
 import tailwindcss from '@tailwindcss/vite';
+import { loadEnv } from 'vite';
 
-import starlight from '@astrojs/starlight';
+const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
+const siteURL = process.env.PUBLIC_SITE_URL || env.PUBLIC_SITE_URL;
 
-// https://astro.build/config
+// The public SalahSide site is generated HTML and assets; it needs no app server.
 export default defineConfig({
-  integrations: [sitemap(), partytown(), starlight({ title: 'Docs' }), mdx(), react()],
-  adapter: cloudflare(),
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  site: siteURL || undefined,
+  output: 'static',
+  trailingSlash: 'always',
+  integrations: [
+    ...(siteURL ? [sitemap({ filter: (page) => !page.endsWith('/404/') })] : []),
+    react(),
+  ],
+  devToolbar: { enabled: false },
+  vite: { plugins: [tailwindcss()] },
 });

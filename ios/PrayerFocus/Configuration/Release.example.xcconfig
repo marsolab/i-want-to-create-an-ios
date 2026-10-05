@@ -1,0 +1,6 @@
+// Copy to Release.local.xcconfig and complete the real publisher values.
+// Xcconfig treats // as a comment; the empty variable preserves the HTTPS URL.
+DEVELOPMENT_TEAM =
+// Example syntax: https:/$()/your-owned-domain.example/privacy
+SALAH_SIDE_PRIVACY_POLICY_URL =
+CODE_SIGN_STYLE = Automatic

@@ -34,7 +34,7 @@ struct AffirmationWidgetCard: View {
 
                 Spacer(minLength: 0)
 
-                Text(affirmation?.text ?? "Open Prayer Focus to continue.")
+                Text(affirmation?.text ?? "Open SalahSide to continue.")
                     .font(.system(size: family == .systemSmall ? 17 : 22, weight: .medium, design: .serif))
                     .foregroundStyle(textColor)
                     .lineLimit(family == .systemSmall ? 5 : 4)
@@ -70,7 +70,7 @@ struct AffirmationWidgetCard: View {
     }
 
     private var lockScreen: some View {
-        Text(affirmation?.text ?? "Daily reflections\nOpen Prayer Focus to continue.")
+        Text(affirmation?.text ?? "Daily reflections\nOpen SalahSide to continue.")
             .font(.system(size: 14, weight: .medium))
             .foregroundStyle(.primary)
             .lineLimit(3)
@@ -106,7 +106,7 @@ struct AffirmationWidgetCard: View {
         if let affirmation {
             "Daily affirmation. \(affirmation.text) \(affirmation.theme)."
         } else {
-            "Daily reflections. Open Prayer Focus to continue. Membership required."
+            "Daily reflections. Open SalahSide to continue. Membership required."
         }
     }
 }

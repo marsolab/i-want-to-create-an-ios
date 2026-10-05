@@ -1,46 +1,47 @@
-# Astro Starter Kit: Basics
+# SalahSide public website
+
+English landing page, Privacy Policy, Terms, Support, and a custom 404 page. Astro generates static HTML/CSS with optimized local images. FAQ disclosures work without JavaScript. No analytics, account, mailing list, contact form, or remote font service is included.
+
+The Today image is an actual simulator capture. Architecture and icon assets come from the native app artwork. The landing page advertises no unconfirmed prices or trial eligibility and shows Coming soon until an actual App Store listing URL is configured.
+
+## Local development and checks
 
 ```sh
-bun create astro@latest -- --template basics
+bun install --frozen-lockfile
+bun run dev
+bun run check
+bun run lint
+bun test
+bun run format:check
+bun run build
+bun run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Use the URL printed by the server. The review preview used `http://127.0.0.1:4340/` for the built site; a future run may use a different port.
 
-## 🚀 Project Structure
+## Publication configuration
 
-Inside of your Astro project, you'll see the following folders and files:
+Copy `.env.example` to ignored `.env`. Set the real values; business contact details are rendered publicly. No credentials belong in these fields.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+| Variable                       | Purpose                                                             |
+| ------------------------------ | ------------------------------------------------------------------- |
+| `PUBLIC_SITE_URL`              | Real HTTPS origin under the publisher's control, without a path     |
+| `PUBLIC_PUBLISHER_NAME`        | Confirmed legal publisher name                                      |
+| `PUBLIC_SUPPORT_EMAIL`         | Working support and privacy contact mailbox                         |
+| `PUBLIC_POLICY_EFFECTIVE_DATE` | Actual publication date, YYYY-MM-DD                                 |
+| `PUBLIC_APP_STORE_URL`         | Optional real `apps.apple.com` listing; leave blank until available |
+| `SALAH_SIDE_SITE_RELEASE`      | `0` for drafts; `1` requires the four publication fields            |
+
+Preview builds are marked noindex and disallow crawling. Legal pages label themselves as publication drafts. With release mode enabled, missing publication fields fail the build; configured fields produce canonical URLs, a sitemap, and dated publisher/contact copy. Syntax checks do not prove domain ownership, mailbox delivery, legal identity, or public policy accessibility. Confirm these before publishing.
+
+```sh
+SALAH_SIDE_SITE_RELEASE=1 bun run build
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+`dist/` can be hosted as static files. Wrangler targets an assets-only Cloudflare Worker with a custom 404 page and security headers. After the concrete site and destination are approved, `bunx wrangler deploy` publishes it to the selected account. No deployment was performed in this task. See [Astro's Cloudflare guide](https://docs.astro.build/en/guides/deploy/cloudflare/).
 
-## 🧞 Commands
+After publishing, verify `/privacy/`, `/terms/`, and `/support/` over HTTPS without login. Set the same public policy URL in native `Release.local.xcconfig` and the policy/support URLs in App Store Connect. Validate the mailbox and hosting/email data practices described in the policy.
 
-All commands are run from the root of the project, from a terminal:
+## Design and evidence
 
-| Command               | Action                                           |
-| :-------------------- | :----------------------------------------------- |
-| `bun install`         | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The [three section concepts](../docs/release/site-concepts/) were generated with built-in image_gen. Full prompts and the revision are in [prompts.json](../docs/release/site-concepts/prompts.json). [Site QA](../docs/release/site-qa.md) records browser/build evidence and comparisons. Original app images are retained; the device frame and architectural clipping are code.

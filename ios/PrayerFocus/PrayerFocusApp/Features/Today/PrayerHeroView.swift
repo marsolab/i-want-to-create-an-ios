@@ -5,6 +5,9 @@ struct PrayerHeroView: View {
     let phase: PrayerSessionPhase
     let selectedItemCount: Int
     let isAuthorized: Bool
+    var focusNotice: String?
+    var prayerTime: String?
+    var isPrayerTime = true
     var topSafeAreaInset: CGFloat = 0
     let settingsAction: () -> Void
 
@@ -57,7 +60,7 @@ struct PrayerHeroView: View {
                 .padding(.top, topSafeAreaInset)
 
                 VStack(spacing: 10) {
-                    Text("It’s time for")
+                    Text(isPrayerTime ? "It’s time for" : "Coming next")
                         .font(.title3.weight(.medium))
 
                     Text(prayer.displayName)
@@ -65,6 +68,9 @@ struct PrayerHeroView: View {
                         .tracking(-1.2)
                         .minimumScaleFactor(0.75)
 
+                    if let prayerTime {
+                        Text(prayerTime).font(.title3.weight(.medium))
+                    }
                     Text("Take a pause from the world\nand turn to Allah.")
                         .font(.body)
                         .foregroundStyle(PrayerTheme.secondaryInk)
@@ -80,7 +86,8 @@ struct PrayerHeroView: View {
             FocusStatusCard(
                 phase: phase,
                 selectedItemCount: selectedItemCount,
-                isAuthorized: isAuthorized
+                isAuthorized: isAuthorized,
+                focusNotice: focusNotice
             )
             .padding(.horizontal, 24)
             .offset(y: 26)
@@ -94,6 +101,7 @@ private struct FocusStatusCard: View {
     let phase: PrayerSessionPhase
     let selectedItemCount: Int
     let isAuthorized: Bool
+    let focusNotice: String?
 
     var body: some View {
         HStack(spacing: 14) {
@@ -144,13 +152,14 @@ private struct FocusStatusCard: View {
     }
 
     private var detail: String {
+        if let focusNotice { return focusNotice }
         switch phase {
         case .ready:
             if selectedItemCount == 0 {
                 return "Set up Screen Time in Settings."
             }
             return isAuthorized
-                ? "Ready for device validation." : "Screen Time permission is needed."
+                ? "Focus follows your prayer settings." : "Screen Time permission is needed."
         case .inProgress:
             return "Put your phone away when you’re ready."
         case .checkedIn:

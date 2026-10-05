@@ -38,8 +38,8 @@ final class AffirmationWidgetInstallationUITests: XCTestCase {
         let search = home.searchFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 10), home.debugDescription)
         search.tap()
-        search.typeText("Prayer Focus")
-        let result = home.collectionViews["add-sheet-collection-view"].cells["Prayer Focus"]
+        search.typeText("SalahSide")
+        let result = home.collectionViews["add-sheet-collection-view"].cells["SalahSide"]
         XCTAssertTrue(result.waitForExistence(timeout: 15), home.debugDescription)
         result.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
         let addWidget = home.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Add Widget")).firstMatch
@@ -55,7 +55,7 @@ final class AffirmationWidgetInstallationUITests: XCTestCase {
         done.tap()
 
         let reflection = home.descendants(matching: .any)
-            .matching(NSPredicate(format: "label CONTAINS %@", "Open Prayer Focus to continue.")).firstMatch
+            .matching(NSPredicate(format: "label CONTAINS %@", "Open SalahSide to continue.")).firstMatch
         XCTAssertTrue(reflection.waitForExistence(timeout: 20))
         let installed = XCTAttachment(screenshot: home.screenshot())
         installed.name = "Installed Home Screen affirmation widget"

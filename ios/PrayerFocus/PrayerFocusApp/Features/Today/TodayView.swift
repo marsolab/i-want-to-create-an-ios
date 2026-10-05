@@ -17,6 +17,10 @@ struct TodayView: View {
                         phase: session.phase,
                         selectedItemCount: screenTime.selectedItemCount,
                         isAuthorized: screenTime.isAuthorized,
+                        focusNotice: screenTime.lastError
+                            ?? (screenTime.pauseUntil.map { $0 > Date() ? "Focus is paused." : nil } ?? nil),
+                        prayerTime: session.currentEntry.flatMap { session.schedule?.formattedTime($0.date) },
+                        isPrayerTime: session.isPrayerTime,
                         topSafeAreaInset: geometry.safeAreaInsets.top,
                         settingsAction: {
                             if let showSettings {
@@ -50,7 +54,7 @@ struct TodayView: View {
                         .opacity(session.canPerformPrimaryAction ? 1 : 0.55)
                         .disabled(!session.canPerformPrimaryAction)
 
-                        if session.phase != .checkedIn {
+                        if session.isPrayerTime && !session.hasScheduleError && session.phase != .checkedIn {
                             Button("Already prayed", action: session.markAlreadyPrayed)
                                 .font(.headline)
                                 .foregroundStyle(PrayerTheme.sage)
@@ -63,7 +67,7 @@ struct TodayView: View {
                                 }
                         }
 
-                        if session.phase != .checkedIn && session.phase != .unlocked {
+                        if session.isPrayerTime && session.phase != .checkedIn && session.phase != .unlocked {
                             Button("Unlock for this prayer") {
                                 isConfirmingUnlock = true
                             }
@@ -75,13 +79,18 @@ struct TodayView: View {
                     .padding(.horizontal, PrayerTheme.pageMargin)
                     .padding(.top, 42)
 
-                    PrayerScheduleView(
-                        currentPrayer: session.currentPrayer,
-                        phase: session.phase
-                    )
-                    .padding(.horizontal, PrayerTheme.pageMargin)
-                    .padding(.top, 34)
-                    .padding(.bottom, 36)
+                    if session.hasScheduleError {
+                        Text(
+                            "Prayer times are unavailable. Review your city, calculation method and adjustments in Settings."
+                        )
+                        .font(.callout)
+                        .foregroundStyle(PrayerTheme.secondaryInk)
+                        .padding(.horizontal, PrayerTheme.pageMargin)
+                    }
+                    PrayerScheduleView(session: session)
+                        .padding(.horizontal, PrayerTheme.pageMargin)
+                        .padding(.top, 34)
+                        .padding(.bottom, 36)
                 }
             }
             .contentMargins(.top, 0, for: .scrollContent)

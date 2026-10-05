@@ -1,0 +1,27 @@
+---
+import SiteLayout from './SiteLayout.astro';
+import { site } from '../../lib/site/config';
+interface Props {
+  title: string;
+  description: string;
+  legal?: boolean;
+}
+const { title, description, legal = false } = Astro.props;
+---
+
+<SiteLayout title={`${title} — SalahSide`} description={description}>
+  <article class="document shell">
+    <h1>{title}</h1>
+    <p class="document-intro">{description}</p>
+    {
+      legal && (
+        <p class="document-meta">
+          {site.release
+            ? `Effective ${site.effectiveDate} · ${site.publisher}`
+            : 'Publication draft · Publisher and contact details await confirmation.'}
+        </p>
+      )
+    }
+    <div class="document-body"><slot /></div>
+  </article>
+</SiteLayout>

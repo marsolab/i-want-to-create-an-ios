@@ -13,12 +13,12 @@
       "id": "200001",
       "localizations": [
         {
-          "description": "Prayer Focus membership",
-          "displayName": "Prayer Focus",
+          "description": "SalahSide membership",
+          "displayName": "SalahSide",
           "locale": "en_US"
         }
       ],
-      "name": "Prayer Focus widget tests",
+      "name": "SalahSide widget tests",
       "subscriptions": [
         {
           "adHocOffers": [],
@@ -30,8 +30,8 @@
           "introductoryOffer": null,
           "localizations": [
             {
-              "description": "Prayer Focus membership",
-              "displayName": "Prayer Focus yearly",
+              "description": "SalahSide membership",
+              "displayName": "SalahSide yearly",
               "locale": "en_US"
             }
           ],
@@ -52,8 +52,8 @@
           "introductoryOffer": null,
           "localizations": [
             {
-              "description": "Prayer Focus membership",
-              "displayName": "Prayer Focus monthly",
+              "description": "SalahSide membership",
+              "displayName": "SalahSide monthly",
               "locale": "en_US"
             }
           ],
